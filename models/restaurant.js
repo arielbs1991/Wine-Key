@@ -1,6 +1,13 @@
 module.exports = function (sequelize, DataTypes) {
-    var Wine = sequelize.define("Wine", {
-        name: {
+    var Restaurant = sequelize.define("Restaurant", {
+        restaurantName: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                len: [1]
+            }
+        },
+        wineName: {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
@@ -21,13 +28,12 @@ module.exports = function (sequelize, DataTypes) {
                 len: [1]
             }
         },
-        restaurant: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                len: [1]
-            }
-        }
     });
-    return Wine;
+
+    Restaurant.associate = function (models) {
+        Restaurant.hasMany(models.Wine, {
+            onDelete: "cascade"
+        });
+    };
+    return Restaurant;
 };
