@@ -1,27 +1,20 @@
 module.exports = function (sequelize, DataTypes) {
-    var Wine = sequelize.define("Wine", {
-        name: {
+    var Company = sequelize.define("Company", {
+        restaurantName: {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
                 len: [1]
             }
         },
-        year: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            validate: {
-                len: [1, 4]
-            }
-        },
-        quantity: {
-            type: DataTypes.INTEGER,
+        phoneNumber: {
+            type: DataTypes.STRING,
             allowNull: false,
             validate: {
                 len: [1]
             }
         },
-        restaurant: {
+        address: {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
@@ -29,5 +22,11 @@ module.exports = function (sequelize, DataTypes) {
             }
         }
     });
-    return Wine;
+
+    Company.associate = function (models) {
+        Company.hasMany(models.Restaurant, {
+            onDelete: "cascade"
+        });
+    };
+    return Company;
 };
