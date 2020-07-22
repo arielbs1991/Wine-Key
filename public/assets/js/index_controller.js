@@ -1,135 +1,141 @@
 $(document).ready(function() {
-    // Getting jQuery references to the wine body, title, form, and restaurant select
-    var bodyInput = $("#body");
-    var titleInput = $("#title");
-    var cmsForm = $("#cms");
-    var restaurantSelect = $("#restaurant");
-    // Adding an event listener for when the form is submitted
-    $(cmsForm).on("submit", handleFormSubmit);
-    // Gets the part of the url that comes after the "?" (which we have if we're updating a wine)
-    var url = window.location.search;
-    var wineId;
-    var restaurantId;
-    // Sets a flag for whether or not we're updating a wine to be false initially
-    var updating = false;
-  
-    // If we have this section in our url, we pull out the wine id from the url
-    // In '?wine_id=1', wineId is 1
-    if (url.indexOf("?wine_id=") !== -1) {
-      wineId = url.split("=")[1];
-      getWineData(wineId, "wine");
+  /* global moment */
+
+  // blogContainer holds all of our wine
+  var blogContainer = $(".blog-container");
+  var wineCategorySelect = $("#category");
+  // Click events for the edit and delete buttons
+  $(document).on("click", "button.delete", handleWineDelete);
+  $(document).on("click", "button.edit", handleWineEdit);
+  // Variable to hold our wine
+  var wine;
+
+  // The code below handles the case where we want to get blog wine for a specific Restaurant
+  // Looks for a query param in the url for restaurant_id
+  var url = window.location.search;
+  var restaurantId;
+  if (url.indexOf("?restaurant_id=") !== -1) {
+    restaurantId = url.split("=")[1];
+    getWine(restaurantId);
+  }
+  // If there's no restaurantId we just get all wine as usual
+  else {
+    getWine();
+  }
+
+
+  // This function grabs wine from the database and updates the view
+  function getWine(restaurant) {
+    restaurantId = restaurant || "";
+    if (restaurantId) {
+      restaurantId = "/?restaurant_id=" + restaurantId;
     }
-    // Otherwise if we have an restaurant_id in our url, preset the restaurant select box to be our Restaurant
-    else if (url.indexOf("?restaurant_id=") !== -1) {
-      restaurantId = url.split("=")[1];
-    }
-  
-    // Getting the restaurants, and their wines
-    getRestaurants();
-  
-    // A function for handling what happens when the form to create a new wine is submitted
-    function handleFormSubmit(event) {
-      event.preventDefault();
-      // Wont submit the wine if we are missing a body, title, or restaurant
-      if (!titleInput.val().trim() || !bodyInput.val().trim() || !restaurantSelect.val()) {
-        return;
-      }
-      // Constructing a newWine object to hand to the database
-      var newWine = {
-        title: titleInput
-          .val()
-          .trim(),
-        body: bodyInput
-          .val()
-          .trim(),
-        RestaurantId: restaurantSelect.val()
-      };
-  
-      // If we're updating a wine run updateWine to update a wine
-      // Otherwise run submitWine to create a whole new wine
-      if (updating) {
-        newWine.id = wineId;
-        updateWine(newWine);
+    $.get("/api/wine" + restaurantId, function(data) {
+      console.log("wine", data);
+      wine = data;
+      if (!wine || !wine.length) {
+        displayEmpty(restaurant);
       }
       else {
-        submitWine(newWine);
+        initializeRows();
       }
-    }
-  
-    // Submits a new wine and brings user to home page upon completion
-    function submitWine(wine) {
-      $.wine("/api/wines", wine, function() {
-        window.location.href = "/home";
+    });
+  }
+
+  // This function does an API call to delete wine
+  function deleteWine(id) {
+    $.ajax({
+      method: "DELETE",
+      url: "/api/wine/" + id
+    })
+      .then(function() {
+        getWine(wineCategorySelect.val());
       });
+  }
+
+  // InitializeRows handles appending all of our constructed wine HTML inside blogContainer
+  function initializeRows() {
+    blogContainer.empty();
+    var wineToAdd = [];
+    for (var i = 0; i < wine.length; i++) {
+      wineToAdd.push(createNewRow(wine[i]));
     }
-  
-    // Gets wine data for the current wine if we're editing, or if we're adding to an restaurant's existing wines
-    function getWineData(id, type) {
-      var queryUrl;
-      switch (type) {
-      case "wine":
-        queryUrl = "/api/wines/" + id;
-        break;
-      case "restaurant":
-        queryUrl = "/api/restaurants/" + id;
-        break;
-      default:
-        return;
-      }
-      $.get(queryUrl, function(data) {
-        if (data) {
-          console.log(data.RestaurantId || data.id);
-          // If this wine exists, prefill our cms forms with its data
-          titleInput.val(data.title);
-          bodyInput.val(data.body);
-          restaurantId = data.RestaurantId || data.id;
-          // If we have a wine with this id, set a flag for us to know to update the wine
-          // when we hit submit
-          updating = true;
-        }
-      });
+    blogContainer.append(wineToAdd);
+  }
+
+  // This function constructs a wine's HTML
+  function createNewRow(wine) {
+    var formattedDate = new Date(wine.createdAt);
+    formattedDate = moment(formattedDate).format("MMMM Do YYYY, h:mm:ss a");
+    var newWineCard = $("<div>");
+    newWineCard.addClass("card");
+    var newWineCardHeading = $("<div>");
+    newWineCardHeading.addClass("card-header");
+    var deleteBtn = $("<button>");
+    deleteBtn.text("x");
+    deleteBtn.addClass("delete btn btn-danger");
+    var editBtn = $("<button>");
+    editBtn.text("EDIT");
+    editBtn.addClass("edit btn btn-info");
+    var newWineTitle = $("<h2>");
+    var newWineDate = $("<small>");
+    var newWineRestaurant = $("<h5>");
+    newWineRestaurant.text("Written by: " + wine.Restaurant.name);
+    newWineRestaurant.css({
+      float: "right",
+      color: "blue",
+      "margin-top":
+      "-10px"
+    });
+    var newWineCardBody = $("<div>");
+    newWineCardBody.addClass("card-body");
+    var newWineBody = $("<p>");
+    newWineTitle.text(wine.title + " ");
+    newWineBody.text(wine.body);
+    newWineDate.text(formattedDate);
+    newWineTitle.append(newWineDate);
+    newWineCardHeading.append(deleteBtn);
+    newWineCardHeading.append(editBtn);
+    newWineCardHeading.append(newWineTitle);
+    newWineCardHeading.append(newWineRestaurant);
+    newWineCardBody.append(newWineBody);
+    newWineCard.append(newWineCardHeading);
+    newWineCard.append(newWineCardBody);
+    newWineCard.data("wine", wine);
+    return newWineCard;
+  }
+
+  // This function figures out which wine we want to delete and then calls deleteWine
+  function handleWineDelete() {
+    var currentWine = $(this)
+      .parent()
+      .parent()
+      .data("wine");
+    deleteWine(currentWine.id);
+  }
+
+  // This function figures out which wine we want to edit and takes it to the appropriate url
+  function handleWineEdit() {
+    var currentWine = $(this)
+      .parent()
+      .parent()
+      .data("wine");
+    window.location.href = "/cms?wine_id=" + currentWine.id;
+  }
+
+  // This function displays a message when there are no wine
+  function displayEmpty(id) {
+    var query = window.location.search;
+    var partial = "";
+    if (id) {
+      partial = " for Restaurant #" + id;
     }
-  
-    // A function to get Restaurants and then render our list of Restaurants
-    function getRestaurants() {
-      $.get("/api/restaurants", renderRestaurantList);
-    }
-    // Function to either render a list of restaurants, or if there are none, direct the user to the page
-    // to create an restaurant first
-    function renderRestaurantList(data) {
-      if (!data.length) {
-        window.location.href = "/restaurants";
-      }
-      $(".hidden").removeClass("hidden");
-      var rowsToAdd = [];
-      for (var i = 0; i < data.length; i++) {
-        rowsToAdd.push(createRestaurantRow(data[i]));
-      }
-      restaurantSelect.empty();
-      console.log(rowsToAdd);
-      console.log(restaurantSelect);
-      restaurantSelect.append(rowsToAdd);
-      restaurantSelect.val(restaurantId);
-    }
-  
-    // Creates the restaurant options in the dropdown
-    function createRestaurantRow(restaurant) {
-      var listOption = $("<option>");
-      listOption.attr("value", restaurant.id);
-      listOption.text(restaurant.name);
-      return listOption;
-    }
-  
-    // Update a given wine, bring user to the home page when done
-    function updateWine(wine) {
-      $.ajax({
-        method: "PUT",
-        url: "/api/wines",
-        data: wine
-      })
-        .then(function() {
-          window.location.href = "/home";
-        });
-    }
-  });
-  
+    blogContainer.empty();
+    var messageH2 = $("<h2>");
+    messageH2.css({ "text-align": "center", "margin-top": "50px" });
+    messageH2.html("No wine yet" + partial + ", navigate <a href='/cms" + query +
+    "'>here</a> in order to get started.");
+    blogContainer.append(messageH2);
+  }
+
+});
