@@ -1,0 +1,30 @@
+<div class="title-bar" data-responsive-toggle="example-menu" data-hide-for="medium">
+    <button class="menu-icon" type="button" data-toggle="example-menu"></button>
+    <div class="title-bar-title">Menu</div>
+  </div>
+  
+  <div class="top-bar" id="example-menu">
+    <div class="top-bar-left">
+      <ul class="dropdown menu" data-dropdown-menu>
+        <li class="menu-text">WINE KEY</li>
+        <li><a href="index.handlebars">Home</a></li>
+        <li>
+          <a href="#">Stores</a>
+          <ul class="menu vertical">
+            <li><a href="#">AERLUME</a></li> <!--{{for each restaurant name}}-->
+            <li><a href="#">AQUA</a></li>
+            <li><a href="#">El Gaucho Bellevue</a></li>
+            <li><a href="#">El Gaucho Seattle</a></li>
+            <li><a href="#">El Gaucho Tacoma</a></li>
+          </ul>
+        </li>
+        <li><a href="winecatalog.handlebars">Wine Catalog</a></li>
+      </ul>
+    </div>
+    <div class="top-bar-right">
+      <ul class="menu">
+        <li><input type="search" placeholder="Find Wines"></li>
+        <li><button type="button" class="button">Search</button></li>
+      </ul>
+    </div>
+  </div>

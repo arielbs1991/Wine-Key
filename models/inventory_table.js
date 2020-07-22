@@ -23,15 +23,15 @@ module.exports = function (sequelize, DataTypes) {
         }
     });
     
-    Inventory.associate = function (models) {
-        Inventory.hasMany(models.Wine, {
-            onDelete: "cascade"
-        });
-        Inventory.belongsTo(models.Restaurant, {
-            foreignKey: {
-              allowNull: false
-            }
-          });
-    };
+    // Inventory.associate = function (models) {
+    //     Inventory.hasMany(models.Wine, {
+    //         onDelete: "cascade"
+    //     });
+    //     Inventory.belongsTo(models.Restaurant, {
+    //         foreignKey: {
+    //           allowNull: false
+    //         }
+    //       });
+    // };
     return Inventory;
 };
