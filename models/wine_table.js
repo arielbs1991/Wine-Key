@@ -1,6 +1,6 @@
 module.exports = function (sequelize, DataTypes) {
     var Wine = sequelize.define("Wine", {
-        name: {
+        wineName: {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
