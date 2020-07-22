@@ -14,14 +14,7 @@ module.exports = function (sequelize, DataTypes) {
                 len: [1, 4]
             }
         },
-        quantity: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            validate: {
-                len: [1]
-            }
-        },
-        restaurant: {
+        variety: {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
