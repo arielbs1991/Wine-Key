@@ -1,6 +1,6 @@
 module.exports = function (sequelize, DataTypes) {
-    var Wine = sequelize.define("Wine", {
-        name: {
+    var Inventory = sequelize.define("Inventory", {
+        wineName: {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
@@ -14,8 +14,8 @@ module.exports = function (sequelize, DataTypes) {
                 len: [1, 4]
             }
         },
-        variety: {
-            type: DataTypes.STRING,
+        quantity: {
+            type: DataTypes.INTEGER,
             allowNull: false,
             validate: {
                 len: [1]
@@ -23,17 +23,15 @@ module.exports = function (sequelize, DataTypes) {
         }
     });
     
-    Wine.associate = function(models) {
-        Wine.belongsToMany(models.Inventory, {
-          foreignKey: {
-            allowNull: false
-          }
+    Inventory.associate = function (models) {
+        Inventory.hasMany(models.Wine, {
+            onDelete: "cascade"
         });
-        Wine.hasMany(models.Restaurant, {
-          foreignKey: {
-            allowNull: false
-          }
-        });
-      };
-    return Wine;
+        Inventory.belongsTo(models.Restaurant, {
+            foreignKey: {
+              allowNull: false
+            }
+          });
+    };
+    return Inventory;
 };
