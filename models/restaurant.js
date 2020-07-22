@@ -7,30 +7,27 @@ module.exports = function (sequelize, DataTypes) {
                 len: [1]
             }
         },
-        wineName: {
+        phoneNumber: {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
                 len: [1]
             }
         },
-        year: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            validate: {
-                len: [1, 4]
-            }
-        },
-        quantity: {
-            type: DataTypes.INTEGER,
+        address: {
+            type: DataTypes.STRING,
             allowNull: false,
             validate: {
                 len: [1]
             }
-        },
+        }
+        
     });
 
     Restaurant.associate = function (models) {
+        Restaurant.hasOne(models.Inventory, {
+            onDelete: "cascade"
+        });
         Restaurant.hasMany(models.Wine, {
             onDelete: "cascade"
         });
