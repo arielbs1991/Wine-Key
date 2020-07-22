@@ -10,7 +10,14 @@ var db = require("../models");
 module.exports = function (app) {
   // GET route for getting all of the wines
   app.get("/api/wines", function (req, res) {
-    db.Wine.findAll({}).then(function (dbWine) {
+    var query = {};
+    if (req.query.restaurant_id) {
+      query.RestaurantId = req.query.restaurant_id;
+    }
+    db.Wine.findAll({
+      where: query,
+      include: [db.Restaurant]
+    }).then(function (dbWine) {
       res.json(dbWine)
       }).catch(function (err) {
         console.log(err);
@@ -24,7 +31,8 @@ module.exports = function (app) {
     db.Wine.findOne({
       where: {
         id: req.params.id
-      }
+      },
+      include: [db.Restaurant]
     }).then(function (dbWine) {
       res.json(dbWine)
       }).catch(function (err) {
@@ -39,8 +47,7 @@ module.exports = function (app) {
     db.Wine.create({
       name: req.body.name,
       year: req.body.year,
-      quantity: req.body.quantity,
-      restaurant: req.body.restaurant
+      variety: req.body.variety
     }).then(function (Wine) {
       res.json(Wine);
     }).catch(function (err) {
@@ -70,8 +77,7 @@ module.exports = function (app) {
     db.Wine.update({
       name: req.body.name,
       year: req.body.year,
-      quantity: req.body.quantity,
-      restaurant: req.body.restaurant
+      variety: req.body.variety
     }).then(function(Wine) {
       res.json(Wine);
     }).catch(function(err) {
