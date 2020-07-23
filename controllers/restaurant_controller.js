@@ -41,7 +41,9 @@ router.get("/restaurant/:id", function (req, res) {
     res.status(500).end()
   })
 });
-router.get("/api/restaurant", function (req, res) {
+
+//function for creating a new restaurant
+router.post("/api/restaurant", function (req, res) {
  db.Restaurant.create(req.body).then(function (dbRestaurant) {
     console.log(dbRestaurant);
     res.json(dbRestaurant);
