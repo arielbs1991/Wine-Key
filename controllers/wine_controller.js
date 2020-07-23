@@ -8,12 +8,13 @@ var db = require("../models");
 
 router.get("/", function(req, res) {
 
-  res.redirect("/wine");
+  res.redirect("/home");
 });
-
+//make a router.get("/wine/:wineName") which returns req.params.wineName /api/wine/search/:wineName
+//either use an autofill, or generate a dropdown of wine names (for later)
 
 // GET route for getting all of the wines
-router.get("/wine", function (req, res) {
+router.get("/home", function (req, res) {
   db.Wine.findAll()
     .then(function (dbWine) {
       console.log(dbWine);
@@ -27,7 +28,7 @@ router.get("/wine", function (req, res) {
 });
 
 // Get route for retrieving a single Wine
-router.get("/wine/:id", function (req, res) {
+router.get("api/wine/:id", function (req, res) {
   db.Wine.findOne({
     where: {
       id: req.params.id
@@ -44,7 +45,7 @@ router.get("/wine/:id", function (req, res) {
 });
 
 // Get route for returning wines of a specific restaurant
-// router.get("/wine/restaurant/:restaurant", function (req, res) {
+// router.get("api/wine/restaurant/:restaurant", function (req, res) {
 //   db.Wine.findAll({
 //     where: {
 //       restaurant: req.params.restaurant
@@ -61,7 +62,7 @@ router.get("/wine/:id", function (req, res) {
 // });
 
 // Wine route for saving a new Wine
-router.post("/wine/:id", function (req, res) {
+router.post("api/wine/:id", function (req, res) {
   db.Wine.create({
     wineName: req.body.wineName,
     year: req.body.year,
@@ -75,7 +76,7 @@ router.post("/wine/:id", function (req, res) {
   })
 });
 
-router.delete("/wine/:id", function (req, res) {
+router.delete("api/wine/:id", function (req, res) {
   db.Wine.destroy({
     where: {
       id: req.params.id
