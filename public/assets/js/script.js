@@ -1,4 +1,3 @@
-const { endsWith } = require("sequelize/types/lib/operators")
 
 //Search "submit" button
 $(".search-wine").on("submit")
@@ -8,20 +7,21 @@ $(".search-wine").on("submit")
 //button click event to go from home page to individual restaurant page - for each restaurant
 
 //set up backend route with req.params.winename
-$(document).ready(function () {
-    $(".location").on("change", function (event) {
-        console.log("clicked", $(this).val());
-        //modify to relate to restaurant name or id, may need to enter seeds to get appropriate restaurant ids
-        console.log("clicked", $(this).find(":selected").data("id"));
-        location.href = "/restaurant/" + $(this).find(":selected").data("id");
-        $.ajax({
-            method: "GET",
-            url: "/restaurant/" + restaurantName
-        }).then(function (restaurantData) {
-            res.render("specificrestaurant.handlebars", restaurantData)
-        })
-    })
-})
+// $(document).ready(function () {
+$(".location").on("change", function (event) {
+    console.log("clicked", $(this).val());
+    //modify to relate to restaurant name or id, may need to enter seeds to get appropriate restaurant ids
+    console.log("clicked", $(this).attr("data-id")
+    // console.log("clicked", $(this).find(":selected").data("id"));
+    // location.href = "/restaurant/" + $(this).find(":selected").data("id");
+    // $.ajax({
+    //     method: "GET",
+    //     url: "/restaurant/" + restaurantName
+    // }).then(function (restaurantData) {
+    //     res.render("specificrestaurant.handlebars", restaurantData)
+    // })
+)
+});
 
     // $(".EG-Seattle").on("click", function(event) {
     //   event.preventDefault();

@@ -17,19 +17,10 @@ app.engine("handlebars", exphbs({
 }));
 app.set("view engine", "handlebars");
 
-// const restaurantRoutes = require("./controllers/restaurant.js");
-// app.use("/api/restaurant", restaurantRoutes);
-
-// const routes = require("./controllers/wine_controller.js");
-// app.use(routes);
-// var routes = require("./controllers/wine_controller.js");
-// const inventoryRoutes = require("./controllers/inventory_controllers.js");
-// app.use("/api/inventories", inventoryRoutes);
-// const wineRoutes = require("./controllers/wine_controllers.js");
-// app.use("/api/wines", wineRoutes);
-// const wineRoutes = require("./controllers/wine_controllers.js");
-// app.use("/api/wines", wineRoutes);
-
+const inventoryRoutes = require("./controllers/inventory_controller.js");
+app.use("/api/inventories", inventoryRoutes);
+const wineRoutes = require("./controllers/wine_controller.js");
+app.use("/api/wines", wineRoutes);
 const restaurantRoutes = require("./controllers/restaurant.js");
 app.use("/api/restaurant", restaurantRoutes);
 
