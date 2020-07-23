@@ -1,0 +1,30 @@
+body{
+    background-color: #00205B;
+}
+
+.center{
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+  
+}
+
+h1{
+    text-align: center;
+    color: lightgrey;
+    font-size:80pt;
+}
+
+h2{
+    color:lightgrey;
+    text-align:center;
+}
+
+h4{
+    color:lightgrey;
+    text-align:center
+}
+
+.label{
+    color:lightgrey;
+}
