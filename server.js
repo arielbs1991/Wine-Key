@@ -1,8 +1,8 @@
 var express = require("express");
+var app = express();
 
 var db = require("./models");
 
-var app = express();
 
 app.use(express.static("public"));
 
@@ -17,8 +17,10 @@ app.engine("handlebars", exphbs({
 }));
 app.set("view engine", "handlebars");
 
-var routes = require("./controllers/wine_controller.js");
+const restaurantRoutes = require("./controllers/restaurant.js");
+app.use("/api/restaurant", restaurantRoutes);
 
+const routes = require("./controllers/wine_controller.js");
 app.use(routes);
 
 var PORT = process.env.PORT || 3000;
