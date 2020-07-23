@@ -13,13 +13,14 @@
     <div class="grid-container fluid">
         <div class="grid-x grid-padding-x align-center">
             <div class="cell small-6">
-                <h2>Search for Wine</h2>
-                <h4>Please enter the name of the bottle as it appears on the menu:</h4>
-                <div class="input-group home">
-                    <span class="input-group-label"></span>
+                <h2 class="center">Search for Wine</h2>
+                <h4 class="center">Please enter the name of the bottle as it appears on the menu:</h4>
+                <div class="input-group center">
+                    {{!-- <span class="input-group-label"></span> --}}
                     <input class="input-group-field" type="text" placeholder="eg. Freemark Abbey">
                     <div class="input-group-button">
-                        <input type="submit" class="button" value="Search" id="search">
+                        <input type="submit" class="button rounded bordered shadow primary" value="Search" id="search">
+                        {{!-- <button type="button" class="button radius bordered shadow primary"><a class="button" href="#">Search</a></button> --}}
                     </div>
                 </div>
             </div>
@@ -33,10 +34,10 @@
     <div class="grid-container fluid">
         <div class="grid-x grid-padding-x align-center">
             <div class="cell small-6">
-                <h2>Update Inventory</h2>
-                <h4>Please select a store:</h4>
+                <h2 class="center">Update Inventory</h2>
+                <h4 class="center">Please select a store:</h4>
               
-                <label class="home">
+                <label class="center">
                     <select>
                         <option value="aerlume">AERLUME</option>
                         <option value="aqua">AQUA</option>
