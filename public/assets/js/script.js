@@ -20,8 +20,8 @@ $(".location").on("change", function (event) {
     // }).then(function (restaurantData) {
     //     res.render("specificrestaurant.handlebars", restaurantData)
     // })
-})
-// })
+)
+});
 
     // $(".EG-Seattle").on("click", function(event) {
     //   event.preventDefault();
