@@ -1,9 +1,6 @@
 const Sequelize = require("sequelize");
 const sequelize = require("./index");
 
-const Inventory = require("./inventory_table");
-const inventory_table = require("./inventory_table");
-
 module.exports = function (sequelize, DataTypes) {
     var Restaurant = sequelize.define("Restaurant", {
         id: {
@@ -36,17 +33,9 @@ module.exports = function (sequelize, DataTypes) {
     });
 
     Restaurant.associate = function (models) {
-        Restaurant.hasOne(models.Inventory, {
-            onDelete: "cascade"
-        });
-        Restaurant.belongsToMany(models.Wine, {
-            as: Inventory,
-            through: inventory_table,
-            // foreignKey: RestaurantId,
+        Restaurant.hasMany(models.Inventory, {
             onDelete: "cascade"
         });
     };
     return Restaurant;
 };
-
-// module.exports = Restaurant;

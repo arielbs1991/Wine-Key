@@ -1,7 +1,6 @@
 
 const Sequelize = require("sequelize");
 const sequelize = require("./index");
-// const db = require("./index");
 
 module.exports = function (sequelize, DataTypes) {
     var Inventory = sequelize.define("Inventory", {
@@ -34,16 +33,12 @@ module.exports = function (sequelize, DataTypes) {
     });
 
     Inventory.associate = function (models) {
-        Inventory.hasMany(models.Wine, {
-            onDelete: "cascade"
-        });
+        Inventory.belongsTo(models.Wine);
         Inventory.belongsTo(models.Restaurant, {
             foreignKey: {
-              allowNull: false
+                allowNull: false
             }
-          });
+        });
     };
     return Inventory;
 };
-
-// module.exports = Inventory;
