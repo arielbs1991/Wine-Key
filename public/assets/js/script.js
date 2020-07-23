@@ -1,4 +1,3 @@
-const { endsWith } = require("sequelize/types/lib/operators")
 
 //Search "submit" button
 $(".search-wine").on("submit")
@@ -12,7 +11,7 @@ $(".search-wine").on("submit")
 $(".location").on("change", function (event) {
     console.log("clicked", $(this).val());
     //modify to relate to restaurant name or id, may need to enter seeds to get appropriate restaurant ids
-    console.log("clicked", $(this).attr)
+    console.log("clicked", $(this).attr("data-id")
     // console.log("clicked", $(this).find(":selected").data("id"));
     // location.href = "/restaurant/" + $(this).find(":selected").data("id");
     // $.ajax({
