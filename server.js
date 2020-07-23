@@ -23,7 +23,7 @@ app.use(routes);
 
 var PORT = process.env.PORT || 3000;
 //TODO: once our db is where we want it, change to force:false
-db.sequelize.sync({ force:true }).then(function() {
+db.sequelize.sync({ force:false }).then(function() {
   app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
   });

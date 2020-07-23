@@ -1,79 +1,149 @@
-<div class="title-bar" data-responsive-toggle="example-menu" data-hide-for="medium"> <!--this nav bar is incomplete - missing javascript functionality-->
-    <button class="menu-icon" type="button" data-toggle="example-menu"></button>
-    <div class="title-bar-title">Menu</div>
+<div class="title-bar" data-responsive-toggle="example-menu" data-hide-for="medium">
+  <!--this nav bar is incomplete - missing javascript functionality-->
+  <button class="menu-icon" type="button" data-toggle="example-menu"></button>
+  <div class="title-bar-title">Menu</div>
+</div>
+
+<div class="top-bar" id="example-menu">
+  <div class="top-bar-left">
+    <ul class="dropdown menu" data-dropdown-menu>
+      <li class="menu-text">WINE KEY</li>
+      <li><a href="index.handlebars">Home</a></li>
+      <li>
+        <a href="#">Stores</a>
+        <ul class="menu vertical">
+          <li><a href="#">AERLUME</a></li>
+          <!--{{for each restaurant name}}-->
+          <li><a href="#">AQUA</a></li>
+          <li><a href="#">El Gaucho Bellevue</a></li>
+          <li><a href="#">El Gaucho Seattle</a></li>
+          <li><a href="#">El Gaucho Tacoma</a></li>
+        </ul>
+      </li>
+      <li><a href="winecatalog.handlebars">Wine Catalog</a></li>
+    </ul>
   </div>
-  
-  <div class="top-bar" id="example-menu">
-    <div class="top-bar-left">
-      <ul class="dropdown menu" data-dropdown-menu>
-        <li class="menu-text">WINE KEY</li>
-        <li><a href="index.handlebars">Home</a></li>
-        <li>
-          <a href="#">Stores</a>
-          <ul class="menu vertical">
-            <li><a href="#">AERLUME</a></li> <!--{{for each restaurant name}}-->
-            <li><a href="#">AQUA</a></li>
-            <li><a href="#">El Gaucho Bellevue</a></li>
-            <li><a href="#">El Gaucho Seattle</a></li>
-            <li><a href="#">El Gaucho Tacoma</a></li>
-          </ul>
-        </li>
-        <li><a href="winecatalog.handlebars">Wine Catalog</a></li>
-      </ul>
-    </div>
-    <div class="top-bar-right">
-      <ul class="menu">
-        <li><input type="search" placeholder="Find Wines"></li>
-        <li><button type="button" class="button">Search</button></li>
-      </ul>
-    </div>
+  <div class="top-bar-right">
+    <ul class="menu">
+      <li><input type="search" placeholder="Find Wines"></li>
+      <li><button type="button" class="button">Search</button></li>
+    </ul>
   </div>
+</div>
 
 <div class="grid-x grid-padding-x align-center">
-        <div class="cell small-6"><img width="300" height="200" class="center" src="https://chairish-prod.freetls.fastly.net/image/product/master/1a63fc03-f551-4b0c-8406-f7e68850026a/vintage-italian-brass-skeleton-key-with-hidden-corkscrew-wine-and-bottle-opener-1870" alt="winekey" />
-        </div>
+  <div class="cell small-6"><img width="300" height="200" class="center"
+      src="https://chairish-prod.freetls.fastly.net/image/product/master/1a63fc03-f551-4b0c-8406-f7e68850026a/vintage-italian-brass-skeleton-key-with-hidden-corkscrew-wine-and-bottle-opener-1870"
+      alt="winekey" />
+  </div>
+</div>
+<br>
+<h1>RESTAURANT NAME
+  <!--{{restaurant_name}}-->
+</h1>
+<h2>ADDRESS</h2>
+<!--{{address}}-->
+<h2>PHONE #</h2>
+<!--{{phone}}-->
+<br>
+<br>
+<!--change to padding later on-->
+<br>
+<form>
+  <div class="grid-container fluid">
+    <div class="grid-x grid-padding-x align-center">
+      <h4>Add a New Item to Inventory</h4>
     </div>
-<br>
-    <h1>RESTAURANT NAME <!--{{restaurant_name}}--></h1>
-    <h2>ADDRESS</h2> <!--{{address}}-->
-    <h2>PHONE #</h2> <!--{{phone}}-->
-<br>
-<br> <!--change to padding later on-->
-<br>
-    <div class="grid-container fluid">
-        <div class="grid-x grid-padding-x align-center">
-            <div class="cell small-8">
-                <table>
-                    <thead>
-                      <tr>
-                        <th width="300">Wine Name</th>
-                        <th width="300">Vintage</th>
-                        <th width="300">Quantity</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>Placeholder</td> <!--{{to pull information from tables}}-->
-                        <td>Placeholder</td>
-                        <td>Placeholder</td>
-                      </tr>
-                      <tr>
-                        <td>Placeholder</td>
-                        <td>Placeholder</td>
-                        <td>Placeholder</td>
-                      </tr>
-                      <tr>
-                        <td>Placeholder</td>
-                        <td>Placeholder</td>
-                        <td>Placeholder</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-            </div>
-        </div>
+    <div class="grid-x grid-padding-x align-center">
+      <div class="medium-2 cell">
+        <input type="text" placeholder="Bottle Name">
+      </div>
+      <div class="medium-2 cell">
+        <input type="text" placeholder="Vintage">
+      </div>
+      <div class="medium-2 cell">
+        <input type="text" placeholder="Quantity">
+      </div>
+      <div><button type="button" class="button rounded bordered shadow success">Add Wine</button></div>
+    </div>
+    <div></div>
+  </div>
+</form>
 
-        <div class="grid-x grid-padding-x align-center position-fixed-bottom">
-            <div class="cell small-6"><img class="center" src="/public/assets/img/firevine.jpg" alt="fvlogo" />
-            </div>
-        </div> <!--figure out how to make this sticky bottom image-->
+<br>
+<br>
+<br>
+
+
+<div class="grid-container fluid">
+  <h4>Inventory</h4>
+  <div class="grid-x grid-padding-x align-center">
+    <div class="cell small-10">
+      <table>
+        <thead>
+          <tr>
+            <th width="400">Wine Name</th>
+            <th width="100">Vintage</th>
+            <th width="100">Quantity</th>
+            <th width="200">Actions</th>
+            <th width="100"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Placeholder</td>
+            <!--{{to pull information from tables}}-->
+            <td>Placeholder</td>
+            <td>Placeholder</td>
+            <td>
+              <div class="input-group">
+                <span class="input-group-label">#</span>
+                <input class="input-group-field" type="number">
+                <div class="input-group-button">
+                  <input type="submit" class="button" value="Update"> <!--attach quantity id to each button to update specific quantity-->
+                </div>
+              </div>
+            </td>
+            <td><button type="button" class="button rounded bordered shadow alert">Remove</button></td> <!--Attach entire row of the column to delete from table-->
+          </tr>
+          <tr>
+            <td>Placeholder</td>
+            <td>Placeholder</td>
+            <td>Placeholder</td>
+            <td>
+              <div class="input-group">
+                <span class="input-group-label">#</span>
+                <input class="input-group-field" type="number">
+                <div class="input-group-button">
+                  <input type="submit" class="button" value="Update">
+                </div>
+              </div>
+            </td>
+            <td><button type="button" class="button rounded bordered shadow alert">Remove</button></td>
+          </tr>
+          <tr>
+            <td>Placeholder</td>
+            <td>Placeholder</td>
+            <td>Placeholder</td>
+            <td>
+              <div class="input-group">
+                <span class="input-group-label">#</span>
+                <input class="input-group-field" type="number">
+                <div class="input-group-button">
+                  <input type="submit" class="button" value="Update">
+                </div>
+              </div>
+            </td>
+            <td><button type="button" class="button rounded bordered shadow alert">Remove</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="grid-x grid-padding-x align-center position-fixed-bottom">
+  <div class="cell small-6"><img class="center" src="/public/assets/img/firevine.jpg" alt="fvlogo" />
+  </div>
+</div>
+<!--figure out how to make this sticky bottom image-->
