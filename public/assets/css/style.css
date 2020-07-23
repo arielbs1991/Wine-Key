@@ -13,7 +13,10 @@ body{
 h1{
     text-align: center;
     color: lightgrey;
-    font-size:80pt;
+    font-size:120pt;
+    font-family: 'Parisienne',
+    cursive;
+
 }
 
 h2{
@@ -28,10 +31,12 @@ h4{
 
 .label{
     color:lightgrey;
+    
 }
 
 .home{
     display:flex;
     align-items: center;
     justify-content: center;
+    
 }
