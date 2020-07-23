@@ -23,7 +23,7 @@ router.get("/withrestaurants",(req, res) => {
 })
 router.get("/withdata",(req, res) => {
     db.Inventory.findAll({
-        include:db.Restaurant
+        include:[db.Restaurant]
     }).then(inventoryData => {
         res.json(inventoryData)
     }).catch(err => {
