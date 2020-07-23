@@ -1,9 +1,6 @@
-var Sequelize = require("sequelize");
-var sequelize = require("db", "root", "pwd", {
-    host: "localhost",
-    port: 8080,
-    dialect: "mysql"
-});
+const Sequelize = require("sequelize");
+const sequelize = require("./index");
+
 const Inventory = require("./inventory_table");
 const inventory_table = require("./inventory_table");
 
@@ -63,4 +60,4 @@ module.exports = function (sequelize, DataTypes) {
     return Wine;
 };
 
-module.exports = Wine;
+// module.exports = Wine;

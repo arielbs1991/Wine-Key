@@ -1,10 +1,8 @@
 
-var Sequelize = require("sequelize");
-var sequelize = require("db", "root", "pwd", {
-    host: "localhost",
-    port: 8080,
-    dialect: "mysql"
-});
+const Sequelize = require("sequelize");
+const sequelize = require("./index");
+// const db = require("./index");
+
 module.exports = function (sequelize, DataTypes) {
     var Inventory = sequelize.define("Inventory", {
         id: {
@@ -35,17 +33,17 @@ module.exports = function (sequelize, DataTypes) {
         }
     });
 
-    // Inventory.associate = function (models) {
-    //     Inventory.hasMany(models.Wine, {
-    //         onDelete: "cascade"
-    //     });
-    //     Inventory.belongsTo(models.Restaurant, {
-    //         foreignKey: {
-    //           allowNull: false
-    //         }
-    //       });
-    // };
+    Inventory.associate = function (models) {
+        Inventory.hasMany(models.Wine, {
+            onDelete: "cascade"
+        });
+        Inventory.belongsTo(models.Restaurant, {
+            foreignKey: {
+              allowNull: false
+            }
+          });
+    };
     return Inventory;
 };
 
-module.exports = Inventory;
+// module.exports = Inventory;

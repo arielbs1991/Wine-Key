@@ -1,9 +1,6 @@
-var Sequelize = require("sequelize");
-var sequelize = require("db", "root", "pwd", {
-    host: "localhost",
-    port: 8080,
-    dialect: "mysql"
-});
+const Sequelize = require("sequelize");
+const sequelize = require("./index");
+
 const Inventory = require("./inventory_table");
 const inventory_table = require("./inventory_table");
 
@@ -45,11 +42,11 @@ module.exports = function (sequelize, DataTypes) {
         Restaurant.belongsToMany(models.Wine, {
             as: Inventory,
             through: inventory_table,
-            foreignKey: RestaurantId,
+            // foreignKey: RestaurantId,
             onDelete: "cascade"
         });
     };
     return Restaurant;
 };
 
-module.exports = Restaurant;
+// module.exports = Restaurant;
