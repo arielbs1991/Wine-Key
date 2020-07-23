@@ -1,6 +1,22 @@
 const router = require("express").Router();
 const db = require("../models");
 
+// router.get("/", function (req, res) {
+//     res.redirect("/home");
+// });
+// // GET route for getting all of the wines
+// router.get("/home", function (req, res) {
+//     db.Wine.findAll()
+//         .then(function (dbWine) {
+//             console.log(dbWine);
+//             const dbWineJson = dbWine.map(wine => wine.toJSON());
+//             var hbsObject = { wine: dbWineJson };
+//             return res.render("index", hbsObject);
+//         }).catch(function (err) {
+//             console.log(err);
+//             res.status(500).end()
+//         })
+// });
 
 router.get('/', (req, res) => {
     db.Wine.findAll({}).then(wineData => {
@@ -11,9 +27,9 @@ router.get('/', (req, res) => {
     })
 })
 
-router.get("/ininventories",(req, res) => {
+router.get("/ininventories", (req, res) => {
     db.Wine.findAll({
-        include:[db.Inventory]
+        include: [db.Inventory]
     }).then(wineData => {
         res.json(wineData)
     }).catch(err => {
@@ -21,9 +37,9 @@ router.get("/ininventories",(req, res) => {
         res.status(500).end()
     })
 })
-router.get("/withdata",(req, res) => {
+router.get("/withdata", (req, res) => {
     db.Wine.findAll({
-        include:[db.Inventory]
+        include: [db.Inventory]
     }).then(wineData => {
         res.json(wineData)
     }).catch(err => {
@@ -63,7 +79,7 @@ router.get('/:id/ininventory', (req, res) => {
         where: {
             id: req.params.id
         },
-        include:[db.Inventory]
+        include: [db.Inventory]
     }).then(wineData => {
         res.json(wineData)
     }).catch(err => {
