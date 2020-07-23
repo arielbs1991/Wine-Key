@@ -1,7 +1,19 @@
+var Sequelize = require("sequelize");
+var sequelize = require("db", "root", "pwd", {
+    host: "localhost",
+    port: 8080,
+    dialect: "mysql"
+});
+const Inventory = require("./inventory_table");
 const inventory_table = require("./inventory_table");
 
 module.exports = function (sequelize, DataTypes) {
     var Wine = sequelize.define("Wine", {
+        id: {
+            type: Sequelize.INTEGER,
+            autoIncrement: true,
+            primaryKey: true
+        },
         wineName: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -35,15 +47,20 @@ module.exports = function (sequelize, DataTypes) {
     Wine.associate = function (models) {
         Wine.belongsTo(models.Inventory, {
             foreignKey: {
+                InventoryId,
                 allowNull: false
             }
         });
         Wine.hasMany(models.Restaurant, {
-            through: inventories,
+            as: Inventory,
+            through: inventory_table,
             foreignKey: {
+                RestaurantId,
                 allowNull: false
             }
         });
     };
     return Wine;
 };
+
+module.exports = Wine;

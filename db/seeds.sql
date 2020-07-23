@@ -22,6 +22,7 @@ CREATE TABLE inventories
 wineName VARCHAR(255) NOT NULL,
 year INT NOT NULL,
 quantity INT NOT NULL,
+restaurantId REFERENCES restaurants (id),
 primary key (id)
 );
 

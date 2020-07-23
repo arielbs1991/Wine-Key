@@ -1,5 +1,17 @@
+
+var Sequelize = require("sequelize");
+var sequelize = require("db", "root", "pwd", {
+    host: "localhost",
+    port: 8080,
+    dialect: "mysql"
+});
 module.exports = function (sequelize, DataTypes) {
     var Inventory = sequelize.define("Inventory", {
+        id: {
+            type: Sequelize.INTEGER,
+            autoIncrement: true,
+            primaryKey: true
+        },
         wineName: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -22,7 +34,7 @@ module.exports = function (sequelize, DataTypes) {
             }
         }
     });
-    
+
     // Inventory.associate = function (models) {
     //     Inventory.hasMany(models.Wine, {
     //         onDelete: "cascade"
@@ -35,3 +47,5 @@ module.exports = function (sequelize, DataTypes) {
     // };
     return Inventory;
 };
+
+module.exports = Inventory;

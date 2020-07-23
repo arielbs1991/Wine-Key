@@ -1,11 +1,19 @@
+var Sequelize = require("sequelize");
+var sequelize = require("db", "root", "pwd", {
+    host: "localhost",
+    port: 8080,
+    dialect: "mysql"
+});
+const Inventory = require("./inventory_table");
 const inventory_table = require("./inventory_table");
 
 module.exports = function (sequelize, DataTypes) {
     var Restaurant = sequelize.define("Restaurant", {
-        // uuid: {
-        //     type: sequelize.UUID,
-        //     primaryKey: true
-        // },
+        id: {
+            type: Sequelize.INTEGER,
+            autoIncrement: true,
+            primaryKey: true
+        },
         restaurantName: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -27,7 +35,7 @@ module.exports = function (sequelize, DataTypes) {
                 len: [1]
             }
         }
-        
+
     });
 
     Restaurant.associate = function (models) {
@@ -35,9 +43,13 @@ module.exports = function (sequelize, DataTypes) {
             onDelete: "cascade"
         });
         Restaurant.belongsToMany(models.Wine, {
-            through: inventories,
+            as: Inventory,
+            through: inventory_table,
+            foreignKey: RestaurantId,
             onDelete: "cascade"
         });
     };
     return Restaurant;
 };
+
+module.exports = Restaurant;
