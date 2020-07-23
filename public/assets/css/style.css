@@ -48,3 +48,15 @@ h4{
 #homekey{
     padding-bottom:2rem;
 }
+
+#search{
+    padding: 0.67rem;
+}
+
+.updatepadding{
+    padding-top:1.2rem;
+}
+
+.removepadding{
+    padding-top:1.8rem;
+}
