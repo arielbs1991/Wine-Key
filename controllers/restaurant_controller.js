@@ -7,8 +7,14 @@ var db = require("../models");
 
 // GET route for getting all of the restaurants
 router.get("/restaurant", function (req, res) {
-  db.Restaurant.findAll()
-    .then(function (dbRestaurant) {
+    var query = {};
+    if (req.query.restaurant_id) {
+        query.RestaurantId = req.query.restaurant_id;
+    }
+  db.Restaurant.findAll({
+      where: query,
+      include: [db.Restaurant]
+  }).then(function (dbRestaurant) {
       console.log(dbRestaurant);
       const dbRestaurantJson = dbRestaurant.map(restaurant => restaurant.toJSON());
       var hbsObject = { restaurant: dbRestaurantJson };
@@ -30,6 +36,15 @@ router.get("/restaurant/:id", function (req, res) {
     const dbRestaurantJson = dbRestaurant.map(restaurant => restaurant.toJSON());
     var hbsObject = { restaurant: dbRestaurantJson };
     return res.render("index", hbsObject);
+  }).catch(function (err) {
+    console.log(err);
+    res.status(500).end()
+  })
+});
+router.get("/api/restaurant", function (req, res) {
+ db.Restaurant.create(req.body).then(function (dbRestaurant) {
+    console.log(dbRestaurant);
+    res.json(dbRestaurant);
   }).catch(function (err) {
     console.log(err);
     res.status(500).end()
