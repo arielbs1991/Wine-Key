@@ -23,17 +23,17 @@ module.exports = function (sequelize, DataTypes) {
         }
     });
     
-    Wine.associate = function(models) {
-        Wine.belongsToMany(models.Inventory, {
-          foreignKey: {
-            allowNull: false
-          }
-        });
-        Wine.hasMany(models.Restaurant, {
-          foreignKey: {
-            allowNull: false
-          }
-        });
-      };
+    // Wine.associate = function(models) {
+    //     Wine.belongsToMany({ through: models.Inventory}, {
+    //       foreignKey: {
+    //         allowNull: false
+    //       }
+    //     });
+    //     Wine.hasMany(models.Restaurant, {
+    //       foreignKey: {
+    //         allowNull: false
+    //       }
+    //     });
+    //   };
     return Wine;
 };
