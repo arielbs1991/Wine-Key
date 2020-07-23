@@ -24,7 +24,11 @@ module.exports = function (sequelize, DataTypes) {
     });
     
     // Wine.associate = function(models) {
+<<<<<<< HEAD
     //     Wine.belongsToMany({ through: models.Inventory}, {
+=======
+    //     Wine.belongsToMany(models.Inventory, {
+>>>>>>> dev
     //       foreignKey: {
     //         allowNull: false
     //       }
