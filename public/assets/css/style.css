@@ -30,3 +30,8 @@ h4{
     color:lightgrey;
 }
 
+.home{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
