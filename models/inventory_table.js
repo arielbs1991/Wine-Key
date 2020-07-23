@@ -1,5 +1,14 @@
+
+const Sequelize = require("sequelize");
+const sequelize = require("./index");
+
 module.exports = function (sequelize, DataTypes) {
     var Inventory = sequelize.define("Inventory", {
+        id: {
+            type: Sequelize.INTEGER,
+            autoIncrement: true,
+            primaryKey: true
+        },
         wineName: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -22,16 +31,14 @@ module.exports = function (sequelize, DataTypes) {
             }
         }
     });
-    
-    // Inventory.associate = function (models) {
-    //     Inventory.hasMany(models.Wine, {
-    //         onDelete: "cascade"
-    //     });
-    //     Inventory.belongsTo(models.Restaurant, {
-    //         foreignKey: {
-    //           allowNull: false
-    //         }
-    //       });
-    // };
+
+    Inventory.associate = function (models) {
+        Inventory.belongsTo(models.Wine);
+        Inventory.belongsTo(models.Restaurant, {
+            foreignKey: {
+                allowNull: false
+            }
+        });
+    };
     return Inventory;
 };
