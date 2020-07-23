@@ -20,8 +20,10 @@ app.set("view engine", "handlebars");
 var routes = require("./controllers/wine_controller.js");
 const inventoryRoutes = require("./controllers/inventory_controllers.js");
 app.use("/api/inventories", inventoryRoutes);
-
-app.use(routes);
+const wineRoutes = require("./controllers/wine_controllers.js");
+app.use("/api/wines", wineRoutes);
+const wineRoutes = require("./controllers/wine_controllers.js");
+app.use("/api/wines", wineRoutes);
 
 var PORT = process.env.PORT || 3000;
 //TODO: once our db is where we want it, change to force:false
