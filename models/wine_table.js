@@ -3,11 +3,6 @@ const sequelize = require("./index");
 
 module.exports = function (sequelize, DataTypes) {
     var Wine = sequelize.define("Wine", {
-        id: {
-            type: Sequelize.INTEGER,
-            autoIncrement: true,
-            primaryKey: true
-        },
         wineName: {
             type: DataTypes.STRING,
             allowNull: false,
