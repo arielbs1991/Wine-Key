@@ -24,13 +24,10 @@ module.exports = function (sequelize, DataTypes) {
         
     });
 
-    // Restaurant.associate = function (models) {
-    //     Restaurant.hasOne(models.Inventory, {
-    //         onDelete: "cascade"
-    //     });
-    //     Restaurant.hasMany(models.Wine, {
-    //         onDelete: "cascade"
-    //     });
-    // };
+    Restaurant.associate = function (models) {
+        Restaurant.hasOne(models.Inventory, {
+            onDelete: "cascade"
+        });
+    };
     return Restaurant;
 };

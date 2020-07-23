@@ -19,7 +19,7 @@ router.get("/api/wine", function (req, res) {
       console.log(dbWine);
       const dbWineJson = dbWine.map(wine => wine.toJSON());
       var hbsObject = { wine: dbWineJson };
-      return res.render("index", hbsObject);
+      return res.render("index",hbsObject);
     }).catch(function (err) {
       console.log(err);
       res.status(500).end()
@@ -43,22 +43,22 @@ router.get("/api/wine/:id", function (req, res) {
   })
 });
 
-  // Get route for returning wines of a specific restaurant
-  router.get("/api/wine/restaurant/:restaurant", function (req, res) {
-    db.Wine.findAll({
-      where: {
-        restaurant: req.params.restaurant
-      }
-    }).then(function (dbWine) {
-      console.log(dbWine);
-      const dbWineJson = dbWine.map(wine => wine.toJSON());
-      var hbsObject = { wine: dbWineJson };
-      return res.render("index", hbsObject);
-    }).catch(function (err) {
-      console.log(err);
-      res.status(500).end()
-    })
-  });
+// Get route for returning wines of a specific restaurant
+// router.get("/api/wine/restaurant/:restaurant", function (req, res) {
+//   db.Wine.findAll({
+//     where: {
+//       restaurant: req.params.restaurant
+//     }
+//   }).then(function (dbWine) {
+//     console.log(dbWine);
+//     const dbWineJson = dbWine.map(wine => wine.toJSON());
+//     var hbsObject = { wine: dbWineJson };
+//     return res.render("index", hbsObject);
+//   }).catch(function (err) {
+//     console.log(err);
+//     res.status(500).end()
+//   })
+// });
 
 // Wine route for saving a new Wine
 router.post("/api/wine/:id", function (req, res) {
@@ -75,7 +75,7 @@ router.post("/api/wine/:id", function (req, res) {
   })
 });
 
-router.delete("/api/wine/:id", function(req, res) {
+router.delete("/api/wine/:id", function (req, res) {
   db.Wine.destroy({
     where: {
       id: req.params.id
@@ -90,24 +90,23 @@ router.delete("/api/wine/:id", function(req, res) {
 });
 
 
-router.put("/api/wine/update/:id", function(req, res) {
+router.put("/api/wine/update/:id", function (req, res) {
   db.Wine.update({
     wineName: req.body.wineName,
     year: req.body.year,
     variety: req.body.variety
   },
-  {
-    where: {
-      id: req.params.id
-    }
-  }
-  ).then(function (dbWine) {
-    console.log(dbWine);
-    res.redirect("/");
-  }).catch(function (err) {
-    console.log(err);
-    res.status(500).end()
-  })
+    {
+      where: {
+        id: req.params.id
+      }
+    }).then(function (dbWine) {
+      console.log(dbWine);
+      res.redirect("/");
+    }).catch(function (err) {
+      console.log(err);
+      res.status(500).end()
+    })
 });
 
 module.exports = router;

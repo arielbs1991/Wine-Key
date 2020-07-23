@@ -22,7 +22,7 @@ var routes = require("./controllers/wine_controller.js");
 app.use(routes);
 
 var PORT = process.env.PORT || 3000;
-db.sequelize.sync({ force:false }).then(function() {
+db.sequelize.sync({ force:true }).then(function() {
   app.listen(PORT, function() {
     console.log("App now listening on port:", PORT);
   });

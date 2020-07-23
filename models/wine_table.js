@@ -23,21 +23,13 @@ module.exports = function (sequelize, DataTypes) {
         }
     });
     
-    // Wine.associate = function(models) {
-<<<<<<< HEAD
-    //     Wine.belongsToMany({ through: models.Inventory}, {
-=======
-    //     Wine.belongsToMany(models.Inventory, {
->>>>>>> dev
-    //       foreignKey: {
-    //         allowNull: false
-    //       }
-    //     });
-    //     Wine.hasMany(models.Restaurant, {
-    //       foreignKey: {
-    //         allowNull: false
-    //       }
-    //     });
-    //   };
+    Wine.associate = function(models) {
+        Wine.belongsTo(models.Inventory, {
+          foreignKey: {
+            allowNull: false
+          }
+        });
+
+      };
     return Wine;
 };
