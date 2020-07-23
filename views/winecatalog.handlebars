@@ -1,81 +1,81 @@
-{{!-- <div class="title-bar" data-responsive-toggle="example-menu" data-hide-for="medium"> <!--this nav bar is incomplete - missing javascript functionality-->
-    <button class="menu-icon" type="button" data-toggle="example-menu"></button>
-    <div class="title-bar-title">Menu</div>
-  </div>
-  
-  <div class="top-bar" id="example-menu">
-    <div class="top-bar-left">
-      <ul class="dropdown menu" data-dropdown-menu>
-        <li class="menu-text">WINE KEY</li>
-        <li><a href="index.handlebars">Home</a></li>
-        <li>
-          <a href="#">Stores</a>
-          <ul class="menu vertical">
-            <li><a href="#">AERLUME</a></li> <!--{{for each restaurant name}}-->
-            <li><a href="#">AQUA</a></li>
-            <li><a href="#">El Gaucho Bellevue</a></li>
-            <li><a href="#">El Gaucho Seattle</a></li>
-            <li><a href="#">El Gaucho Tacoma</a></li>
+<div class="title-bar" data-responsive-toggle="example-menu" data-hide-for="medium"> <!--this nav bar is incomplete - missing javascript functionality-->
+        <button class="menu-icon" type="button" data-toggle="example-menu"></button>
+        <div class="title-bar-title">Menu</div>
+      </div>
+      
+      <div class="top-bar" id="example-menu">
+        <div class="top-bar-left">
+          <ul class="dropdown menu" data-dropdown-menu>
+            <li class="menu-text">WINE KEY</li>
+            <li><a href="index.handlebars">Home</a></li>
+            <li>
+              <a href="#">Stores</a>
+              <ul class="menu vertical">
+                <li><a href="#">AERLUME</a></li> <!--{{for each restaurant name}}-->
+                <li><a href="#">AQUA</a></li>
+                <li><a href="#">El Gaucho Bellevue</a></li>
+                <li><a href="#">El Gaucho Seattle</a></li>
+                <li><a href="#">El Gaucho Tacoma</a></li>
+              </ul>
+            </li>
+            <li><a href="winecatalog.handlebars">Wine Catalog</a></li>
           </ul>
-        </li>
-        <li><a href="winecatalog.handlebars">Wine Catalog</a></li>
-      </ul>
-    </div>
-    <div class="top-bar-right">
-      <ul class="menu">
-        <li><input type="search" placeholder="Find Wines"></li>
-        <li><button type="button" class="button">Search</button></li>
-      </ul>
-    </div>
-  </div>
-
-<div class="grid-x grid-padding-x align-center">
-        <div class="cell small-6"><img width="300" height="200" class="center" src="https://chairish-prod.freetls.fastly.net/image/product/master/1a63fc03-f551-4b0c-8406-f7e68850026a/vintage-italian-brass-skeleton-key-with-hidden-corkscrew-wine-and-bottle-opener-1870" alt="winekey" />
         </div>
-    </div>
-<br>
-<h1>WINE CATALOG</h1>
-<br>
-<br> <!--change to padding later on-->
-<br>
-<div class="grid-container fluid">
+        <div class="top-bar-right">
+          <ul class="menu">
+            <li><input type="search" placeholder="Find Wines"></li>
+            <li><button type="button" class="button">Search</button></li>
+          </ul>
+        </div>
+      </div>
+    
     <div class="grid-x grid-padding-x align-center">
-        <div class="cell small-8">
-            <table>
-                <thead>
-                  <tr>
-                    <th width="500">Wine Name</th>
-                    <th width="200">Vintage</th>
-                    <th width="200">Quantity</th>
-                    <th width="500">Locations</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Placeholder</td> <!--{{to pull information from tables}}-->
-                    <td>Placeholder</td>
-                    <td>Placeholder</td>
-                    <td>Placeholder</td>
-                  </tr>
-                  <tr>
-                    <td>Placeholder</td>
-                    <td>Placeholder</td>
-                    <td>Placeholder</td>
-                    <td>Placeholder</td>
-                  </tr>
-                  <tr>
-                    <td>Placeholder</td>
-                    <td>Placeholder</td>
-                    <td>Placeholder</td>
-                    <td>Placeholder</td>
-                  </tr>
-                </tbody>
-              </table>
+            <div class="cell small-6"><img width="300" height="200" class="center" src="https://chairish-prod.freetls.fastly.net/image/product/master/1a63fc03-f551-4b0c-8406-f7e68850026a/vintage-italian-brass-skeleton-key-with-hidden-corkscrew-wine-and-bottle-opener-1870" alt="winekey" />
             </div>
         </div>
-    </div>
-
-    <div class="grid-x grid-padding-x align-center position-fixed-bottom">
-        <div class="cell small-6"><img class="center" src="/public/assets/img/firevine.jpg" alt="fvlogo" />
+    <br>
+    <h1>WINE CATALOG</h1>
+    <br>
+    <br> <!--change to padding later on-->
+    <br>
+    <div class="grid-container fluid">
+        <div class="grid-x grid-padding-x align-center">
+            <div class="cell small-8">
+                <table>
+                    <thead>
+                      <tr>
+                        <th width="500">Wine Name</th>
+                        <th width="200">Vintage</th>
+                        <th width="200">Quantity</th>
+                        <th width="500">Locations</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Placeholder</td> <!--{{to pull information from tables}}-->
+                        <td>Placeholder</td>
+                        <td>Placeholder</td>
+                        <td>Placeholder</td>
+                      </tr>
+                      <tr>
+                        <td>Placeholder</td>
+                        <td>Placeholder</td>
+                        <td>Placeholder</td>
+                        <td>Placeholder</td>
+                      </tr>
+                      <tr>
+                        <td>Placeholder</td>
+                        <td>Placeholder</td>
+                        <td>Placeholder</td>
+                        <td>Placeholder</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+            </div>
         </div>
-    </div> <!--figure out how to make this sticky bottom image--> --}}
+    
+        <div class="grid-x grid-padding-x align-center position-fixed-bottom">
+            <div class="cell small-6"><img class="center" src="/public/assets/img/firevine.jpg" alt="fvlogo" />
+            </div>
+        </div> <!--figure out how to make this sticky bottom image-->

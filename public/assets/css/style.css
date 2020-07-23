@@ -23,14 +23,15 @@ h2{
     color:lightgrey;
     font-family: 'Patrick Hand',
     cursive;
-    /* text-align:center; */
+    text-align:center;
 }
 
 h4{
     color:lightgrey;
+    text-align:center;
     font-family: 'Patrick Hand',
     cursive;
-    /* text-align:center */
+    text-align:center
 }
 
 .label{
@@ -38,9 +39,24 @@ h4{
     
 }
 
-.home{
+.center{
     display:flex;
     align-items: center;
     justify-content: center;
-    
+}
+
+#homekey{
+    padding-bottom:2rem;
+}
+
+#search{
+    padding: 0.67rem;
+}
+
+.updatepadding{
+    padding-top:1.2rem;
+}
+
+.removepadding{
+    padding-top:1.8rem;
 }
