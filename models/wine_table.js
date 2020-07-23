@@ -1,5 +1,13 @@
+const Sequelize = require("sequelize");
+const sequelize = require("./index");
+
 module.exports = function (sequelize, DataTypes) {
     var Wine = sequelize.define("Wine", {
+        id: {
+            type: Sequelize.INTEGER,
+            autoIncrement: true,
+            primaryKey: true
+        },
         wineName: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -22,14 +30,9 @@ module.exports = function (sequelize, DataTypes) {
             }
         }
     });
-    
-    Wine.associate = function(models) {
-        Wine.belongsTo(models.Inventory, {
-          foreignKey: {
-            allowNull: false
-          }
-        });
 
-      };
+    Wine.associate = function (models) {
+        Wine.hasMany(models.Inventory);
+    };
     return Wine;
 };

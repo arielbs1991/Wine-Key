@@ -1,5 +1,13 @@
+const Sequelize = require("sequelize");
+const sequelize = require("./index");
+
 module.exports = function (sequelize, DataTypes) {
     var Restaurant = sequelize.define("Restaurant", {
+        id: {
+            type: Sequelize.INTEGER,
+            autoIncrement: true,
+            primaryKey: true
+        },
         restaurantName: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -21,11 +29,11 @@ module.exports = function (sequelize, DataTypes) {
                 len: [1]
             }
         }
-        
+
     });
 
     Restaurant.associate = function (models) {
-        Restaurant.hasOne(models.Inventory, {
+        Restaurant.hasMany(models.Inventory, {
             onDelete: "cascade"
         });
     };
