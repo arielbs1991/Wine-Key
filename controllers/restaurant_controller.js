@@ -47,22 +47,23 @@ router.post('/',(req,res)=>{
 //     })
 // });
 
+//handled in home_controller now
 // Get route for retrieving a single Restaurant
-router.get("/:id", function (req, res) {
-  db.Restaurant.findOne({
-    where: {
-      id: req.params.id
-    }
-  }).then(function (dbRestaurant) {
-    console.log(dbRestaurant);
-    const dbRestaurantJson = dbRestaurant.map(restaurant => restaurant.toJSON());
-    var hbsObject = { restaurant: dbRestaurantJson };
-    return res.render("specificrestaurant", hbsObject);
-  }).catch(function (err) {
-    console.log(err);
-    res.status(500).end()
-  })
-});
+// router.get("/:id", function (req, res) {
+//   db.Restaurant.findOne({
+//     where: {
+//       id: req.params.id
+//     }
+//   }).then(function (dbRestaurant) {
+//     console.log(dbRestaurant);
+//     const dbRestaurantJson = dbRestaurant.map(restaurant => restaurant.toJSON());
+//     var hbsObject = { restaurant: dbRestaurantJson };
+//     return res.render("specificrestaurant", hbsObject);
+//   }).catch(function (err) {
+//     console.log(err);
+//     res.status(500).end()
+//   })
+// });
 
 // //function for creating a new restaurant
 // router.post("/api/restaurant", function (req, res) {
@@ -76,22 +77,22 @@ router.get("/:id", function (req, res) {
 // });
 
 // // Get route for returning restaurants of a specific restaurant
-router.get("/restaurant/:id", function (req, res) {
-  db.Restaurant.findAll({
-    where: {
-      id: req.params.id
-    }
-  }).then(function (dbRestaurant) {
-    // console.log("found restaurant",dbRestaurant);
-    const [dbRestaurantJson] = dbRestaurant.map(restaurant => restaurant.toJSON());
-    var hbsObject = { restaurant: dbRestaurantJson };
-    console.log(dbRestaurantJson);
-    return res.render("specificrestaurant", dbRestaurantJson);
-  }).catch(function (err) {
-    console.log(err);
-    res.status(500).end()
-  })
-});
+// router.get("/restaurant/:id", function (req, res) {
+//   db.Restaurant.findAll({
+//     where: {
+//       id: req.params.id
+//     }
+//   }).then(function (dbRestaurant) {
+//     // console.log("found restaurant",dbRestaurant);
+//     const [dbRestaurantJson] = dbRestaurant.map(restaurant => restaurant.toJSON());
+//     var hbsObject = { restaurant: dbRestaurantJson };
+//     console.log(dbRestaurantJson);
+//     return res.render("specificrestaurant", dbRestaurantJson);
+//   }).catch(function (err) {
+//     console.log(err);
+//     res.status(500).end()
+//   })
+// });
 
 // // Restaurant route for saving a new Restaurant
 // router.post("/restaurant/:id", function (req, res) {
