@@ -76,21 +76,22 @@ router.get("/:id", function (req, res) {
 // });
 
 // // Get route for returning restaurants of a specific restaurant
-// // router.get("/restaurant/restaurant/:restaurant", function (req, res) {
-// //   db.Restaurant.findAll({
-// //     where: {
-// //       restaurant: req.params.restaurant
-// //     }
-// //   }).then(function (dbRestaurant) {
-// //     console.log(dbRestaurant);
-// //     const dbRestaurantJson = dbRestaurant.map(restaurant => restaurant.toJSON());
-// //     var hbsObject = { restaurant: dbRestaurantJson };
-// //     return res.render("index", hbsObject);
-// //   }).catch(function (err) {
-// //     console.log(err);
-// //     res.status(500).end()
-// //   })
-// // });
+router.get("/restaurant/:id", function (req, res) {
+  db.Restaurant.findAll({
+    where: {
+      id: req.params.id
+    }
+  }).then(function (dbRestaurant) {
+    // console.log("found restaurant",dbRestaurant);
+    const [dbRestaurantJson] = dbRestaurant.map(restaurant => restaurant.toJSON());
+    var hbsObject = { restaurant: dbRestaurantJson };
+    console.log(dbRestaurantJson);
+    return res.render("specificrestaurant", dbRestaurantJson);
+  }).catch(function (err) {
+    console.log(err);
+    res.status(500).end()
+  })
+});
 
 // // Restaurant route for saving a new Restaurant
 // router.post("/restaurant/:id", function (req, res) {
