@@ -20,14 +20,14 @@ function deployWineSearch(wineSearchValue) {
     // }).then(data => {
     //     console.log("hey hey", data);
     // }).fail(err => console.log(err));
-    location.href="/wine/"+wineSearchValue
+    location.href="/api/wines/"+wineSearchValue
 }
 
 //clicking on restaurant from dropdown menu and populating its handlebar page
 $("select.locations").on("change", function (event) {
     event.preventDefault();
     console.log("Choice", $("select.locations").val())
-    location.href="/api/restaurants/restaurant/"+ $("select.locations").val()
+    location.href="/api/restaurants/"+ $("select.locations").val()
 })
 
 function renderRestaurantPage() { //might not need this, rendering should be taken care of in the routes???
