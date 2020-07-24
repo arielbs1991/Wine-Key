@@ -1,14 +1,14 @@
 const router = require("express").Router();
 const db = require("../models");
 
-router.get('/', (req, res) => {
-    db.Wine.findAll({}).then(wineData => {
-        res.json(wineData)
-    }).catch(err => {
-        console.log(err);
-        res.status(500).end()
-    })
-})
+// router.get('/winecatalog', (req, res) => {
+//     db.Wine.findAll({}).then(wineData => {
+//         res.json(wineData)
+//     }).catch(err => {
+//         console.log(err);
+//         res.status(500).end()
+//     })
+// })
 
 router.get("/ininventories", (req, res) => {
     db.Wine.findAll({
