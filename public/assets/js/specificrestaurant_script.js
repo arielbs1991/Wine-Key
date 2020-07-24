@@ -4,57 +4,60 @@
 
 //NAVBAR: Home: should already be hooked up. Needs to be tested. Stores: will need same functionality as in index.handlebars "update inventory" dropdown menu. Hopefully can make accross-the-board interactive with classes. Wine Catalog: should be hooked up already, needs to be tested. Search: needs same functionality as the index.handlebars "search" button and field. Hopefully across the board functionality with class use
 
-$(function() {
+$(function () {
 
-$(".addWine").on("click", function(event){
-    event.preventDefault();
-    var newWine = {
-        wineName: $("#newWineName").val().trim(),
-        wineYear: $("#newWineYear").val().trim(),
-        wineQuantity: $("#newWineQuantity").val().trim()
-    };
-    $.ajax("route", {
-        type: "POST",
-        data: newWine
-    }).then(
-        function() {
-            console.log("Added new wine");
-            location.reload();
-        }
-    )
-});
+    $(".addWine").on("click", function (event) {
+        event.preventDefault();
+        var newWine = {
+            wineName: $("#newWineName").val().trim(),
+            wineYear: $("#newWineYear").val().trim(),
+            wineQuantity: $("#newWineQuantity").val().trim(),
+            wineVariety: $("#newWineVariety").val().trim(),
+            restaurantId: $("#restaurantId").val().trim()
+        };
+        $.ajax({
+            url: "/api/wines/",
+            type: "POST",
+            data: newWine
+        }).then(
+            function () {
+                console.log("Added new wine");
+                location.reload();
+            }
+        )
+    });
 
-$(".changeQuantity").on("click", function(event){
-    var id = $(this).data("id");
-    var newQuantity = $(this).data("newQuantity");
+    $(".changeQuantity").on("click", function (event) {
+        var id = $(this).data("id");
+        var newQuantity = $(this).data("newQuantity");
 
-    var newRestaurantQuantity = {
-        quantity: newQuantity
-    };
+        var newRestaurantQuantity = {
+            quantity: newQuantity
+        };
 
-    $.ajax("/api/inventories/withdata/:wineId" + id, {
-        type: "PUT",
-        data: newRestaurantQuantity
-    }).then(
-        function() {
-            console.log("changed wine quantity to", newQuantity);
-            location.reload();
-        }
-    );
-});
+        $.ajax("/api/inventories/withdata/:wineId" + id, {
+            type: "PUT",
+            data: newRestaurantQuantity
+        }).then(
+            function () {
+                console.log("changed wine quantity to", newQuantity);
+                location.reload();
+            }
+        );
+    });
 
 
-$(".deleteWine").on("click", function(event){
-    var id = $(this).data("id");
+    $(".deleteWine").on("click", function (event) {
+        var id = $(this).data("id");
 
-    $.ajax("route" +id, { //route for this restaurant's inventory
-        type: "DELETE"
-    }).then(
-        function(){
-            console.log("Deleted wine", id);
-            location.reload();
-        }
-    );
-});
+        $.ajax("/api/wines/" + id, { //route for this restaurant's inventory
+            type: "DELETE"
+        }).then(
+            function () {
+                console.log("Deleted wine", id);
+                location.reload();
+            }
+        );
+    });
 
 })

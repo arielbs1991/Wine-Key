@@ -34,10 +34,17 @@ router.get("/withdata", (req, res) => {
 router.post('/', (req, res) => {
     db.Wine.create({
         wineName: req.body.wineName,
-        year: req.body.year,
-        variety: req.body.variety
+        year: req.body.wineYear,
+        variety: req.body.wineVariety
     }).then(wineData => {
-        res.json(wineData)
+        db.Inventory.create({
+            restaurantId: req.body.restaurantId,
+            wineId: wineData.id,
+            quantity: req.body.wineQuantity
+        }).then(inventoryData => {
+            res.json(inventoryData)
+        })
+        
     }).catch(err => {
         console.log(err);
         res.status(500).end()

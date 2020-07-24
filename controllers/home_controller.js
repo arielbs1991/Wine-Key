@@ -35,7 +35,12 @@ router.get("/api/restaurants/:id", function (req, res) {
   db.Restaurant.findAll({
     where: {
       id: req.params.id
+    },
+    include: [
+      {model: db.Inventory,
+      include: [db.Wine]
     }
+    ]
   }).then(function (dbRestaurant) {
     // console.log("found restaurant",dbRestaurant);
     const [dbRestaurantJson] = dbRestaurant.map(restaurant => restaurant.toJSON());

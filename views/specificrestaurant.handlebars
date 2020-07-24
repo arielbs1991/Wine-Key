@@ -55,7 +55,7 @@
       <h4>Add a New Item to Inventory</h4>
     </div>
     <div class="grid-x grid-padding-x align-center">
-      <form class="addWine">
+      <form>
         <!--created form class for ajax-->
         <div class="medium-2 cell">
           <input id="newWineName" name="wineName" type="text" placeholder="Bottle Name">
@@ -69,8 +69,13 @@
           <input id="newWineQuantity" name="wineQuantity" type="text" placeholder="Quantity">
           <!--added input id-->
         </div>
+        <div class="medium-2 cell">
+          <input id="newWineVariety" name="wineVariety" type="text" placeholder="Variety">
+          <!--added input id-->
+        </div>
+        <input type="hidden" id="restaurantId" value={{id}}>
       </form>
-      <div id="addwinepadding"><button type="button" class="button rounded bordered shadow primary">Add Wine</button>
+      <div id="addwinepadding"><button type="button" class="button rounded bordered shadow primary addWine">Add Wine</button>
       </div>
     </div>
     <div></div>
@@ -92,6 +97,7 @@
           <tr>
             <th width="400">Wine Name</th>
             <th width="100">Vintage</th>
+            <th width="100">Variety</th>
             <th width="100">Quantity</th>
             <th width="200">Actions</th>
             <th width="100"></th>
@@ -99,10 +105,11 @@
         </thead>
         <tbody class="align-items-center">
           <tr>
-            {{#each Wine}}
+            {{#each Inventories}}
             <!-- table for specific restaurant's wine inventory-->
-            <td>{{wineName}}</td>
-            <td>{{year}}</td>
+            <td>{{Wine.wineName}}</td>
+            <td>{{Wine.year}}</td>
+            <td>{{Wine.variety}}</td>
             <td>{{quantity}}</td>
             <td>
               <div class="input-group updatepadding">
@@ -162,3 +169,5 @@
     </div>
   </div>
 </footer>
+
+<script src="/assets/js/specificrestaurant_script.js"></script>
