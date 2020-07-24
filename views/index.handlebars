@@ -12,6 +12,8 @@
 
     <div class="grid-container fluid">
         <div class="grid-x grid-padding-x align-center">
+
+
             <div class="cell small-6">
                 <h2 class="center underline">Search for Wine</h2>
                 <h4 class="center">Please enter the name of the bottle as it appears on the menu:</h4>
@@ -23,6 +25,17 @@
                     </div>
                 </div>
             </div>
+
+            <!--Make sure the form has the autocomplete function switched off:-->
+            <form autocomplete="off" action="/action_page.php">
+                <div class="autocomplete" style="width:300px;">
+                    <input id="myInput" type="text" name="myCountry" placeholder="Country">
+                </div>
+                <input type="submit">
+            </form>
+
+
+
         </div>
     </div>
 

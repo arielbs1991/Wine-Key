@@ -11,11 +11,15 @@
 
     <link rel="stylesheet" href="/assets/css/style.css" type="text/css">
 
+
+
     <title>Wine Key</title>
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js"
         integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" crossorigin="anonymous"></script>
+    <script src="/assets/js/autocomplete.js"></script>
+    
     <script src="/assets/js/index_script.js"></script>
 
 </head>
@@ -26,7 +30,10 @@
     <script>
         $(document).ready(function () {
             $(document).foundation();
+
+
         });
+        autocomplete(document.getElementById("myInput"), countries);
     </script>
 </body>
 
