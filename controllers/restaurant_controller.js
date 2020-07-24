@@ -47,22 +47,22 @@ router.post('/',(req,res)=>{
 //     })
 // });
 
-// // Get route for retrieving a single Restaurant
-// router.get("/restaurant/:id", function (req, res) {
-//   db.Restaurant.findOne({
-//     where: {
-//       id: req.params.id
-//     }
-//   }).then(function (dbRestaurant) {
-//     console.log(dbRestaurant);
-//     const dbRestaurantJson = dbRestaurant.map(restaurant => restaurant.toJSON());
-//     var hbsObject = { restaurant: dbRestaurantJson };
-//     return res.render("index", hbsObject);
-//   }).catch(function (err) {
-//     console.log(err);
-//     res.status(500).end()
-//   })
-// });
+// Get route for retrieving a single Restaurant
+router.get("/:id", function (req, res) {
+  db.Restaurant.findOne({
+    where: {
+      id: req.params.id
+    }
+  }).then(function (dbRestaurant) {
+    console.log(dbRestaurant);
+    const dbRestaurantJson = dbRestaurant.map(restaurant => restaurant.toJSON());
+    var hbsObject = { restaurant: dbRestaurantJson };
+    return res.render("specificrestaurant", hbsObject);
+  }).catch(function (err) {
+    console.log(err);
+    res.status(500).end()
+  })
+});
 
 // //function for creating a new restaurant
 // router.post("/api/restaurant", function (req, res) {
