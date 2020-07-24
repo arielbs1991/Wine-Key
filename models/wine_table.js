@@ -12,7 +12,8 @@ module.exports = function (sequelize, DataTypes) {
         },
         year: {
             type: DataTypes.INTEGER,
-            allowNull: false,
+            //gonna have to allow year to be null
+            allowNull: true,
             validate: {
                 len: [1, 4]
             }
@@ -27,7 +28,7 @@ module.exports = function (sequelize, DataTypes) {
     });
 
     Wine.associate = function (models) {
-        Wine.hasMany(models.Inventory);
+        Wine.hasMany(models.Inventory, { foreignKey: 'wineId' });
     };
     return Wine;
 };

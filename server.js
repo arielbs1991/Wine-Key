@@ -24,7 +24,7 @@ app.use("/api/inventories", inventoryRoutes);
 const wineRoutes = require("./controllers/wine_controller.js");
 app.use("/api/wines", wineRoutes);
 const restaurantRoutes = require("./controllers/restaurant_controller.js");
-app.use("/api/restaurant", restaurantRoutes);
+app.use("/api/restaurants", restaurantRoutes);
 const homeRoutes = require("./controllers/home_controller.js");
 app.use("/", homeRoutes);
 

@@ -13,7 +13,8 @@ router.get('/', (req, res) => {
 
 router.get("/withrestaurants",(req, res) => {
     db.Inventory.findAll({
-        include:[db.Restaurant]
+        //find all inventories that include restaurant and wine
+        include:[db.Restaurant, db.Wine],
     }).then(inventoryData => {
         res.json(inventoryData)
     }).catch(err => {
@@ -34,9 +35,9 @@ router.get("/withdata",(req, res) => {
 
 router.post('/', (req, res) => {
     db.Inventory.create({
-        wineName: req.body.wineName,
         quantity: req.body.quantity,
-        RestaurantId: req.body.RestaurantId
+        restaurantId: req.body.restaurantId,
+        wineId: req.body.wineId
     }).then(inventoryData => {
         res.json(inventoryData)
     }).catch(err => {

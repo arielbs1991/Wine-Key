@@ -1,11 +1,17 @@
-
 const Sequelize = require("sequelize");
 const sequelize = require("./index");
 
 module.exports = function (sequelize, DataTypes) {
     var Inventory = sequelize.define("Inventory", {
-        wineName: {
-            type: DataTypes.STRING,
+        restaurantId: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            validate: {
+                len: [1]
+            }
+        },
+        wineId: {
+            type: DataTypes.INTEGER,
             allowNull: false,
             validate: {
                 len: [1]
@@ -21,12 +27,8 @@ module.exports = function (sequelize, DataTypes) {
     });
 
     Inventory.associate = function (models) {
-        Inventory.belongsTo(models.Wine);
-        Inventory.belongsTo(models.Restaurant, {
-            foreignKey: {
-                allowNull: false
-            }
-        });
+        Inventory.belongsTo(models.Wine, { foreignKey: 'wineId' });
+        Inventory.belongsTo(models.Restaurant, { foreignKey: 'restaurantId' });
     };
     return Inventory;
 };

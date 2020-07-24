@@ -29,6 +29,7 @@ module.exports = function (sequelize, DataTypes) {
 
     Restaurant.associate = function (models) {
         Restaurant.hasMany(models.Inventory, {
+            foreignKey: 'restaurantId',
             onDelete: "cascade"
         });
     };
