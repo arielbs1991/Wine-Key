@@ -14,19 +14,20 @@ $("#search").on("click", function (event) {
 });
 
 function deployWineSearch(wineSearchValue) {
-    $.ajax({
-        url: `/api/wines/${wineSearchValue}`,
-        method: "GET"
-    }).then(data => {
-        console.log("hey hey", data);
-    }).fail(err => console.log(err));
+    // $.ajax({
+    //     url: `/api/wines/${wineSearchValue}`,
+    //     method: "GET"
+    // }).then(data => {
+    //     console.log("hey hey", data);
+    // }).fail(err => console.log(err));
+    location.href="/wine/"+wineSearchValue
 }
 
 //clicking on restaurant from dropdown menu and populating its handlebar page
 $("select.locations").on("change", function (event) {
     event.preventDefault();
     console.log("Choice", $("select.locations").val())
-    location.href="/restaurant/"+ $("select.locations").val()
+    location.href="/api/restaurants/restaurant/"+ $("select.locations").val()
 })
 
 function renderRestaurantPage() { //might not need this, rendering should be taken care of in the routes???
