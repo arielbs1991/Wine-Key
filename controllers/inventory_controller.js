@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
     })
 })
 
-router.get("/withrestaurants",(req, res) => {
+router.get("/withdata",(req, res) => {
     db.Inventory.findAll({
         //find all inventories that include restaurant and wine
         include:[db.Restaurant, db.Wine],
@@ -22,16 +22,16 @@ router.get("/withrestaurants",(req, res) => {
         res.status(500).end()
     })
 })
-router.get("/withdata",(req, res) => {
-    db.Inventory.findAll({
-        include:[db.Restaurant]
-    }).then(inventoryData => {
-        res.json(inventoryData)
-    }).catch(err => {
-        console.log(err);
-        res.status(500).end()
-    })
-})
+// router.get("/withrestaurants",(req, res) => {
+//     db.Inventory.findAll({
+//         include:[db.Restaurant]
+//     }).then(inventoryData => {
+//         res.json(inventoryData)
+//     }).catch(err => {
+//         console.log(err);
+//         res.status(500).end()
+//     })
+// })
 
 router.post('/', (req, res) => {
     db.Inventory.create({
@@ -46,24 +46,24 @@ router.post('/', (req, res) => {
     })
 })
 
-router.get('/:id', (req, res) => {
-    db.Inventory.findOne({
+// router.get('/:id', (req, res) => {
+//     db.Inventory.findOne({
+//         where: {
+//             id: req.params.id
+//         }
+//     }).then(inventoryData => {
+//         res.json(inventoryData)
+//     }).catch(err => {
+//         console.log(err);
+//         res.status(500).end()
+//     })
+// })
+router.get('/withdata/:wineId', (req, res) => {
+    db.Inventory.findAll({
         where: {
-            id: req.params.id
-        }
-    }).then(inventoryData => {
-        res.json(inventoryData)
-    }).catch(err => {
-        console.log(err);
-        res.status(500).end()
-    })
-})
-router.get('/:id/withrestaurant', (req, res) => {
-    db.Inventory.findOne({
-        where: {
-            id: req.params.id
+            wineId: req.params.wineId
         },
-        include:[db.Restaurant]
+        include:[db.Restaurant, db.Wine]
     }).then(inventoryData => {
         res.json(inventoryData)
     }).catch(err => {

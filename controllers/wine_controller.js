@@ -44,11 +44,29 @@ router.post('/', (req, res) => {
     })
 })
 
-router.get('/:id', (req, res) => {
-    db.Wine.findOne({
+// router.get('/:id', (req, res) => {
+//     db.Wine.findAll({
+//         where: {
+//             id: req.params.id
+//         }
+//     }).then(wineData => {
+//         res.json(wineData)
+//     }).catch(err => {
+//         console.log(err);
+//         res.status(500).end()
+//     })
+// })
+router.get('/:wineName', (req, res) => {
+    db.Wine.findAll({
         where: {
-            id: req.params.id
-        }
+            wineName: req.params.wineName
+        },
+        include: [{
+            model: db.Inventory,
+            include: [
+                db.Restaurant
+            ]
+        }]
     }).then(wineData => {
         res.json(wineData)
     }).catch(err => {
