@@ -12,12 +12,13 @@
             <li>
               <a href="#">Stores</a>
               <ul class="menu vertical">
-                <li><a href="#">AERLUME</a></li>
-                <!--{{for each restaurant name}}-->
-                <li><a href="#">AQUA</a></li>
-                <li><a href="#">El Gaucho Bellevue</a></li>
-                <li><a href="#">El Gaucho Seattle</a></li>
-                <li><a href="#">El Gaucho Tacoma</a></li>
+                <select class="locations">
+                  <li class="location" value="aerlume"><a href="#">AERLUME</a></li> <!--{{for each restaurant name}}-->
+                  <li class="location" value="aqua"><a href="#">AQUA</a></li>
+                  <li class="location" value="bellevue"><a href="#">El Gaucho Bellevue</a></li>
+                  <li class="location" value="seattle"><a href="#">El Gaucho Seattle</a></li>
+                  <li class="location" value="tacoma"><a href="#">El Gaucho Tacoma</a></li>
+                </select>
               </ul>
             </li>
             <li><a href="winecatalog.handlebars">Wine Catalog</a></li>
@@ -26,7 +27,7 @@
         <div class="top-bar-right">
           <ul class="menu">
             <li><input type="search" placeholder="Find Wines"></li>
-            <li><button type="button" class="button">Search</button></li>
+            <li><button type="button" class="button submitSearch">Search</button></li>
           </ul>
         </div>
       </div>
@@ -55,16 +56,18 @@
             <h4>Add a New Item to Inventory</h4>
           </div>
           <div class="grid-x grid-padding-x align-center">
+            <form class="addWine"> <!--created form class for ajax-->
             <div class="medium-2 cell">
-              <input type="text" placeholder="Bottle Name">
+              <input id="newWineName" name="wineName" type="text" placeholder="Bottle Name"> <!--added input id-->
             </div>
             <div class="medium-2 cell">
-              <input type="text" placeholder="Vintage">
+              <input id="newWineYear" name="wineYear" type="text" placeholder="Vintage"> <!--added input id-->
             </div>
             <div class="medium-2 cell">
-              <input type="text" placeholder="Quantity">
+              <input id="newWineQuantity" name="wineQuantity" type="text" placeholder="Quantity"> <!--added input id-->
             </div>
-            <div id="addwinepadding"><button type="button" class="button rounded bordered shadow success">Add Wine</button></div>
+            </form>
+            <div id="addwinepadding"><button type="button" class="button rounded bordered shadow primary">Add Wine</button></div>
           </div>
           <div></div>
         </div>
@@ -79,7 +82,7 @@
         <h4 class="center">Inventory</h4>
         <div class="grid-x grid-padding-x align-center">
           <div class="cell small-10 align-items-center">
-            <table class="rounded align-items-center">
+            <table id="restaurantInventory" class="rounded align-items-center"> <!--added table id-->
               <thead>
                 <tr>
                   <th width="400">Wine Name</th>
@@ -91,8 +94,24 @@
               </thead>
               <tbody class="align-items-center">
                 <tr>
+                  {{#each Wine}} <!-- table for specific restaurant's wine inventory-->
+                  <td>{{wineName}}</td>
+                  <td>{{year}}</td>
+                  <td>{{quantity}}</td>
+                  <td>
+                    <div class="input-group updatepadding">
+                      <span class="input-group-label">#</span>
+                      <input class="input-group-field" type="number">
+                      <div class="input-group-button">
+                        <input type="submit" class="button success changeQuantity" data-id="{{id}}" data-newQuantity="{{quantity}}" value="Update">
+                      </div>
+                    </div>
+                  </td>
+                  <td class="removepadding"><button type="button" class="button rounded bordered shadow alert deleteWine" data-id="{{this.id}}">Remove</button></td>
+                {{/each}}
+                </tr>
+                {{!-- <tr>
                   <td>Placeholder</td>
-                  <!--{{to pull information from tables}}-->
                   <td>Placeholder</td>
                   <td>Placeholder</td>
                   <td>
@@ -100,11 +119,11 @@
                       <span class="input-group-label">#</span>
                       <input class="input-group-field" type="number">
                       <div class="input-group-button">
-                        <input type="submit" class="button" value="Update"> <!--attach quantity id to each button to update specific quantity-->
+                        <input type="submit" class="button changeQuantity" value="Update">
                       </div>
                     </div>
                   </td>
-                  <td class="removepadding"><button type="button" class="button rounded bordered shadow alert inventory">Remove</button></td> <!--Attach entire row of the column to delete from table-->
+                  <td class="removepadding"><button type="button" class="button rounded bordered shadow alert">Remove</button></td>
                 </tr>
                 <tr>
                   <td>Placeholder</td>
@@ -120,22 +139,7 @@
                     </div>
                   </td>
                   <td class="removepadding"><button type="button" class="button rounded bordered shadow alert">Remove</button></td>
-                </tr>
-                <tr>
-                  <td>Placeholder</td>
-                  <td>Placeholder</td>
-                  <td>Placeholder</td>
-                  <td>
-                    <div class="input-group updatepadding">
-                      <span class="input-group-label">#</span>
-                      <input class="input-group-field" type="number">
-                      <div class="input-group-button">
-                        <input type="submit" class="button" value="Update">
-                      </div>
-                    </div>
-                  </td>
-                  <td class="removepadding"><button type="button" class="button rounded bordered shadow alert">Remove</button></td>
-                </tr>
+                </tr> --}}
               </tbody>
             </table>
           </div>

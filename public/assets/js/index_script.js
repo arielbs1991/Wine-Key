@@ -1,20 +1,33 @@
 //search button on click needs to take the information entered in the text field and navigate to searchedwine.handlebars, populating the table with each restaurant that has it, the quantity, and the phoneNumber
 //for each restaurant listed under "update inventory" in dropdown menu: on click (or "change"), navigate to specificrestaurant.handlebars, populating with wineName, year, and quantity for each wine within that inventory
+$(document).ready(function(){
 
 //searching for a specific bottle using the search bar
-$(".submitSearch").on("click", function (event) {
+$("#search").on("click", function (event) {
+    wineSearchValue = $(".searchField").val().trim()
+    console.log(wineSearchValue);
     event.preventDefault();
-    var wineSearchValue = $(".searchField").val().trim()
-    //if wine doesn't exist in our db, ask if user would like to enter a new wine, else SELECT inventoryID AND year FROM wines WHERE wineName = wineSearchValue, then SELECT restaurantId AND quantity FROM inventory WHERE wineId = this.wineId, then SELECT restaurantName AND phoneNumber where restaurantId = this.restaurantId, then populate table with this.wineName, this.year, this.quantity, this.restaurantName, and this.phoneNumber
+    deployWineSearch($(".searchField").val().trim());
+    //if wine doesn't exist in our db, ask if user would like to enter a new wine, else SELECT wineId AND year FROM wines WHERE wineName = wineSearchValue, then SELECT restaurantId AND quantity FROM inventory WHERE wineId = this.wineId, then SELECT restaurantName AND phoneNumber where restaurantId = this.restaurantId, then populate table with this.wineName, this.year, this.quantity, this.restaurantName, and this.phoneNumber
 });
 
-//clicking on restaurant from dropdown menu and populating its handlebar page
-$(".locations").on("change", function (event) {
-    event.preventDefault();
+function deployWineSearch(wineSearchValue) {
+    $.ajax({
+        url: `/api/wines/${wineSearchValue}`,
+        method: "GET"
+    }).then(data => {
+        console.log("hey hey", data);
+    }).fail(err => console.log(err));
+}
 
+//clicking on restaurant from dropdown menu and populating its handlebar page
+$("select.locations").on("change", function (event) {
+    event.preventDefault();
+    console.log("Choice", $("select.locations").val())
+    location.href="/restaurant/"+ $("select.locations").val()
 })
 
-function renderRestaurantPage() {
+function renderRestaurantPage() { //might not need this, rendering should be taken care of in the routes???
     var currentRestaurant = $(this)
     //$(.location).val(); for restaurant name (hopefully)
     //need to grab restaurantName === above value with $.get("/api/restaurants" + restaurantName)
@@ -30,3 +43,4 @@ function renderRestaurantPage() {
     //     getRestaurants(wineId);
     //   }
 }
+})
