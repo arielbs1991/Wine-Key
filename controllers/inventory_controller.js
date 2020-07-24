@@ -13,7 +13,8 @@ router.get('/', (req, res) => {
 
 router.get("/withrestaurants",(req, res) => {
     db.Inventory.findAll({
-        include:[db.Restaurant]
+        //find all inventories that include restaurant and wine
+        include:[db.Restaurant, db.Wine],
     }).then(inventoryData => {
         res.json(inventoryData)
     }).catch(err => {

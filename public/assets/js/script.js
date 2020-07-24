@@ -36,60 +36,6 @@ $(".location").on("change", function (event) {
     //   });
 
     // });
-    // $(".EG-Tacoma").on("click", function(event) {
-    //   event.preventDefault();
 
-    //   var restaurant_id = $(this).children(".restaurant_id").val();
-    //   $.ajax({
-    //     method: "GET",
-    //     url: "/restaurant/" + restaurant_id
-    //   }).then(function(data) {
-    //     // console.log("clicked EGT");
-    //     location.reload();
-    //   });
-
-    // });
-    // $(".EG-Bellevue").on("click", function(event) {
-    //   event.preventDefault();
-
-    //   var restaurant_id = $(this).children(".restaurant_id").val();
-    //   $.ajax({
-    //     method: "GET",
-    //     url: "/restaurant/" + restaurant_id
-    //   }).then(function(data) {
-    //     // console.log("clicked EGT");
-    //     location.reload();
-    //   });
-
-    // });
-    // $(".Aerlume").on("click", function(event) {
-    //   event.preventDefault();
-
-    //   var restaurant_id = $(this).children(".restaurant_id").val();
-    //   $.ajax({
-    //     method: "GET",
-    //     url: "/restaurant/" + restaurant_id
-    //   }).then(function(data) {
-    //     // console.log("clicked Aer");
-    //     location.reload();
-    //   });
-
-    // });
-    // $(".Aqua").on("click", function(event) {
-    //   event.preventDefault();
-    // //   console.log("clicked Aqua");
-    //   var restaurant_id = $(this).children(".restaurant_id").val();
-    //   $.ajax({
-    //     method: "GET",
-    //     url: "/restaurant/" + restaurant_id
-    //   }).then(function(data) {
-
-    //     location.reload();
-    //   });
-
-    // });
-
-
-//   });
 
   //submit button to grab wine name from input field and search for wine id, returning inventory information with restaurant id
