@@ -10,8 +10,8 @@ $(".addWine").on("click", function(event){
     event.preventDefault();
     var newWine = {
         wineName: $("#newWineName").val().trim(),
-        wineYear: $("newWineYear").val().trim(),
-        wineQuantity: $("newWineQuantity").val().trim()
+        wineYear: $("#newWineYear").val().trim(),
+        wineQuantity: $("#newWineQuantity").val().trim()
     };
     $.ajax("route", {
         type: "POST",

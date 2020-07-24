@@ -18,6 +18,19 @@ router.get("/home", function (req, res) {
     })
 });
 
+router.get('/api/wines/winecatalog', (req, res) => {
+  db.Wine.findAll({}).then(dbWine => {
+      // res.json(dbWine)
+      const [dbWineJson] = dbWine.map(wine => wine.toJSON());
+      var hbsObject = { wine: dbWineJson };
+      console.log(dbWineJson);
+      return res.render("winecatalog", dbWineJson);
+  }).catch(err => {
+      console.log(err);
+      res.status(500).end()
+  })
+})
+
 router.get("/api/restaurants/:id", function (req, res) {
   db.Restaurant.findAll({
     where: {
@@ -63,7 +76,7 @@ router.get("/api/wines/:wineName", function (req, res) {
     // res.json(dbWine)
     const dbWineJson = dbWine.map(wine => wine.toJSON());
       var hbsObject = { wine: dbWineJson };
-    res.render("searchedwine", hbsObject)
+    res.render("searchedwine", dbWineJson)
   }).catch(err => {
     console.log(err);
     res.status(500).end()
