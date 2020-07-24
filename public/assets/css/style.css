@@ -1,13 +1,11 @@
 body{
     background-color: #00205B;
-    
 }
 
 .center{
     display:block;
     margin-left:auto;
     margin-right:auto;
-  
 }
 
 h1{
@@ -16,7 +14,6 @@ h1{
     font-size:120pt;
     font-family: 'Parisienne',
     cursive;
-
 }
 
 h2{
@@ -36,7 +33,6 @@ h4{
 
 .label{
     color:lightgrey;
-    
 }
 
 .center{
@@ -59,4 +55,15 @@ h4{
 
 .removepadding{
     padding-top:1.8rem;
+}
+
+#addwinepadding{
+    padding-left:15px
+}
+
+.footer{
+    right:0;
+    left:0;
+    bottom:0;
+    padding:0
 }
