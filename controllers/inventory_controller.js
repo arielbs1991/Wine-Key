@@ -34,9 +34,9 @@ router.get("/withdata",(req, res) => {
 
 router.post('/', (req, res) => {
     db.Inventory.create({
-        wineName: req.body.wineName,
         quantity: req.body.quantity,
-        RestaurantId: req.body.RestaurantId
+        restaurantId: req.body.restaurantId,
+        wineId: req.body.wineId
     }).then(inventoryData => {
         res.json(inventoryData)
     }).catch(err => {
