@@ -1,3 +1,4 @@
+
 //search button on click needs to take the information entered in the text field and navigate to searchedwine.handlebars, populating the table with each restaurant that has it, the quantity, and the phoneNumber
 //for each restaurant listed under "update inventory" in dropdown menu: on click (or "change"), navigate to specificrestaurant.handlebars, populating with wineName, year, and quantity for each wine within that inventory
 
@@ -30,3 +31,4 @@ function renderRestaurantPage() {
     //     getRestaurants(wineId);
     //   }
 }
+
