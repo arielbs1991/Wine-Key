@@ -106,8 +106,8 @@
           </tr>
         </thead>
         <tbody class="align-items-center">
+          {{#each Inventories}}
           <tr>
-            {{#each Inventories}}
             <!-- table for specific restaurant's wine inventory-->
             <td>{{Wine.wineName}}</td>
             <td>{{Wine.year}}</td>
@@ -124,7 +124,7 @@
               </div>
             </td>
             <td class="removepadding"><button type="button" class="button rounded bordered shadow alert deleteWine"
-                data-id="{{this.id}}">Remove</button></td>
+                data-id={{this.id}}>Remove</button></td>
             {{/each}}
           </tr>
           {{!-- <tr>
