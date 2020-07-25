@@ -1,4 +1,4 @@
-<div class="title-bar" data-responsive-toggle="example-menu" data-hide-for="medium"> <!--this nav bar is incomplete - missing javascript functionality-->
+<div class="title-bar" data-responsive-toggle="example-menu" data-hide-for="medium"> 
         <button class="menu-icon" type="button" data-toggle="example-menu"></button>
         <div class="title-bar-title">Menu</div>
       </div>
@@ -44,20 +44,14 @@
                 <table id="wineCatalog"> <!--added table id-->
                     <thead>
                       <tr>
-                        <th width="500">Wine Name</th>
-                        <th width="200">Vintage</th>
-                        <th width="200">Quantity</th>
+                        <th width="500">Wine Name & Vintage</th>
                         {{!-- <th width="500">Locations</th> --}}
                       </tr>
                     </thead>
                     <tbody>
-                      {{#each Inventories}}
+                      {{#each wine}}
                       <tr>
-                        <td>{{Wine.wineName}}</td> <!--to pull information from tables-->
-                        <td>{{Wine.year}}</td>
-                        <td>{{quantity}}</td>
-                        {{!--I don't think this is going to give us the company-wide quantity on its own since each inventory belongs to a restaurant, but who fucking knows, maybe it will--}}
-                        {{!-- <td>Placeholder</td> --}}
+                        <td>{{wineName}} {{year}}</td> <!--to pull information from tables-->
                       </tr>
                       {{/each}}
                     </tbody>

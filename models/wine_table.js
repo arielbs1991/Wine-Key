@@ -12,17 +12,8 @@ module.exports = function (sequelize, DataTypes) {
         },
         year: {
             type: DataTypes.INTEGER,
-            //gonna have to allow year to be null
-            allowNull: true,
             validate: {
                 len: [1, 4]
-            }
-        },
-        variety: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                len: [1]
             }
         }
     });
