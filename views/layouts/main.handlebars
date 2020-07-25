@@ -26,43 +26,10 @@
 
 <body>
     {{{ body }}}
-
-    <script>
+</body>
+<script>
         $(document).ready(function () {
             $(document).foundation();
-
-            const text = document.querySelector(".animation");
-            console.log(text);
-            const strText = text.textContent;
-            console.log(strText)
-            const splitText = strText.split("");
-            text.textContent = "";
-
-            for (let i = 0; i < splitText.length; i++) {
-                text.innerHTML += "<span>" + splitText[i] + "</span>";
-            }
-
-            let char = 0;
-            let timer = setInterval(onTick, 300);
-
-            function onTick() {
-                const span = text.querySelectorAll('span')[char];
-                span.classList.add('fade');
-                char++
-                if (char === splitText.length) {
-                    complete();
-                    return;
-                }
-            }
-
-            function complete() {
-                clearInterval(timer);
-                timer = null;
-            }
-
         });
-
     </script>
-</body>
-
 </html>
