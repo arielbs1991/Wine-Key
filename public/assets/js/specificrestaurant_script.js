@@ -6,7 +6,7 @@
 
 $(document).ready(function () {
 
-    $(".addWine").on("click", function (event) {
+    $(".addWine").off().on("click", function (event) {
         event.preventDefault();
         var newWine = {
             wineName: $("#newWineName").val().trim(),
@@ -27,7 +27,7 @@ $(document).ready(function () {
         )
     });
     //TODO: currently only able to change quantity of first wine in list, why is only the first id being grabbed? Do I need a foreach? If so, how to define the array name and length
-    $(".changeQuantity").on("click", function (event) {
+    $(".changeQuantity").off().on("click", function (event) {
         // var id = $(".id").val();
         var id = $(this).data("id");
         console.log("id", id);
@@ -54,19 +54,19 @@ $(document).ready(function () {
 
 
     //I get the feeling I'm going to have the same issue deleting not-first-rows as I'm having with updating them.
-    $(".deleteWine").on("click", function (event) {
+    $(".deleteWine").off().on("click", function (event) {
         var id = $(this).data("id");
+        console.log()
 
-        $.ajax("/api/wines/" + id, { //route for this restaurant's inventory
+        $.ajax("/api/inventories/" + id, { //route for this restaurant's inventory
             type: "DELETE"
         }).then(
             function () {
                 console.log("Deleted wine", id);
                 //temporarily turning off page reload for testing
-                // location.reload();
+                location.reload();
             }
         );
     });
-
 });
 
