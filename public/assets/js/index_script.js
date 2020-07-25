@@ -23,6 +23,7 @@ $(document).ready(function () {
         console.log("Choice", $("select.locations").val())
         location.href = "/api/restaurants/" + $("select.locations").val()
     })
+
 })
 
 
