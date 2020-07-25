@@ -26,36 +26,39 @@ $(document).ready(function () {
             }
         )
     });
-    //TODO: currently only able to change quantity of first wine in list, why is only the first id being grabbed? Do I need a foreach? If so, how to define the array name and length
-    $(".changeQuantity").off().on("click", function (event) {
-        // var id = $(".id").val();
-        var id = $(this).data("id");
-        console.log("id", id);
+    //TODO: currently only able to change quantity of first wine in list, why is only the first id being grabbed? Do I need a foreach? If so, how to define the array name and length. Potential async issue?
+    $(".changeQuantity").each(function (index) {
+        $(this).off().on("click", function (event) {
+            // var id = $(".id").val();
+            var id = $(this).data("id");
+            console.log("id", id);
 
-        var newQuantity = {
-            quantity: $(".newQuantity").val().trim()
-            //"this" refers to the button, not the text contents
-            // quantity: $(this).data("quantity")
-        };
-        console.log("new quantity", newQuantity);
+            var newQuantity = {
+                quantity: $(".newQuantity").val().trim()
+                //"this" refers to the button, not the text contents
+                // quantity: $(this).data("quantity")
+            };
+            console.log("new quantity", newQuantity);
 
-        $.ajax("/api/inventories/" + id, {
-            type: "PUT",
-            data: newQuantity
-        }).then(
-            function () {
-                console.log("changed wine quantity to", newQuantity);
-                //temporarily turning off page reload for testing
-                // location.reload();
-            }
-        );
-    })
+            $.ajax("/api/inventories/" + id, {
+                type: "PUT",
+                data: newQuantity
+            }).then(
+                function () {
+                    console.log("changed wine quantity to", newQuantity);
+                    //temporarily turning off page reload for testing
+                    // location.reload();
+                }
+            );
+        })
+    });
 
 
 
     //I get the feeling I'm going to have the same issue deleting not-first-rows as I'm having with updating them.
     $(".deleteWine").off().on("click", function (event) {
         var id = $(this).data("id");
+        console.log()
 
         $.ajax("/api/inventories/" + id, { //route for this restaurant's inventory
             type: "DELETE"
@@ -67,6 +70,5 @@ $(document).ready(function () {
             }
         );
     });
-
 });
 

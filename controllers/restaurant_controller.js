@@ -98,20 +98,20 @@ router.post("/api/restaurant", function (req, res) {
 //   })
 // });
 
-// Restaurant route for saving a new Restaurant
-router.post("/restaurant/:id", function (req, res) {
-  db.Restaurant.create({
-    restaurantName: req.body.restaurantName,
-    year: req.body.year,
-    variety: req.body.variety
-  }).then(function (dbRestaurant) {
-    console.log(dbRestaurant);
-    res.redirect("/");
-  }).catch(function (err) {
-    console.log(err);
-    res.status(500).end()
-  })
-});
+// // Restaurant route for saving a new Restaurant
+// router.post("/restaurants/:id", function (req, res) {
+//   db.Restaurant.create({
+//     restaurantName: req.body.restaurantName,
+//     year: req.body.year,
+//     variety: req.body.variety
+//   }).then(function (dbRestaurant) {
+//     console.log(dbRestaurant);
+//     res.redirect("/");
+//   }).catch(function (err) {
+//     console.log(err);
+//     res.status(500).end()
+//   })
+// });
 
 // router.delete("/restaurant/:id", function (req, res) {
 //   db.Restaurant.destroy({

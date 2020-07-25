@@ -5,14 +5,14 @@ invArr = [];
 router.get('/', (req, res) => {
     db.Inventory.findAll({})
     .then(inventoryData => {
-        invArr.push(inventoryData);
+        // invArr.push(inventoryData);
         res.json(inventoryData)
     }).catch(err => {
         console.log(err);
         res.status(500).end()
     })
 })
-module.exports.invArr = this.invArr
+// module.exports.invArr = this.invArr
 // router.get("/withdata",(req, res) => {
 //     db.Inventory.findAll({
 //         //find all inventories that include restaurant and wine
