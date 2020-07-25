@@ -17,7 +17,7 @@ app.engine("handlebars", exphbs({
 }));
 app.set("view engine", "handlebars");
 
-var routes = require("./controllers/wine_controller.js");
+// var routes = require("./controllers/wine_controller.js");
 
 const inventoryRoutes = require("./controllers/inventory_controller.js");
 app.use("/api/inventories", inventoryRoutes);

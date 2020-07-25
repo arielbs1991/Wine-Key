@@ -28,12 +28,16 @@ $(document).ready(function () {
     });
     //TODO: currently only able to change quantity of first wine in list, why is only the first id being grabbed? Do I need a foreach? If so, how to define the array name and length
     $(".changeQuantity").on("click", function (event) {
-        var id = $(".id").val();
-        console.log("id", id)
+        // var id = $(".id").val();
+        var id = $(this).data("id");
+        console.log("id", id);
 
         var newQuantity = {
             quantity: $(".newQuantity").val().trim()
+            //"this" refers to the button, not the text contents
+            // quantity: $(this).data("quantity")
         };
+        console.log("new quantity", newQuantity);
 
         $.ajax("/api/inventories/" + id, {
             type: "PUT",
@@ -41,7 +45,7 @@ $(document).ready(function () {
         }).then(
             function () {
                 console.log("changed wine quantity to", newQuantity);
-                location.reload();
+                // location.reload();
             }
         );
     })

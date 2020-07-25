@@ -13,12 +13,12 @@
         <a href="#">Stores</a>
         <ul class="menu vertical">
           {{!-- <select class="locations"> --}}
-            <li class="location" value="1"><a href="/api/restaurants/1">AERLUME</a></li>
-            <!--for each restaurant name-->
-            <li class="location" value="2"><a href="/api/restaurants/2">AQUA</a></li>
-            <li class="location" value="3"><a href="/api/restaurants/3">El Gaucho Bellevue</a></li>
-            <li class="location" value="4"><a href="/api/restaurants/4">El Gaucho Seattle</a></li>
-            <li class="location" value="5"><a href="/api/restaurants/5">El Gaucho Tacoma</a></li>
+          <li class="location" value="1"><a href="/api/restaurants/1">AERLUME</a></li>
+          <!--for each restaurant name-->
+          <li class="location" value="2"><a href="/api/restaurants/2">AQUA</a></li>
+          <li class="location" value="3"><a href="/api/restaurants/3">El Gaucho Bellevue</a></li>
+          <li class="location" value="4"><a href="/api/restaurants/4">El Gaucho Seattle</a></li>
+          <li class="location" value="5"><a href="/api/restaurants/5">El Gaucho Tacoma</a></li>
           {{!-- </select> --}}
         </ul>
       </li>
@@ -27,8 +27,8 @@
   </div>
   <div class="top-bar-right">
     <ul class="menu">
-      <li><input type="search" placeholder="Find Wines"></li>
-      <li><button type="button" class="button submitSearch">Search</button></li>
+      <li><input type="search" class="searchField" placeholder="Find Wines"></li>
+      <li><button type="button" class="button submitSearch" id="search">Search</button></li>
     </ul>
   </div>
 </div>
@@ -40,7 +40,7 @@
   </div>
 </div>
 <br>
-<h1>PLACEHOLDER
+<h1>{{wineName}}
   <!--wine_name-->
 </h1>
 <br>
@@ -54,6 +54,7 @@
         <thead>
           <tr>
             <th width="300">Location</th>
+            <th width="300">Name & Year</th>
             <th width="300">Quantity</th>
             <th width="300">Phone Number</th>
           </tr>
@@ -62,11 +63,11 @@
           <tr>
             {{#each Inventories}}
             <td>{{Restaurant.restaurantName}}</td>
-            <td>{{Wine.year}}</td>
+            <td>{{Wine.wineName}}, {{Wine.year}}</td>
+            <td>{{quantity}}</td>
             <td>{{Restaurant.phoneNumber}}</td>
             {{/each}}
           </tr>
-
         </tbody>
       </table>
     </div>

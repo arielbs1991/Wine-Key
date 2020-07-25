@@ -13,8 +13,8 @@ $(document).ready(function () {
         //if wine doesn't exist in our db, ask if user would like to enter a new wine
     });
 
-    function deployWineSearch(wineSearchValue) {
-        location.href = "/api/wines/ininventories" + wineSearchValue
+    function deployWineSearch() {
+        location.href = "/api/wines/" + $(".searchField").val().trim()
     }
 
     //clicking on restaurant from dropdown menu and populating its handlebar page

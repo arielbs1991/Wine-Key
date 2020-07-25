@@ -25,9 +25,8 @@
   </div>
   <div class="top-bar-right">
     <ul class="menu">
-      <li><input type="search" placeholder="Find Wines"></li>
-      <li><button type="button" class="button">Search</button></li>
-    </ul>
+      <li><input type="search" class="searchField" placeholder="Find Wines"></li>
+      <li><button type="button" class="button submitSearch" id="search">Search</button></li>
   </div>
 </div>
 
@@ -118,10 +117,10 @@
             <td>
               <div class="input-group updatepadding">
                 <span class="input-group-label">#</span>
-                <input class="input-group-field newQuantity" type="number">
+                <input class="input-group-field newQuantity" data-quantity="text" type="number">
                 <div class="input-group-button">
-                  <input type="submit" class="button success changeQuantity" data-id={{id}}
-                    data-newQuantity={{quantity}} value="Update">
+                  <input type="submit" data-quantity="" class="button success changeQuantity" data-id={{id}}
+                     value="Update">
                 </div>
               </div>
             </td>
