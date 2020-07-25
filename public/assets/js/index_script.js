@@ -5,7 +5,7 @@
 $(document).ready(function () {
 
     //searching for a specific bottle using the search bar
-    $("#search").on("click", function (event) {
+    $("#search").off().on("click", function (event) {
         wineSearchValue = $(".searchField").val().trim()
         console.log("wineSearchValue", wineSearchValue);
         event.preventDefault();
@@ -18,7 +18,7 @@ $(document).ready(function () {
     }
 
     //clicking on restaurant from dropdown menu and populating its handlebar page
-    $("select.locations").on("change", function (event) {
+    $("select.locations").off().on("change", function (event) {
         event.preventDefault();
         console.log("Choice", $("select.locations").val())
         location.href = "/api/restaurants/" + $("select.locations").val()
