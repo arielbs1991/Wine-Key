@@ -7,26 +7,24 @@
         <div class="top-bar-left">
           <ul class="dropdown menu" data-dropdown-menu>
             <li class="menu-text">Wine Key</li>
-            <li><a href="index.handlebars">Home</a></li>
+            <li><a href="/home">Home</a></li>
             <li>
               <a href="#">Stores</a>
               <ul class="menu vertical">
-                <select class="locations">
-                  <li class="location" value="aerlume"><a href="#">AERLUME</a></li> <!--{{for each restaurant name}}-->
-                  <li class="location" value="aqua"><a href="#">AQUA</a></li>
-                  <li class="location" value="bellevue"><a href="#">El Gaucho Bellevue</a></li>
-                  <li class="location" value="seattle"><a href="#">El Gaucho Seattle</a></li>
-                  <li class="location" value="tacoma"><a href="#">El Gaucho Tacoma</a></li>
-                </select>
+                  <li class="location" value="1"><a href="/api/restaurants/1">AERLUME</a></li> <!--for each restaurant name-->
+                  <li class="location" value="2"><a href="/api/restaurants/2">AQUA</a></li>
+                  <li class="location" value="3"><a href="/api/restaurants/3">El Gaucho Bellevue</a></li>
+                  <li class="location" value="4"><a href="/api/restaurants/4">El Gaucho Seattle</a></li>
+                  <li class="location" value="5"><a href="/api/restaurants/5">El Gaucho Tacoma</a></li>
               </ul>
             </li>
-            <li><a href="winecatalog.handlebars">Wine Catalog</a></li>
+            <li><a href="#">Wine Catalog</a></li>
           </ul>
         </div>
         <div class="top-bar-right">
           <ul class="menu">
-            <li><input type="search" placeholder="Find Wines"></li>
-            <li><button type="button" class="button submitSearch">Search</button></li>
+            <li><input type="search" class="searchField" placeholder="Find Wines"></li>
+      <li><button type="button" class="button submitSearch" id="search">Search</button></li>
           </ul>
         </div>
       </div>
@@ -49,28 +47,19 @@
                         <th width="500">Wine Name</th>
                         <th width="200">Vintage</th>
                         <th width="200">Quantity</th>
-                        <th width="500">Locations</th>
+                        {{!-- <th width="500">Locations</th> --}}
                       </tr>
                     </thead>
                     <tbody>
+                      {{#each Inventories}}
                       <tr>
-                        <td>Placeholder</td> <!--{{to pull information from tables}}-->
-                        <td>Placeholder</td>
-                        <td>Placeholder</td>
-                        <td>Placeholder</td>
+                        <td>{{Wine.wineName}}</td> <!--to pull information from tables-->
+                        <td>{{Wine.year}}</td>
+                        <td>{{quantity}}</td>
+                        {{!--I don't think this is going to give us the company-wide quantity on its own since each inventory belongs to a restaurant, but who fucking knows, maybe it will--}}
+                        {{!-- <td>Placeholder</td> --}}
                       </tr>
-                      <tr>
-                        <td>Placeholder</td>
-                        <td>Placeholder</td>
-                        <td>Placeholder</td>
-                        <td>Placeholder</td>
-                      </tr>
-                      <tr>
-                        <td>Placeholder</td>
-                        <td>Placeholder</td>
-                        <td>Placeholder</td>
-                        <td>Placeholder</td>
-                      </tr>
+                      {{/each}}
                     </tbody>
                   </table>
                 </div>

@@ -25,9 +25,8 @@
   </div>
   <div class="top-bar-right">
     <ul class="menu">
-      <li><input type="search" placeholder="Find Wines"></li>
-      <li><button type="button" class="button">Search</button></li>
-    </ul>
+      <li><input type="search" class="searchField" placeholder="Find Wines"></li>
+      <li><button type="button" class="button submitSearch" id="search">Search</button></li>
   </div>
 </div>
 
@@ -41,8 +40,7 @@
 
 
 <br>
-<h1>{{restaurantName}}
-</h1>
+<h1>{{restaurantName}}</h1>
 <h2>{{address}}</h2>
 <h2>{{phoneNumber}}</h2>
 
@@ -101,30 +99,32 @@
             <th width="100">Vintage</th>
             <th width="100">Variety</th>
             <th width="100">Quantity</th>
+            <th width="1"></th>
             <th width="200">Actions</th>
-            <th width="100"></th>
+            {{!-- <th width="100"></th> --}}
           </tr>
         </thead>
         <tbody class="align-items-center">
+          {{#each Inventories}}
           <tr>
-            {{#each Inventories}}
             <!-- table for specific restaurant's wine inventory-->
             <td>{{Wine.wineName}}</td>
             <td>{{Wine.year}}</td>
             <td>{{Wine.variety}}</td>
             <td>{{quantity}}</td>
+            <input type="hidden" class="id" width="1" value={{id}}></input>
             <td>
               <div class="input-group updatepadding">
                 <span class="input-group-label">#</span>
-                <input class="input-group-field" type="number">
+                <input class="input-group-field newQuantity" data-quantity="text" type="number">
                 <div class="input-group-button">
-                  <input type="submit" class="button success changeQuantity" data-id="{{id}}"
-                    data-newQuantity="{{quantity}}" value="Update">
+                  <input type="submit" data-quantity="" class="button success changeQuantity" data-id={{id}}
+                    value="Update">
                 </div>
               </div>
             </td>
             <td class="removepadding"><button type="button" class="button rounded bordered shadow alert deleteWine"
-                data-id="{{this.id}}">Remove</button></td>
+                data-id={{this.id}}>Remove</button></td>
             {{/each}}
           </tr>
           {{!-- <tr>
