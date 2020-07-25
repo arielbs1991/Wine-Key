@@ -86,6 +86,24 @@ router.get("/api/wines/:wineName", function (req, res) {
     console.log(err);
     res.status(500).end()
   })
-})
+});
+//we were looking at this route, everything is working but table is not populating on searchedwine.handlebars, seems like a disconnect b/t this controller and the index ajax click function
+router.get("/api/wines/ininventories/:wineName", (req, res) => {
+  db.Wine.findAll({
+      where: {
+          wineName: req.body.wineName
+      },
+      include: [
+          {
+              model: db.Inventory,
+              include: [db.Restaurant]
+          }]
+  }).then(wineData => {
+      res.json(wineData)
+  }).catch(err => {
+      console.log(err);
+      res.status(500).end()
+  })
+});
 
 module.exports = router;

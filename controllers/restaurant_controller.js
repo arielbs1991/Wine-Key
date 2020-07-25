@@ -1,28 +1,32 @@
 const router = require("express").Router();
 const db = require("../models");
   
-router.get('/',(req,res)=>{
-  db.Restaurant.findAll({
-  }).then(restaurantData=>{
-      res.json(restaurantData)
-  }).catch(err=>{
-      console.log(err);
-      res.status(500).end()
-  })
-})
+//getting all existing restaurants within DB
 
-router.post('/',(req,res)=>{
-  db.Restaurant.create({
-      restaurantName:req.body.restaurantName,
-      phoneNumber:req.body.phoneNumber,
-      address:req.body.address
-  }).then(restaurantData=>{
-      res.json(restaurantData)
-  }).catch(err=>{
-      console.log(err);
-      res.status(500).end()
-  })
-})
+// router.get('/',(req,res)=>{
+//   db.Restaurant.findAll({
+//   }).then(restaurantData=>{
+//       res.json(restaurantData)
+//   }).catch(err=>{
+//       console.log(err);
+//       res.status(500).end()
+//   })
+// })
+
+//creating a new restaurant
+
+// router.post('/',(req,res)=>{
+//   db.Restaurant.create({
+//       restaurantName:req.body.restaurantName,
+//       phoneNumber:req.body.phoneNumber,
+//       address:req.body.address
+//   }).then(restaurantData=>{
+//       res.json(restaurantData)
+//   }).catch(err=>{
+//       console.log(err);
+//       res.status(500).end()
+//   })
+// })
 
 
 
