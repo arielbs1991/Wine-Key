@@ -45,6 +45,7 @@ $(document).ready(function () {
         }).then(
             function () {
                 console.log("changed wine quantity to", newQuantity);
+                //temporarily turning off page reload for testing
                 // location.reload();
             }
         );

@@ -6,11 +6,14 @@ router.get("/", function (req, res) {
 });
 // GET route for getting all of the wines
 router.get("/home", function (req, res) {
+  //for dropdown search later on
+  // const wineArray = [];
   db.Wine.findAll()
     .then(function (dbWine) {
       // console.log(dbWine);
       const dbWineJson = dbWine.map(wine => wine.toJSON());
       var hbsObject = { wine: dbWineJson };
+      // wineArray.push(dbWineJson);
       return res.render("index", hbsObject);
     }).catch(function (err) {
       console.log(err);
@@ -18,6 +21,7 @@ router.get("/home", function (req, res) {
     })
 });
 
+//do we want to be able to see which restaurants have the wine from the catalog or no? I don't think we need to since we're returning the locations in the search function.
 router.get('/api/wines/winecatalog', (req, res) => {
   db.Wine.findAll({}).then(dbWine => {
       // res.json(dbWine)
@@ -53,19 +57,6 @@ router.get("/api/restaurants/:id", function (req, res) {
   })
 });
 
-// router.get("/searchedwine", function (req, res) {
-//   db.Wine.findAll()
-//     .then(function (dbWine) {
-//       console.log(dbWine);
-//       const dbWineJson = dbWine.map(wine => wine.toJSON());
-//       var hbsObject = { wine: dbWineJson };
-//       return res.render("searchedwine", hbsObject);
-//     }).catch(function (err) {
-//       console.log(err);
-//       res.status(500).end()
-//     })
-// });
-
 router.get("/api/wines/:wineName", function (req, res) {
   db.Wine.findAll({
     where: {
@@ -89,7 +80,7 @@ router.get("/api/wines/:wineName", function (req, res) {
     res.status(500).end()
   })
 });
-//we were looking at this route, everything is working but table is not populating on searchedwine.handlebars, seems like a disconnect b/t this controller and the index ajax click function
+//we were looking at this route, everything is working but table is not populating on searchedwine.handlebars, seems like a disconnect b/t this controller and the index ajax click function, also it's exactly the same as the above router query
 // router.get("/api/wines/ininventories/:wineName", (req, res) => {
 //   db.Wine.findAll({
 //       where: {
