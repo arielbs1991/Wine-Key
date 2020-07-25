@@ -15,18 +15,18 @@ const db = require("../models");
 
 //creating a new restaurant
 
-// router.post('/',(req,res)=>{
-//   db.Restaurant.create({
-//       restaurantName:req.body.restaurantName,
-//       phoneNumber:req.body.phoneNumber,
-//       address:req.body.address
-//   }).then(restaurantData=>{
-//       res.json(restaurantData)
-//   }).catch(err=>{
-//       console.log(err);
-//       res.status(500).end()
-//   })
-// })
+router.post('/',(req,res)=>{
+  db.Restaurant.create({
+      restaurantName:req.body.restaurantName,
+      phoneNumber:req.body.phoneNumber,
+      address:req.body.address
+  }).then(restaurantData=>{
+      res.json(restaurantData)
+  }).catch(err=>{
+      console.log(err);
+      res.status(500).end()
+  })
+})
 
 
 
@@ -99,7 +99,7 @@ const db = require("../models");
 // });
 
 // // Restaurant route for saving a new Restaurant
-// router.post("/restaurant/:id", function (req, res) {
+// router.post("/restaurants/:id", function (req, res) {
 //   db.Restaurant.create({
 //     restaurantName: req.body.restaurantName,
 //     year: req.body.year,
