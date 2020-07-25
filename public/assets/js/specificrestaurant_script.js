@@ -29,13 +29,12 @@ $(function () {
 
     $(".changeQuantity").on("click", function (event) {
         var id = $(this).data("id");
-        var newQuantity = $(this).data("newQuantity");
 
         var newRestaurantQuantity = {
-            quantity: newQuantity
+            quantity: $("#newQuantity").val().trim()
         };
 
-        $.ajax("/api/inventories/withdata/:wineId" + id, {
+        $.ajax("/api/inventories/" + id, {
             type: "PUT",
             data: newRestaurantQuantity
         }).then(
@@ -61,3 +60,4 @@ $(function () {
     });
 
 })
+
