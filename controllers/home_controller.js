@@ -46,7 +46,6 @@ router.get("/api/restaurants/:id", function (req, res) {
     }
     ]
   }).then(function (dbRestaurant) {
-    // console.log("found restaurant",dbRestaurant);
     const [dbRestaurantJson] = dbRestaurant.map(restaurant => restaurant.toJSON());
     var hbsObject = { restaurant: dbRestaurantJson };
     // console.log(dbRestaurantJson);

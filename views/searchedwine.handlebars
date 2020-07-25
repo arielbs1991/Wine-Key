@@ -52,20 +52,20 @@
         <thead>
           <tr>
             <th width="300">Location</th>
-            <th width="300">Name and Year</th>
+            <th width="300">Name & Vintage</th>
             <th width="300">Quantity</th>
             <th width="300">Phone Number</th>
           </tr>
         </thead>
         <tbody>
+          {{#each Inventories}}
           <tr>
-            {{#each Inventories}}
             <td>{{Restaurant.restaurantName}}</td>
             <td>{{Wine.wineName}}, {{Wine.year}}</td>
             <td>{{quantity}}</td>
             <td>{{Restaurant.phoneNumber}}</td>
-            {{/each}}
           </tr>
+          {{/each}}
         </tbody>
       </table>
     </div>

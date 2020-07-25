@@ -18,7 +18,7 @@
                   <li class="location" value="5"><a href="/api/restaurants/5">El Gaucho Tacoma</a></li>
               </ul>
             </li>
-            <li><a href="api/wines/winecatalog">Wine Catalog</a></li>
+            <li><a href="#">Wine Catalog</a></li>
           </ul>
         </div>
         <div class="top-bar-right">
@@ -47,28 +47,19 @@
                         <th width="500">Wine Name</th>
                         <th width="200">Vintage</th>
                         <th width="200">Quantity</th>
-                        <th width="500">Locations</th>
+                        {{!-- <th width="500">Locations</th> --}}
                       </tr>
                     </thead>
                     <tbody>
+                      {{#each Inventories}}
                       <tr>
-                        <td>Placeholder</td> <!--to pull information from tables-->
-                        <td>Placeholder</td>
-                        <td>Placeholder</td>
-                        <td>Placeholder</td>
+                        <td>{{Wine.wineName}}</td> <!--to pull information from tables-->
+                        <td>{{Wine.year}}</td>
+                        <td>{{quantity}}</td>
+                        {{!--I don't think this is going to give us the company-wide quantity on its own since each inventory belongs to a restaurant, but who fucking knows, maybe it will--}}
+                        {{!-- <td>Placeholder</td> --}}
                       </tr>
-                      <tr>
-                        <td>Placeholder</td>
-                        <td>Placeholder</td>
-                        <td>Placeholder</td>
-                        <td>Placeholder</td>
-                      </tr>
-                      <tr>
-                        <td>Placeholder</td>
-                        <td>Placeholder</td>
-                        <td>Placeholder</td>
-                        <td>Placeholder</td>
-                      </tr>
+                      {{/each}}
                     </tbody>
                   </table>
                 </div>
