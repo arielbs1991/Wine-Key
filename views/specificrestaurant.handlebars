@@ -101,8 +101,9 @@
             <th width="100">Vintage</th>
             <th width="100">Variety</th>
             <th width="100">Quantity</th>
+            <th width="1"></th>
             <th width="200">Actions</th>
-            <th width="100"></th>
+            {{!-- <th width="100"></th> --}}
           </tr>
         </thead>
         <tbody class="align-items-center">
@@ -113,10 +114,11 @@
             <td>{{Wine.year}}</td>
             <td>{{Wine.variety}}</td>
             <td>{{quantity}}</td>
+            <input type="hidden" class="id" width="1" value={{id}}></input>
             <td>
               <div class="input-group updatepadding">
                 <span class="input-group-label">#</span>
-                <input class="input-group-field" id="newQuantity" type="number">
+                <input class="input-group-field newQuantity" type="number">
                 <div class="input-group-button">
                   <input type="submit" class="button success changeQuantity" data-id={{id}}
                     data-newQuantity={{quantity}} value="Update">

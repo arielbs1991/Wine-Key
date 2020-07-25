@@ -4,7 +4,7 @@
 
 //NAVBAR: Home: should already be hooked up. Needs to be tested. Stores: will need same functionality as in index.handlebars "update inventory" dropdown menu. Hopefully can make accross-the-board interactive with classes. Wine Catalog: should be hooked up already, needs to be tested. Search: needs same functionality as the index.handlebars "search" button and field. Hopefully across the board functionality with class use
 
-$(function () {
+$(document).ready(function () {
 
     $(".addWine").on("click", function (event) {
         event.preventDefault();
@@ -26,26 +26,29 @@ $(function () {
             }
         )
     });
-
+    //TODO: currently only able to change quantity of first wine in list, why is only the first id being grabbed? Do I need a foreach? If so, how to define the array name and length
     $(".changeQuantity").on("click", function (event) {
-        var id = $(this).data("id");
+        var id = $(".id").val();
+        console.log("id", id)
 
-        var newRestaurantQuantity = {
-            quantity: $("#newQuantity").val().trim()
+        var newQuantity = {
+            quantity: $(".newQuantity").val().trim()
         };
 
         $.ajax("/api/inventories/" + id, {
             type: "PUT",
-            data: newRestaurantQuantity
+            data: newQuantity
         }).then(
             function () {
                 console.log("changed wine quantity to", newQuantity);
                 location.reload();
             }
         );
-    });
+    })
 
 
+
+    //I get the feeling I'm going to have the same issue deleting not-first-rows as I'm having with updating them.
     $(".deleteWine").on("click", function (event) {
         var id = $(this).data("id");
 
@@ -59,5 +62,5 @@ $(function () {
         );
     });
 
-})
+});
 
