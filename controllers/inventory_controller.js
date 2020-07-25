@@ -74,18 +74,18 @@ router.get('/:id', (req, res) => {
 //     })
 // })
 
-// router.delete('/:id', (req, res) => {
-//     db.Inventory.destroy({
-//         where: {
-//             id: req.params.id
-//         }
-//     }).then(inventoryData => {
-//         res.json(inventoryData)
-//     }).catch(err => {
-//         console.log(err);
-//         res.status(500).end()
-//     })
-// })
+router.delete('/:id', (req, res) => {
+    db.Inventory.destroy({
+        where: {
+            id: req.params.id
+        }
+    }).then(inventoryData => {
+        res.json(inventoryData)
+    }).catch(err => {
+        console.log(err);
+        res.status(500).end()
+    })
+})
 router.put('/:id', (req, res) => {
     db.Inventory.update({
         quantity: req.body.quantity

@@ -70,7 +70,7 @@ router.get("/api/wines/:wineName", function (req, res) {
   }).then(dbWine => {
     // res.json(dbWine)
     console.log(dbWine);
-    const dbWineJson = dbWine.map(wine => wine.toJSON());
+    const [dbWineJson] = dbWine.map(wine => wine.toJSON());
       var hbsObject = { wine: dbWineJson };
       // res.json(hbsObject);
     res.render("searchedwine", dbWineJson)
