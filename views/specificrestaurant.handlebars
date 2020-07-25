@@ -40,9 +40,9 @@
 
 
 <br>
-<h1>{{restaurantName}}</h1>
-<h2>{{address}}</h2>
-<h2>{{phoneNumber}}</h2>
+<h1>{{restaurant.restaurantName}}</h1>
+<h2>{{restaurant.address}}</h2>
+<h2>{{restaurant.phoneNumber}}</h2>
 
 <br>
 <br>
@@ -57,11 +57,18 @@
       <form>
         <!--created form class for ajax-->
         <div class="medium-2 cell">
-          <input id="newWineName" name="wineName" type="text" placeholder="Bottle Name">
+          {{!-- <input id="newWineName" name="wineName" type="text" placeholder="Bottle Name"> --}}
           <!--added input id-->
+          <select id="newWineName" name="wineName">
+            {{#each wine}}
+            <option value={{id}}>
+              {{wineName}} {{year}}
+            </option>
+            {{/each}}
+          </select>
         </div>
         <div class="medium-2 cell">
-          <input id="newWineYear" name="wineYear" type="text" placeholder="Vintage">
+          {{!-- <input id="newWineYear" name="wineYear" type="text" placeholder="Vintage"> --}}
           <!--added input id-->
         </div>
         <div class="medium-2 cell">
@@ -105,7 +112,7 @@
           </tr>
         </thead>
         <tbody class="align-items-center">
-          {{#each Inventories}}
+          {{#each restaurant.Inventories}}
           <tr>
             <!-- table for specific restaurant's wine inventory-->
             <td>{{Wine.wineName}}</td>

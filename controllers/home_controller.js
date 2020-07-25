@@ -24,33 +24,37 @@ router.get("/home", function (req, res) {
 //do we want to be able to see which restaurants have the wine from the catalog or no? I don't think we need to since we're returning the locations in the search function.
 router.get('/api/wines/winecatalog', (req, res) => {
   db.Wine.findAll({}).then(dbWine => {
-      // res.json(dbWine)
-      const [dbWineJson] = dbWine.map(wine => wine.toJSON());
-      var hbsObject = { wine: dbWineJson };
-      // console.log(dbWineJson);
-      return res.render("winecatalog", dbWineJson);
+    // res.json(dbWine)
+    const dbWineJson = dbWine.map(wine => wine.toJSON());
+    var hbsObject = { wine: dbWineJson };
+    // console.log(dbWineJson);
+    return res.render("winecatalog", hbsObject);
   }).catch(err => {
-      console.log(err);
-      res.status(500).end()
+    console.log(err);
+    res.status(500).end()
   })
 })
 
 router.get("/api/restaurants/:id", function (req, res) {
-  db.Restaurant.findAll({
+  db.Restaurant.findOne({
     where: {
       id: req.params.id
     },
     include: [
-      {model: db.Inventory,
-      include: [db.Wine]
-    }
-    ]
-  }).then(function (dbRestaurant) {
-    const [dbRestaurantJson] = dbRestaurant.map(restaurant => restaurant.toJSON());
-    var hbsObject = { restaurant: dbRestaurantJson };
-    // console.log(dbRestaurantJson);
-    return res.render("specificrestaurant", dbRestaurantJson);
-  }).catch(function (err) {
+      {
+        model: db.Inventory,
+        include: [db.Wine]
+      }]
+  }).then(dbRestaurant => {
+    db.Wine.findAll({})
+      .then(dbWine => {
+        const dbRestaurantJson = dbRestaurant.toJSON();
+        const dbWineJson = dbWine.map(wine => wine.toJSON());
+        var hbsObject = { restaurant: dbRestaurantJson, wine:dbWineJson };
+        // console.log(dbRestaurantJson);
+        return res.render("specificrestaurant", hbsObject);
+      })
+  }).catch(err => {
     console.log(err);
     res.status(500).end()
   })
@@ -63,17 +67,15 @@ router.get("/api/wines/:wineName", function (req, res) {
     },
     include: [{
       model: db.Inventory,
-      include: [
-        db.Restaurant
-      ]
+      include: [db.Restaurant, db.Wine]
     }]
   }).then(dbWine => {
     // res.json(dbWine)
     console.log(dbWine);
-    const [dbWineJson] = dbWine.map(wine => wine.toJSON());
-      var hbsObject = { wine: dbWineJson };
-      // res.json(hbsObject);
-    return res.render("searchedwine", dbWineJson)
+    const dbWineJson = dbWine.map(wine => wine.toJSON());
+    var hbsObject = { wine: dbWineJson, name: req.params.wineName};
+    // res.json(hbsObject);
+    return res.render("searchedwine", hbsObject)
   }).catch(err => {
     console.log(err);
     res.status(500).end()
