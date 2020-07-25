@@ -18,7 +18,14 @@
                 <h2 class="center underline">Search for Wine</h2>
                 <h4 class="center">Please enter the name of the bottle as it appears on the menu:</h4>
                 <div class="input-group center">
-                    <input class="input-group-field searchField" type="text" placeholder="eg. Freemark Abbey">
+                    <input list="wines" class="input-group-field searchField" type="text" placeholder="eg. Freemark Abbey">
+                    <datalist id="wines">
+                        {{#each wine}}
+                        <option value={{wineName}}>
+                            {{wineName}}
+                        </option>
+                        {{/each}}
+                    </datalist>
                     <!--a href="searchedwine.handlebars">--><div class="input-group-button">
                         <input type="submit" class="button rounded bordered shadow primary submitSearch" value="Search" id="search">
                        <!--/a>-->
