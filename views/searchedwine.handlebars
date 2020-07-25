@@ -40,7 +40,7 @@
   </div>
 </div>
 <br>
-<h1>{{wineName}}</h1>
+<h1>{{name}}</h1>
 <br>
 <br>
 <!--change to padding later on-->
@@ -58,6 +58,7 @@
           </tr>
         </thead>
         <tbody>
+          {{#each wine}}
           {{#each Inventories}}
           <tr>
             <td>{{Restaurant.restaurantName}}</td>
@@ -65,6 +66,7 @@
             <td>{{quantity}}</td>
             <td>{{Restaurant.phoneNumber}}</td>
           </tr>
+          {{/each}}
           {{/each}}
         </tbody>
       </table>
