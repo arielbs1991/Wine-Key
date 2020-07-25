@@ -62,7 +62,8 @@ $(document).ready(function () {
         }).then(
             function () {
                 console.log("Deleted wine", id);
-                location.reload();
+                //temporarily turning off page reload for testing
+                // location.reload();
             }
         );
     });
