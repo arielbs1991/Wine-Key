@@ -11,15 +11,28 @@ router.get("/home", function (req, res) {
     order: [
       ['wineName'],
       ['year']
-    ]
+    ],
+    include: [
+      {
+        model: db.Inventory,
+        include: [db.Restaurant]
+      }]
   })
     .then(function (dbWine) {
-      const dbWineJson = dbWine.map(wine => wine.toJSON());
-      var hbsObject = { wine: dbWineJson };
-      return res.render("index", hbsObject);
-    }).catch(function (err) {
-      console.log(err);
-      res.status(500).end()
+      db.Restaurant.findAll({
+        order: [
+          ['restaurantName']
+        ]
+      })
+        .then(dbRestaurant => {
+          const dbWineJson = dbWine.map(wine => wine.toJSON());
+          const dbRestaurantJson = dbRestaurant.map(restaurant => restaurant.toJSON());
+          var hbsObject = { wine: dbWineJson, restaurant: dbRestaurantJson };
+          return res.render("index", hbsObject);
+        }).catch(function (err) {
+          console.log(err);
+          res.status(500).end()
+        })
     })
 });
 
