@@ -1,0 +1,138 @@
+<div class="title-bar" data-responsive-toggle="example-menu" data-hide-for="medium">
+    <button class="menu-icon" type="button" data-toggle="example-menu"></button>
+    <div class="title-bar-title">Menu</div>
+</div>
+
+<div class="top-bar" id="example-menu">
+    <div class="top-bar-left">
+        <ul class="dropdown menu" data-dropdown-menu>
+            <li class="menu-text">Wine Key</li>
+            <li><a href="/home">Home</a></li>
+            <li>
+                <a href="#">Stores</a>
+                <ul class="menu vertical">
+                    <li class="location" value="1"><a href="/api/restaurants/1">AERLUME</a></li>
+                    <!--for each restaurant name-->
+                    <li class="location" value="2"><a href="/api/restaurants/2">AQUA</a></li>
+                    <li class="location" value="3"><a href="/api/restaurants/3">El Gaucho Bellevue</a></li>
+                    <li class="location" value="4"><a href="/api/restaurants/4">El Gaucho Seattle</a></li>
+                    <li class="location" value="5"><a href="/api/restaurants/5">El Gaucho Tacoma</a></li>
+                </ul>
+            </li>
+            <li><a href="/api/wines/winecatalog">Wine Catalog</a></li>
+        </ul>
+    </div>
+    <div class="top-bar-right">
+        <ul class="menu">
+            <li><input type="search" class="searchField" placeholder="Find Wines"></li>
+            <li><button type="button" class="button submitSearch" id="search">Search</button></li>
+        </ul>
+    </div>
+</div>
+
+<div class="grid-x grid-padding-x align-center">
+    <div class="cell small-6"><img width="300" height="200" class="center"
+            src="https://chairish-prod.freetls.fastly.net/image/product/master/1a63fc03-f551-4b0c-8406-f7e68850026a/vintage-italian-brass-skeleton-key-with-hidden-corkscrew-wine-and-bottle-opener-1870"
+            alt="winekey" />
+    </div>
+</div>
+<br>
+<h1>Update the Wine Catalog</h1>
+<br>
+<br>
+<!--change to padding later on-->
+<br>
+<div class="grid-container fluid">
+    <div class="grid-x grid-padding-x align-center">
+        <div class="cell small-8">
+            <table id="wineCatalog">
+                <!--added table id-->
+                <thead>
+                    <tr>
+                        <th width="300">Wine Name & Vintage</th>
+                        <th width="450">Name</th>
+                        <th width="250">Vintage</th>
+                        <th width="200">Remove Wine</th>
+                        {{!-- <th width="500">Locations</th> --}}
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each wine}}
+                    <tr>
+                        <td>{{wineName}} {{year}}</td>
+                        <!--to pull information from tables-->
+                        <td>
+                            <div class="input-group updatepadding">
+                                {{!-- <span class="input-group-label">#</span> --}}
+                                <input class="input-group-field" type="text" placeholder="{{wineName}}">
+                                <div class="input-group-button">
+                                    <input type="submit" class="button success updateName" data-id={{id}}
+                                        value="Update">
+                                </div>
+                        </td>
+                        <td>
+                            <div class="input-group updatepadding">
+                                <input class="input-group-field" type="number" placeholder={{year}}>
+                                <div class="input-group-button">
+                                    <input type="submit" class="button success updateYear" data-id={{id}}
+                                        value="Update">
+                                </div>
+                            </div>
+        </div>
+        </td>
+        <td class="removepadding"><button type="button" class="button rounded bordered shadow alert deleteWine"
+                data-id={{id}}>Remove</button>
+        </td>
+        </tr>
+        {{/each}}
+        </tbody>
+        </table>
+    </div>
+</div>
+</div>
+<form>
+    <div class="grid-container fluid">
+        <div class="grid-x grid-padding-x align-center">
+            <h4>Add a New Wine to Company Catalog</h4>
+        </div>
+        <div class="grid-x grid-padding-x align-center">
+            <form>
+                <div class="medium-2 cell">
+                    <label for="Bottle Name" style="display:block; color:white;">Bottle Name</label>
+                    <input id="createWineName" name="wineName" type="text" placeholder="Bottle Name">
+                </div>
+                <div class="medium-2 cell">
+                    <label for="Vintage" style="display:block; color:white;">Vintage</label>
+                    <input id="createWineYear" name="wineYear" type="text" placeholder="Vintage">
+                </div>
+            </form>
+            <div id="addwinepadding"><button type="button" class="button rounded bordered shadow primary addWine"
+                    style="margin-top:23px">Add
+                    Wine</button>
+            </div>
+        </div>
+    </div>
+</form>
+{{!-- <div class="grid-x grid-padding-x align-center">
+    <form id="bulkForm">
+        <div>
+            <h5 style="color:white;">Need to Add in Bulk?</h5>
+        </div>
+        <div id="expandedForm">
+            <div id="addwinepadding"><button type="button"
+                    class="button rounded bordered shadow primary" id="expandWineFormBtn"
+                    style="margin-top:23px">Expand Form</button>
+            </div>
+        </div>
+    </form>
+</div> --}}
+<br>
+<br>
+<footer>
+    <div class="grid-x grid-padding-x align-center position-fixed-bottom footer">
+        <div class="cell small-6"><img class="center"
+                src="https://media-exp1.licdn.com/dms/image/C560BAQHbXv4XE0Fd4A/company-logo_200_200/0?e=2159024400&v=beta&t=UEzazauMofT-xZyntpg4RE-4LvlOspaPUzU85jucokA"
+                alt="fvlogo" />
+        </div>
+    </div>
+</footer>

@@ -1,40 +1,44 @@
-    <div class="grid-x grid-padding-x align-center">
-        <div class="cell small-6"><img class="center" src="https://media-exp1.licdn.com/dms/image/C560BAQHbXv4XE0Fd4A/company-logo_200_200/0?e=2159024400&v=beta&t=UEzazauMofT-xZyntpg4RE-4LvlOspaPUzU85jucokA" alt="fvlogo" />
-        </div>
+<div class="grid-x grid-padding-x align-center">
+    <div class="cell small-6"><img class="center"
+            src="https://media-exp1.licdn.com/dms/image/C560BAQHbXv4XE0Fd4A/company-logo_200_200/0?e=2159024400&v=beta&t=UEzazauMofT-xZyntpg4RE-4LvlOspaPUzU85jucokA"
+            alt="fvlogo" />
     </div>
+</div>
 
-    <h1 class="animation">Wine Key</h1>
-   
-    <div class="grid-x grid-padding-x align-center">
-        <div id="homekey" class="cell small-6"><img width="300" height="200" class="center" src="https://chairish-prod.freetls.fastly.net/image/product/master/1a63fc03-f551-4b0c-8406-f7e68850026a/vintage-italian-brass-skeleton-key-with-hidden-corkscrew-wine-and-bottle-opener-1870" alt="winekey" />
-        </div>
+<h1 class="animation">Wine Key</h1>
+
+<div class="grid-x grid-padding-x align-center">
+    <div id="homekey" class="cell small-6"><img width="300" height="200" class="center"
+            src="https://chairish-prod.freetls.fastly.net/image/product/master/1a63fc03-f551-4b0c-8406-f7e68850026a/vintage-italian-brass-skeleton-key-with-hidden-corkscrew-wine-and-bottle-opener-1870"
+            alt="winekey" />
     </div>
+</div>
 
-    <div class="grid-container fluid">
-        <div class="grid-x grid-padding-x align-center">
-
-
-            <div class="cell small-6">
-                <h2 class="center underline">Search for Wine</h2>
-                <h4 class="center">Please enter the name of the bottle as it appears on the menu:</h4>
-                <div class="input-group center">
-                    <input list="wines" class="input-group-field searchField" type="text" placeholder="eg. Freemark Abbey">
-                    <datalist id="wines">
-                        {{#each wine}}
-                        <option value={{wineName}}>
-                            {{wineName}}
-                        </option>
-                        {{/each}}
-                    </datalist>
-                    <!--a href="searchedwine.handlebars">--><div class="input-group-button">
-                        <input type="submit" class="button rounded bordered shadow primary submitSearch" value="Search" id="search">
-                       <!--/a>-->
-                    </div>
+<div class="grid-container fluid">
+    <div class="grid-x grid-padding-x align-center">
+        <div class="cell small-6">
+            <h2 class="center underline">Search for Wine</h2>
+            <h4 class="center">Please enter the name of the bottle as it appears on the menu:</h4>
+            <div class="input-group center">
+                <input list="wines" class="input-group-field searchField" type="text" placeholder="eg. Freemark Abbey">
+                <datalist id="wines">
+                    {{#each wine}}
+                    <option value="{{wineName}}"">
+                        {{wineName}}
+                    </option>
+                    {{/each}}
+                </datalist>
+                <!--a href="searchedwine.handlebars">-->
+                <div class="input-group-button">
+                    <input type="submit" class="button rounded bordered shadow primary submitSearch" value="Search"
+                        id="search">
+                    <!--/a>-->
                 </div>
             </div>
+        </div>
 
-            <!--Make sure the form has the autocomplete function switched off:-->
-            {{!-- <form autocomplete="off" action="/action_page.php">
+        <!--Make sure the form has the autocomplete function switched off:-->
+        {{!-- <form autocomplete="off" action="/action_page.php">
                 <div class="autocomplete" style="width:300px;">
                     <input id="myInput" type="text" name="myCountry" placeholder="Country">
                 </div>
@@ -43,66 +47,67 @@
 
 
 
+    </div>
+</div>
+
+<br>
+<br>
+<br>
+
+<div class="grid-container fluid">
+    <div class="grid-x grid-padding-x align-center">
+        <div class="cell small-6">
+            <h2 class="center underline">Update Inventory</h2>
+            <h4 class="center">Please select a store:</h4>
+
+            <label class="center">
+                <select class="locations">
+                    <!--need to get id from database to route to specific restaurant-->
+                    <option default>Select Restaurant</option>
+                    <option class="location" value="1">AERLUME</option>
+                    <option class="location" value="3">AQUA</option>
+                    <option class="location" value="4">El Gaucho Bellevue</option>
+                    <option class="location" value="2">El Gaucho Seattle</option>
+                    <option class="location" value="5">El Gaucho Tacoma</option>
+                </select>
+            </label>
         </div>
     </div>
+</div>
 
-<br>
-<br>
-<br>
+<script>
+    $(document).ready(function () {
+        $(document).foundation();
 
-    <div class="grid-container fluid">
-        <div class="grid-x grid-padding-x align-center">
-            <div class="cell small-6">
-                <h2 class="center underline">Update Inventory</h2>
-                <h4 class="center">Please select a store:</h4>
-              
-                <label class="center">
-                    <select class="locations"> <!--need to get id from database to route to specific restaurant-->
-                        <option default>Select Restaurant</option>
-                        <option class="location" value="1">AERLUME</option>
-                        <option class="location" value="3">AQUA</option>
-                        <option class="location" value="4">El Gaucho Bellevue</option>
-                        <option class="location" value="2">El Gaucho Seattle</option>
-                        <option class="location" value="5">El Gaucho Tacoma</option>
-                    </select>
-                </label>
-            </div>
-        </div>
-    </div>
+        const text = document.querySelector(".animation");
+        console.log(text);
+        const strText = text.textContent;
+        console.log(strText)
+        const splitText = strText.split("");
+        text.textContent = "";
 
-     <script>
-        $(document).ready(function () {
-            $(document).foundation();
+        for (let i = 0; i < splitText.length; i++) {
+            text.innerHTML += "<span>" + splitText[i] + "</span>";
+        }
 
-            const text = document.querySelector(".animation");
-            console.log(text);
-            const strText = text.textContent;
-            console.log(strText)
-            const splitText = strText.split("");
-            text.textContent = "";
+        let char = 0;
+        let timer = setInterval(onTick, 300);
 
-            for (let i = 0; i < splitText.length; i++) {
-                text.innerHTML += "<span>" + splitText[i] + "</span>";
+        function onTick() {
+            const span = text.querySelectorAll('span')[char];
+            span.classList.add('fade');
+            char++
+            if (char === splitText.length) {
+                complete();
+                return;
             }
+        }
 
-            let char = 0;
-            let timer = setInterval(onTick, 300);
+        function complete() {
+            clearInterval(timer);
+            timer = null;
+        }
 
-            function onTick() {
-                const span = text.querySelectorAll('span')[char];
-                span.classList.add('fade');
-                char++
-                if (char === splitText.length) {
-                    complete();
-                    return;
-                }
-            }
+    });
 
-            function complete() {
-                clearInterval(timer);
-                timer = null;
-            }
-
-        });
-
-    </script>
+</script>
