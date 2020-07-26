@@ -19,7 +19,6 @@ router.post('/', (req, res) => {
 router.put('/winename/:id', (req, res) => {
     db.Wine.update({
         wineName: req.body.wineName
-        // year: req.params.year
     }, {
         where: {
             id: req.params.id
@@ -33,7 +32,6 @@ router.put('/winename/:id', (req, res) => {
 });
 router.put('/year/:id', (req, res) => {
     db.Wine.update({
-        // wineName: req.params.wineName,
         year: req.body.year
     }, {
         where: {

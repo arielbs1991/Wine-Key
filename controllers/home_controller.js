@@ -7,7 +7,12 @@ router.get("/", function (req, res) {
 
 // GET route for getting all of the wines
 router.get("/home", function (req, res) {
-  db.Wine.findAll()
+  db.Wine.findAll({
+    order: [
+      ['wineName'],
+      ['year']
+    ]
+  })
     .then(function (dbWine) {
       const dbWineJson = dbWine.map(wine => wine.toJSON());
       var hbsObject = { wine: dbWineJson };
@@ -20,7 +25,12 @@ router.get("/home", function (req, res) {
 
 //GET route for all wines to display in wine catalog
 router.get('/api/wines/winecatalog', (req, res) => {
-  db.Wine.findAll({}).then(dbWine => {
+  db.Wine.findAll({
+    order: [
+      ['wineName'],
+      ['year']
+    ]
+  }).then(dbWine => {
     const dbWineJson = dbWine.map(wine => wine.toJSON());
     var hbsObject = { wine: dbWineJson };
     return res.render("winecatalog", hbsObject);
@@ -32,7 +42,12 @@ router.get('/api/wines/winecatalog', (req, res) => {
 
 //GET route for all wines to display in wine catalog update page
 router.get('/api/wines/updatewinecatalog', (req, res) => {
-  db.Wine.findAll({}).then(dbWine => {
+  db.Wine.findAll({
+    order: [
+      ['wineName'],
+      ['year']
+    ]
+  }).then(dbWine => {
     const dbWineJson = dbWine.map(wine => wine.toJSON());
     var hbsObject = { wine: dbWineJson };
     return res.render("updatewinecatalog", hbsObject);
@@ -54,11 +69,16 @@ router.get("/api/restaurants/:id", function (req, res) {
         include: [db.Wine]
       }]
   }).then(dbRestaurant => {
-    db.Wine.findAll({})
+    db.Wine.findAll({
+      order: [
+        ['wineName'],
+        ['year']
+      ]
+    })
       .then(dbWine => {
         const dbRestaurantJson = dbRestaurant.toJSON();
         const dbWineJson = dbWine.map(wine => wine.toJSON());
-        var hbsObject = { restaurant: dbRestaurantJson, wine:dbWineJson };
+        var hbsObject = { restaurant: dbRestaurantJson, wine: dbWineJson };
         return res.render("specificrestaurant", hbsObject);
       })
   }).catch(err => {
@@ -80,7 +100,7 @@ router.get("/api/wines/:wineName", function (req, res) {
   }).then(dbWine => {
     console.log(dbWine);
     const dbWineJson = dbWine.map(wine => wine.toJSON());
-    var hbsObject = { wine: dbWineJson, name: req.params.wineName};
+    var hbsObject = { wine: dbWineJson, name: req.params.wineName };
     return res.render("searchedwine", hbsObject)
   }).catch(err => {
     console.log(err);
