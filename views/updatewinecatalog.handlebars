@@ -64,8 +64,7 @@
                         <td>
                             <div class="input-group updatepadding">
                                 {{!-- <span class="input-group-label">#</span> --}}
-                                <input class="input-group-field" type="text"
-                                    placeholder="{{wineName}}">
+                                <input class="input-group-field" type="text" placeholder="{{wineName}}">
                                 <div class="input-group-button">
                                     <input type="submit" class="button success updateName" data-id={{id}}
                                         value="Update">
@@ -99,18 +98,34 @@
         <div class="grid-x grid-padding-x align-center">
             <form>
                 <div class="medium-2 cell">
-                    <label for="Bottle Name" style="display:block; color:white">Bottle Name</label>
+                    <label for="Bottle Name" style="display:block; color:white;">Bottle Name</label>
                     <input id="createWineName" name="wineName" type="text" placeholder="Bottle Name">
                 </div>
                 <div class="medium-2 cell">
-                    <label for="Vintage" style="display:block; color:white">Vintage</label>
+                    <label for="Vintage" style="display:block; color:white;">Vintage</label>
                     <input id="createWineYear" name="wineYear" type="text" placeholder="Vintage">
                 </div>
             </form>
-            <div id="addwinepadding"><button type="button" class="button rounded bordered shadow primary addWine" style="margin-top:23px">Add
+            <div id="addwinepadding"><button type="button" class="button rounded bordered shadow primary addWine"
+                    style="margin-top:23px">Add
                     Wine</button>
             </div>
+        </div>
+    </div>
 </form>
+{{!-- <div class="grid-x grid-padding-x align-center">
+    <form id="bulkForm">
+        <div>
+            <h5 style="color:white;">Need to Add in Bulk?</h5>
+        </div>
+        <div id="expandedForm">
+            <div id="addwinepadding"><button type="button"
+                    class="button rounded bordered shadow primary" id="expandWineFormBtn"
+                    style="margin-top:23px">Expand Form</button>
+            </div>
+        </div>
+    </form>
+</div> --}}
 <br>
 <br>
 <footer>

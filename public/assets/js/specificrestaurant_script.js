@@ -59,6 +59,22 @@ $(document).ready(function () {
             );
         })
     });
+
+    $(".deleteInventory").off().on("click", function (event) {
+        var id = $(this).data("id");
+        console.log()
+
+        $.ajax("/api/inventories/" + id, {
+            type: "DELETE"
+        }).then(
+            function () {
+                console.log("Deleted wine", id);
+                location.reload();
+            }
+        );
+    });
+
+    //Below code definitely belongs to the updatewinecatalog page
     $(".updateName").each(function (index) {
         $(this).off().on("click", function (event) {
             var id = $(this).data("id");
@@ -102,20 +118,6 @@ $(document).ready(function () {
         })
     });
 
-    $(".deleteInventory").off().on("click", function (event) {
-        var id = $(this).data("id");
-        console.log()
-
-        $.ajax("/api/inventories/" + id, {
-            type: "DELETE"
-        }).then(
-            function () {
-                console.log("Deleted wine", id);
-                location.reload();
-            }
-        );
-    });
-
     $(".deleteWine").off().on("click", function (event) {
         var id = $(this).data("id");
         console.log()
@@ -129,5 +131,27 @@ $(document).ready(function () {
             }
         );
     });
+
+    // $("#expandWineFormBtn").off().on("click", function (event) {
+    //     event.preventDefault();
+    //     // $("#expandedForm").empty();
+    //     $("#expandedForm").append(
+    //         `<div class="grid-container fluid">
+    //             <form>
+    //                 <div class= "medium-2 cell">
+    //                     <label for="Bottle Name" style="display:block; color:white;">Bottle Name</label>
+    //                     <input id="createWineName" name="wineName" type="text" placeholder="Bottle Name">
+    //                     </div>
+    //                     <div class="medium-2 cell">
+    //                     <label for="Vintage" style="display:block; color:white;">Vintage</label>
+    //                     <input id="createWineYear" name="wineYear" type="text" placeholder="Vintage">
+    //                 </div>
+    //             </form>
+    //             <div id="addwinepadding"><button type="button" class="button rounded bordered shadow primary bulkAddWine"
+    //                 style="margin-top:23px">Add Wine</button>
+    //             </div>
+    //         </div>`);
+
+    // })
 });
 
