@@ -3,28 +3,7 @@
   <div class="title-bar-title">Menu</div>
 </div>
 
-<div class="top-bar" id="example-menu">
-  <div class="top-bar-left">
-    <ul class="dropdown menu" data-dropdown-menu>
-      <li class="menu-text">Wine Key</li>
-      <li><a href="/home">Home</a></li>
-      <li>
-        <a href="#">Stores</a>
-        <ul class="menu vertical">
-                    {{#each restaurant}}
-                    <li class="location" value={{id}}><a href="/api/restaurants/{{id}}">{{restaurantName}}</a></li>
-                    {{/each}}
-                </ul>
-      </li>
-      <li><a href="/api/wines/winecatalog">Wine Catalog</a></li>
-    </ul>
-  </div>
-  <div class="top-bar-right">
-    <ul class="menu">
-      <li><input type="search" class="searchField" placeholder="Find Wines"></li>
-      <li><button type="button" class="button submitSearch" id="search">Search</button></li>
-  </div>
-</div>
+{{>navbar}}
 
 <div class="grid-x grid-padding-x align-center">
   <div class="cell small-6"><img width="300" height="200" class="center"
@@ -54,6 +33,7 @@
         <!--created form class for ajax-->
         <div class="medium-2 cell">
           <select id="newWineName" name="wineName">
+            <option default>Select from Catalog</option>
             {{#each wine}}
             <option value={{id}}>
               {{wineName}} {{year}}
@@ -153,5 +133,3 @@
     </div>
   </div>
 </footer>
-
-<script src="/assets/js/specificrestaurant_script.js"></script>

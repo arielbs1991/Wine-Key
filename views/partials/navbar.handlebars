@@ -1,0 +1,35 @@
+<div class="top-bar" id="example-menu">
+    <div class="top-bar-left">
+        <ul class="dropdown menu" data-dropdown-menu>
+            <li class="menu-text">Wine Key</li>
+            <li><a href="/home">Home</a></li>
+            <li>
+                <a href="#">Stores</a>
+                <ul class="menu vertical">
+                    {{#each restaurant}}
+                    <li class="location" value={{id}}><a href="/api/restaurants/{{id}}">{{restaurantName}}</a></li>
+                    {{/each}}
+                </ul>
+            </li>
+            <li><a href="/api/wines/winecatalog">Wine Catalog</a></li>
+        </ul>
+    </div>
+    <div class="top-bar-right">
+        <ul class="menu">
+            <input list="wines" class="input-group-field searchField" type="text" placeholder="Find Wine">
+            <datalist id="wines">
+                {{#each wine}}
+                <option value="{{wineName}}">
+                    {{wineName}}
+                </option>
+                {{/each}}
+            </datalist>
+            <!--a href="searchedwine.handlebars">-->
+            <div class="input-group-button">
+                <input type="submit" class="button rounded bordered shadow primary submitSearch" value="Search"
+                    id="search">
+                <!--/a>-->
+            </div>
+        </ul>
+    </div>
+</div>

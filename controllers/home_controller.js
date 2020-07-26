@@ -5,7 +5,7 @@ router.get("/", function (req, res) {
   res.redirect("/home");
 });
 
-// GET route for getting all of the wines
+// GET route for getting all of the wines and restaurants for homepage load
 router.get("/home", function (req, res) {
   db.Wine.findAll({
     order: [
@@ -35,39 +35,34 @@ router.get("/home", function (req, res) {
         })
     })
 });
-
-//GET route for all wines to display in wine catalog
-router.get('/api/wines/winecatalog', (req, res) => {
-  db.Wine.findAll({
+router.get("/api/restaurants/", function (req, res) {
+  db.Restaurant.findAll({
     order: [
-      ['wineName'],
-      ['year']
-    ]
-  }).then(dbWine => {
-    const dbWineJson = dbWine.map(wine => wine.toJSON());
-    var hbsObject = { wine: dbWineJson };
-    return res.render("winecatalog", hbsObject);
-  }).catch(err => {
-    console.log(err);
-    res.status(500).end()
+      ['restaurantName']
+    ],  
+    include: [
+      {
+        model: db.Inventory,
+        include: [db.Wine]
+      }]
   })
-});
-
-//GET route for all wines to display in wine catalog update page
-router.get('/api/wines/updatewinecatalog', (req, res) => {
-  db.Wine.findAll({
-    order: [
-      ['wineName'],
-      ['year']
-    ]
-  }).then(dbWine => {
-    const dbWineJson = dbWine.map(wine => wine.toJSON());
-    var hbsObject = { wine: dbWineJson };
-    return res.render("updatewinecatalog", hbsObject);
-  }).catch(err => {
-    console.log(err);
-    res.status(500).end()
-  })
+    .then(function (dbRestaurant) {
+      db.Wine.findAll({
+        order: [
+          ['wineName'],
+          ['year']
+        ]
+      })
+        .then(dbWine => {
+          const dbWineJson = dbWine.map(wine => wine.toJSON());
+          const dbRestaurantJson = dbRestaurant.map(restaurant => restaurant.toJSON());
+          var hbsObject = { wine: dbWineJson, restaurant: dbRestaurantJson };
+          return res.render("navbar", hbsObject);
+        }).catch(function (err) {
+          console.log(err);
+          res.status(500).end()
+        })
+    })
 });
 
 //GET route for displaying specific restaurant's inventory and info
@@ -98,6 +93,68 @@ router.get("/api/restaurants/:id", function (req, res) {
     console.log(err);
     res.status(500).end()
   })
+});
+
+//GET route for all wines to display in wine catalog and restaurant names for navbar
+router.get('/api/wines/winecatalog', (req, res) => {
+  db.Wine.findAll({
+    order: [
+      ['wineName'],
+      ['year']
+    ],
+    include: [
+      {
+        model: db.Inventory,
+        include: [db.Restaurant]
+      }]
+  })
+    .then(function (dbWine) {
+      db.Restaurant.findAll({
+        order: [
+          ['restaurantName']
+        ]
+      })
+        .then(dbRestaurant => {
+          const dbWineJson = dbWine.map(wine => wine.toJSON());
+          const dbRestaurantJson = dbRestaurant.map(restaurant => restaurant.toJSON());
+          var hbsObject = { wine: dbWineJson, restaurant: dbRestaurantJson };
+          return res.render("winecatalog", hbsObject);
+        }).catch(err => {
+          console.log(err);
+          res.status(500).end()
+        })
+    })
+});
+
+//GET route for all wines to display in wine catalog update page and restaurants in navbar
+router.get('/api/wines/updatewinecatalog', (req, res) => {
+  db.Wine.findAll({
+    order: [
+      ['wineName'],
+      ['year']
+    ],
+    include: [
+      {
+        model: db.Inventory,
+        include: [db.Restaurant]
+      }]
+  })
+    .then(function (dbWine) {
+      db.Restaurant.findAll({
+        order: [
+          ['restaurantName']
+        ]
+      })
+        .then(dbRestaurant => {
+          const dbWineJson = dbWine.map(wine => wine.toJSON());
+          const dbRestaurantJson = dbRestaurant.map(restaurant => restaurant.toJSON());
+          var hbsObject = { wine: dbWineJson, restaurant: dbRestaurantJson };
+          return res.render("updatewinecatalog", hbsObject);
+        }).catch(err => {
+          console.log(err);
+          res.status(500).end()
+        })
+    })
 });
 
 //GET route for gathering all inventory, restaurant, and wine info by winename/searchedwine

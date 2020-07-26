@@ -16,21 +16,22 @@ router.post('/', (req, res) => {
         })
 });
 
-router.post('/', (req, res) => {
-    db.Wine.bulkCreate([
-        {
-        wineName: req.body.wineName,
-        year: req.body.wineYear
-    }])
-        .then(inventoryData => {
-            res.json(inventoryData)
-        })
+//for bulk adding wine to catalog
+// router.post('/', (req, res) => {
+//     db.Wine.bulkCreate([
+//         {
+//         wineName: req.body.wineName,
+//         year: req.body.wineYear
+//     }])
+//         .then(inventoryData => {
+//             res.json(inventoryData)
+//         })
 
-        .catch(err => {
-            console.log(err);
-            res.status(500).end()
-        })
-});
+//         .catch(err => {
+//             console.log(err);
+//             res.status(500).end()
+//         })
+// });
 
 router.put('/winename/:id', (req, res) => {
     db.Wine.update({
