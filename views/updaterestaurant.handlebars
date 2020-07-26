@@ -1,0 +1,175 @@
+<div class="title-bar" data-responsive-toggle="example-menu" data-hide-for="medium">
+    <button class="menu-icon" type="button" data-toggle="example-menu"></button>
+    <div class="title-bar-title">Menu</div>
+</div>
+
+<div class="top-bar" id="example-menu">
+    <div class="top-bar-left">
+        <ul class="dropdown menu" data-dropdown-menu>
+            <li class="menu-text">Restaurant Key</li>
+            <li><a href="/home">Home</a></li>
+            <li>
+                <a href="#">Stores</a>
+                <ul class="menu vertical">
+                    {{#each restaurant}}
+                    <li class="location" value={{id}}><a href="/api/restaurants/{{id}}">{{restaurantName}}</a></li>
+                    {{/each}}
+                </ul>
+            </li>
+            <li><a href="/api/Restaurants/Restaurantcatalog">Restaurant Catalog</a></li>
+        </ul>
+    </div>
+    <div class="top-bar-right">
+        <ul class="menu">
+            <li><input type="search" class="searchField" placeholder="Find Wine"></li>
+            <li><button type="button" class="button submitSearch" id="search">Search</button></li>
+        </ul>
+    </div>
+</div>
+
+<div class="grid-x grid-padding-x align-center">
+    <div class="cell small-6"><img width="300" height="200" class="center"
+            src="https://chairish-prod.freetls.fastly.net/image/product/master/1a63fc03-f551-4b0c-8406-f7e68850026a/vintage-italian-brass-skeleton-key-with-hidden-corkscrew-Restaurant-and-bottle-opener-1870"
+            alt="Restaurantkey" />
+    </div>
+</div>
+<br>
+<h1>Update Store Details</h1>
+<br>
+<br>
+<!--change to padding later on-->
+<br>
+<div class="grid-container fluid">
+    <div class="grid-x grid-padding-x align-center">
+        <div class="cell small-8">
+            <table id="RestaurantCatalog">
+                <!--added table id-->
+                <thead>
+                    <tr>
+                        <th width="500">Store</th>
+                        <th width="500">Details</th>
+                        <th width="200">Remove Store</th>
+                        {{!-- <th width="500">Locations</th> --}}
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each restaurant}}
+                    <tr>
+
+                        <td>{{restaurantName}}
+                            <br>
+                            {{phoneNumber}}
+                            <br>
+                            {{address}}
+                        </td>
+                        <!--to pull information from tables-->
+                        <td>
+                            <table>
+                                {{!-- <div class="input-group updatepadding"> --}}
+                                    <tr>
+                                        <td>
+                                            {{!-- <span class="input-group-label">#</span> --}}
+                                            <input class="input-group-field" type="text"
+                                                placeholder="{{restaurantName}}">
+                                        </td>
+                                        <td>
+                                            <div class="input-group-button">
+                                                <input type="submit" class="button success updateRestaurantName" data-id={{id}}
+                                                    value="Update">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    {{!-- <br>
+                                            <br>
+                                            <div class="input-group updatepadding"> --}}
+                                    <tr>
+                                        <td>
+                                            <input class="input-group-field" type="text" placeholder={{phoneNumber}}>
+                                        </td>
+                                        <td>
+                                            <div class="input-group-button">
+                                                <input type="submit" class="button success updatePhoneNumber" data-id={{id}}
+                                                    value="Update">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    {{!-- </div>
+                                            <br>
+                                            <br>
+                                            <div class="input-group updatepadding"> --}}
+                                    <tr>
+                                        <td>
+                                            <input class="input-group-field" type="text" placeholder="{{address}}">
+                                        </td>
+                                        <td>
+                                            <div class="input-group-button">
+                                                <input type="submit" class="button success updateAddress" data-id={{id}}
+                                                    value="Update">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </div>
+                            </table>
+                        </td>
+
+                        <td class="removepadding"><button type="button"
+                                class="button rounded bordered shadow alert deleteRestaurant"
+                                data-id={{id}}>Remove</button>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<form>
+    <div class="grid-container fluid">
+        <div class="grid-x grid-padding-x align-center">
+            <h4>Add a New Restaurant to Company Catalog</h4>
+        </div>
+        <div class="grid-x grid-padding-x align-center">
+            <form>
+                <div class="medium-2 cell">
+                    <label for="Store Name" style="display:block; color:white;">Store Name</label>
+                    <input id="createRestaurantName" name="wineName" type="text" placeholder="Store Name">
+                </div>
+                <div class="medium-2 cell">
+                    <label for="Phone Number" style="display:block; color:white;">Phone Number</label>
+                    <input id="createPhoneNumber" name="phoneNumber" type="text" placeholder="Phone Number">
+                </div>
+                <div class="medium-2 cell">
+                    <label for="Address" style="display:block; color:white;">Address</label>
+                    <input id="createAddress" name="Adress" type="text" placeholder="Address">
+                </div>
+            </form>
+            <div id="addRestaurantpadding"><button type="button"
+                    class="button rounded bordered shadow primary addRestaurant" style="margin-top:23px">Add
+                    Restaurant</button>
+            </div>
+        </div>
+    </div>
+</form>
+{{!-- <div class="grid-x grid-padding-x align-center">
+    <form id="bulkForm">
+        <div>
+            <h5 style="color:white;">Need to Add in Bulk?</h5>
+        </div>
+        <div id="expandedForm">
+            <div id="addRestaurantpadding"><button type="button"
+                    class="button rounded bordered shadow primary" id="expandRestaurantFormBtn"
+                    style="margin-top:23px">Expand Form</button>
+            </div>
+        </div>
+    </form>
+</div> --}}
+<br>
+<br>
+<footer>
+    <div class="grid-x grid-padding-x align-center position-fixed-bottom footer">
+        <div class="cell small-6"><img class="center"
+                src="https://media-exp1.licdn.com/dms/image/C560BAQHbXv4XE0Fd4A/company-logo_200_200/0?e=2159024400&v=beta&t=UEzazauMofT-xZyntpg4RE-4LvlOspaPUzU85jucokA"
+                alt="fvlogo" />
+        </div>
+    </div>
+</footer>

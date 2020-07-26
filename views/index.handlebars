@@ -23,7 +23,7 @@
                 <input list="wines" class="input-group-field searchField" type="text" placeholder="eg. Freemark Abbey">
                 <datalist id="wines">
                     {{#each wine}}
-                    <option value="{{wineName}}"">
+                    <option value="{{wineName}}">
                         {{wineName}}
                     </option>
                     {{/each}}
@@ -61,14 +61,18 @@
             <h4 class="center">Please select a store:</h4>
 
             <label class="center">
-                <select class="locations">
+                <select id="selectRestaurant" name="restaurantNames" class="locations">
                     <!--need to get id from database to route to specific restaurant-->
                     <option default>Select Restaurant</option>
-                    <option class="location" value="1">AERLUME</option>
-                    <option class="location" value="3">AQUA</option>
+                    {{#each restaurant}}
+                    <option class="location" value={{id}}>
+                        {{restaurantName}}
+                    </option>
+                    {{!-- <option class="location" value="3">AQUA</option>
                     <option class="location" value="4">El Gaucho Bellevue</option>
                     <option class="location" value="2">El Gaucho Seattle</option>
-                    <option class="location" value="5">El Gaucho Tacoma</option>
+                    <option class="location" value="5">El Gaucho Tacoma</option> --}}
+                    {{/each}}
                 </select>
             </label>
         </div>
