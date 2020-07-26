@@ -30,6 +30,18 @@ router.get('/api/wines/winecatalog', (req, res) => {
   })
 });
 
+//GET route for all wines to display in wine catalog update page
+router.get('/api/wines/updatewinecatalog', (req, res) => {
+  db.Wine.findAll({}).then(dbWine => {
+    const dbWineJson = dbWine.map(wine => wine.toJSON());
+    var hbsObject = { wine: dbWineJson };
+    return res.render("updatewinecatalog", hbsObject);
+  }).catch(err => {
+    console.log(err);
+    res.status(500).end()
+  })
+});
+
 //GET route for displaying specific restaurant's inventory and info
 router.get("/api/restaurants/:id", function (req, res) {
   db.Restaurant.findOne({
