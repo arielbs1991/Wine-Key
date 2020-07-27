@@ -1,12 +1,23 @@
 const router = require("express").Router();
 const db = require("../models");
 
-router.get("/", (req, res) => {
-  res.redirect("/home");
+// router.get("/", function (req, res) {
+//   res.redirect("/home");
+// });
+
+router.get("/", (req, res)=>{
+  if(!req.session.user){
+    res.redirect("/auth/login");
+  } else{
+      res.render("/home",req.session.user)
+}
 });
 
 // GET route for getting all of the wines and restaurants for homepage load
 router.get("/home", (req, res) => {
+  if(!req.session.user){
+    res.redirect("/auth/login");
+  } else{
   db.Wine.findAll({
     order: [
       ['wineName'],
@@ -34,6 +45,7 @@ router.get("/home", (req, res) => {
           res.status(500).end()
         })
     })
+  }
 });
 
 //Currently can't get navbar on specific restaurant page to dropdown list of restaurants WHILE having a specific restaurant grabbed by id shown with handlebars. Probably a question for instructors.
@@ -101,6 +113,9 @@ router.get("/home", (req, res) => {
 //While trying to get above code to work, I somehow screwed up the alphebetized display in the inventory.
 
 router.get("/api/restaurants/:id", (req, res) => {
+  if(!req.session.user){
+    res.redirect("/auth/login");
+  } else{
   db.Restaurant.findOne({
     where: {
       id: req.params.id
@@ -127,10 +142,14 @@ router.get("/api/restaurants/:id", (req, res) => {
     console.log(err);
     res.status(500).end()
   })
+}
 });
 
 //GET route for all wines to display in wine catalog and restaurant names for navbar
 router.get('/api/wines/winecatalog', (req, res) => {
+  if(!req.session.user){
+    res.redirect("/auth/login");
+  } else{
   db.Wine.findAll({
     order: [
       ['wineName'],
@@ -158,10 +177,14 @@ router.get('/api/wines/winecatalog', (req, res) => {
           res.status(500).end()
         })
     })
+  }
 });
 
 //GET route for all wines to display in wine catalog update page and restaurants in navbar
 router.get('/api/wines/updatewinecatalog', (req, res) => {
+  if(!req.session.user){
+    res.redirect("/auth/login");
+  } else{
   db.Wine.findAll({
     order: [
       ['wineName'],
@@ -189,10 +212,14 @@ router.get('/api/wines/updatewinecatalog', (req, res) => {
           res.status(500).end()
         })
     })
+  }
 });
 
 //GET route for gathering all inventory, restaurant, and wine info by winename/searchedwine
 router.get("/api/wines/:wineName", (req, res) => {
+  if(!req.session.user){
+    res.redirect("/auth/login");
+  } else{
   db.Wine.findAll({
     where: {
       wineName: req.params.wineName
@@ -210,6 +237,7 @@ router.get("/api/wines/:wineName", (req, res) => {
     console.log(err);
     res.status(500).end()
   })
+}
 });
 
 module.exports = router;

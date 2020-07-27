@@ -16,6 +16,10 @@ h1{
     cursive;
 }
 
+h3,p{
+    color: black
+}
+
 h2{
     color:lightgrey;
     font-family: 'Roboto Slab', serif;
@@ -98,6 +102,12 @@ span {
 
 span.fade {
     opacity: 1;
+}
+
+.card {
+    margin: 25% 10px; 
+    padding: 1.5rem;
+    border-radius: 30px;
 }
 
 .removeStore{
