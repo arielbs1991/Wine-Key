@@ -2,6 +2,9 @@ const router = require('express').Router();
 const db = require('../models');
 const bcrypt = require('bcrypt');
 
+router.get('/signup', (req,res)=>{
+    res.render('signup')
+  })
 
 router.post('/signup',(req,res)=>{
     db.User.create({
@@ -14,6 +17,10 @@ router.post('/signup',(req,res)=>{
         res.status(500).end();
     })
 })
+
+router.get('/login', (req,res)=>{
+    res.render('login')
+  })
 
 router.post('/login',(req,res)=>{
     db.User.findOne({
@@ -30,9 +37,10 @@ router.post('/login',(req,res)=>{
                     name:user.name,
                     email:user.email
                 }
-                res.send("login successful!");
+                // DO WE WANT THIS???????????
+                res.send("Login Successful!");
             } else {
-                res.status(401).send("wrong password");
+                res.status(401).send("Wrong Password!  Please try again.");
             }
         }
     }).catch(err=>{
@@ -40,21 +48,21 @@ router.post('/login',(req,res)=>{
     })
 })
 
-// router.get("/readsessions",(req,res)=>{
-//     res.json(req.session)
-// })
+router.get("/readsessions",(req,res)=>{
+    res.json(req.session)
+})
 
 // router.get('/secretroute',(req,res)=>{
 //     if(req.session.user){
-//         res.send(`welcome to the club ${req.session.user.name}!`)
+//         res.send(`Welcome to Wine Key ${req.session.user.name}!`)
 //     }else {
-//         res.status(401).send("log in first ya knucklehead!")
+//         res.status(401).send("Please Log in!")
 //     }
 // })
 
 router.get('/logout',(req,res)=>{
     req.session.destroy();
-    res.send('logged out!');
+    res.redirect("/auth/login");
 })
 
 

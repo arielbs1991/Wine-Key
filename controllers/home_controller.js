@@ -1,8 +1,16 @@
 const router = require("express").Router();
 const db = require("../models");
 
-router.get("/", function (req, res) {
-  res.redirect("/home");
+// router.get("/", function (req, res) {
+//   res.redirect("/home");
+// });
+
+router.get("/", (req, res)=>{
+  if(!req.session.user){
+    res.redirect("/auth/login");
+  } else{
+      res.render("/home",req.session.user)
+}
 });
 
 // GET route for getting all of the wines

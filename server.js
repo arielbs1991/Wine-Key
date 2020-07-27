@@ -1,22 +1,30 @@
-var express = require("express");
-var app = express();
+const express = require("express");
+const app = express();
+const db = require("./models");
+const exphbs = require("express-handlebars");
+const session = require('express-session')
 
-var db = require("./models");
+var PORT = process.env.PORT || 3000;
 
-
-app.use(express.static("public"));
-
+app.engine("handlebars", exphbs({defaultLayout: "main"}));
+app.set("view engine", "handlebars");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-var exphbs = require("express-handlebars");
+app.use(session({
+  secret: "keyboard cat",
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+      maxAge: 720000
+  }
+}))
 
-app.engine("handlebars", exphbs({
-  defaultLayout: "main"
-}));
-app.set("view engine", "handlebars");
+app.use(express.static("public"));
 
+const authRoutes = require("./controllers/auth_controller.js");
+app.use("/auth", authRoutes);
 const inventoryRoutes = require("./controllers/inventory_controller.js");
 app.use("/api/inventories", inventoryRoutes);
 const wineRoutes = require("./controllers/wine_controller.js");
@@ -26,7 +34,6 @@ app.use("/api/restaurants", restaurantRoutes);
 const homeRoutes = require("./controllers/home_controller.js");
 app.use("/", homeRoutes);
 
-var PORT = process.env.PORT || 3000;
 //TODO: once our db is where we want it, change to force:false
 db.sequelize.sync({ force:false }).then(function() {
   app.listen(PORT, function() {

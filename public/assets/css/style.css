@@ -16,6 +16,10 @@ h1{
     cursive;
 }
 
+h3,p{
+    color: lightgray
+}
+
 h2{
     color:lightgrey;
     font-family: 'Roboto Slab', serif;
