@@ -1,0 +1,2 @@
+DROP DATABASE IF EXISTS wine_key;
+CREATE DATABASE wine_key;

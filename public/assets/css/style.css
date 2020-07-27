@@ -1,0 +1,189 @@
+body{
+    background-color: #00205B;
+}
+
+.center{
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+h1{
+    text-align: center;
+    color: lightgrey;
+    font-size:90pt;
+    font-family: 'Parisienne',
+    cursive;
+}
+
+h3,p{
+    color: black
+}
+
+h2{
+    color:lightgrey;
+    font-family: 'Roboto Slab', serif;
+    text-align:center;
+}
+h4{
+    color:lightgrey !important;
+    text-align:center;
+    font-family: 'Roboto Slab', serif;
+    text-align:center
+}
+
+.menuName{
+    font-family: 'Parisienne', cursive;
+}
+
+.menuLabels{
+    font-family: 'Roboto Slab', serif;
+}
+
+.label{
+    color:lightgrey;
+}
+
+.textcenter{
+    text-align: center;
+}
+
+.center{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.justify{
+    display:flex;
+    justify-content:center;
+}
+
+#homekey{
+    padding-bottom:2rem;
+}
+
+#loginkey{
+    padding:2rem;
+}
+
+.loginPadding{
+    padding-left:4rem;
+    padding-right:4rem;
+}
+
+.addRestaurantpadding {
+    padding-bottom:1.5rem;
+}
+
+#homeSearch{
+    padding: 0.67rem;
+}
+
+.updatepadding{
+    padding-top:1.2rem;
+}
+
+.removepadding{
+    padding-top:1.7rem;
+}
+
+#addwinepadding{
+    padding-left:15px
+}
+
+.footer{
+    right:0;
+    left:0;
+    bottom:0;
+    padding:0
+}
+
+.underline{
+    text-decoration: underline;
+}
+
+/* Title animation css */
+span {
+    opacity: 0;
+    transition: all 3.0s ease;
+}
+
+span.fade {
+    opacity: 1;
+}
+
+.card {
+    padding: 1.5rem;
+    border-radius: 30px;
+}
+
+.removeStore{
+    padding-top:4.5rem;
+    padding-right:1.3rem;
+}
+
+
+
+/* Autocomplete CSS */
+
+/* * {
+    box-sizing: border-box;
+}
+
+body {
+    font: 16px Arial;
+} */
+
+/* .autocomplete {
+    /*the container must be positioned relative:*/
+    /* position: relative;
+    display: inline-block;
+} */ 
+
+/* input {
+    border: 1px solid transparent;
+    background-color: #f1f1f1;
+    padding: 10px;
+    font-size: 16px;
+} */
+
+/* input[type=text] {
+    background-color: #f1f1f1;
+    width: 100%;
+} */
+
+/* input[type=submit] {
+    background-color: DodgerBlue;
+    color: #fff;
+} */
+
+/* .autocomplete-items {
+    position: absolute;
+    border: 1px solid #d4d4d4;
+    border-bottom: none;
+    border-top: none;
+    z-index: 99; */
+    /*position the autocomplete items to be the same width as the container:*/
+    /* top: 100%;
+    left: 0;
+    right: 0;
+} */
+
+/* .autocomplete-items div {
+    padding: 10px;
+    cursor: pointer;
+    background-color: #fff;
+    border-bottom: 1px solid #d4d4d4;
+}
+
+.autocomplete-items div:hover {
+    /*when hovering an item:*/
+    /* background-color: #e9e9e9; */
+/* } */
+
+/* .autocomplete-active { */
+    /*when navigating through the items using the arrow keys:*/
+    /* background-color: DodgerBlue !important;
+    color: #ffffff;
+} */

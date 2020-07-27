@@ -1,0 +1,55 @@
+<div class="title-bar" data-responsive-toggle="example-menu" data-hide-for="medium">
+  <!--this nav bar is incomplete - missing javascript functionality-->
+  <button class="menu-icon" type="button" data-toggle="example-menu"></button>
+  <div class="title-bar-title">Menu</div>
+</div>
+
+{{>navbar}}
+
+<br>
+<br>
+<br>
+<h1>{{name}}</h1>
+<br>
+<br>
+<!--change to padding later on-->
+<br>
+<div class="grid-container fluid">
+  <div class="grid-x grid-padding-x align-center">
+    <div class="cell small-8">
+      <table id="searchedWineTable" class="hover radius bordered shadow">
+        <thead>
+          <tr>
+            <th width="300">Location</th>
+            <th class="textcenter" width="300">Name and Vintage</th>
+            <th class="textcenter" width="300">Quantity</th>
+            <th class="textcenter" width="300">Phone Number</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each wine}}
+          {{#each Inventories}}
+          <tr>
+            <td>{{Restaurant.restaurantName}}</td>
+            <td class="textcenter">{{Wine.wineName}}, {{Wine.year}}</td>
+            <td class="textcenter">{{quantity}}</td>
+            <td class="textcenter">{{Restaurant.phoneNumber}}</td>
+          </tr>
+          {{/each}}
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="grid-x grid-padding-x align-center">
+    <div class="cell small-6"><img class="center"
+        src="https://media-exp1.licdn.com/dms/image/C560BAQHbXv4XE0Fd4A/company-logo_200_200/0?e=2159024400&v=beta&t=UEzazauMofT-xZyntpg4RE-4LvlOspaPUzU85jucokA"
+        alt="fvlogo" />
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/js/index_script.js"></script>

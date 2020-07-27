@@ -1,0 +1,136 @@
+<div class="title-bar" data-responsive-toggle="example-menu" data-hide-for="medium">
+    <button class="menu-icon" type="button" data-toggle="example-menu"></button>
+    <div class="title-bar-title">Menu</div>
+</div>
+
+{{>navbar}}
+
+<br>
+<br>
+<br>
+
+<h1>Update Wine Catalog</h1>
+<br>
+
+<br>
+
+<form>
+    <div class="grid-container fluid">
+        <div class="grid-x grid-padding-x align-center">
+            <h4>Add a New Wine to Company Catalog</h4>
+        </div>
+        <div class="grid-x grid-padding-x align-center center">
+            <form>
+                <div class="medium-2 cell">
+                    <label></label>
+                    <input id="createWineName" name="wineName" type="text" placeholder="Bottle Name">
+                </div>
+                <div class="medium-2 cell">
+                    <label></label>
+                    <input id="createWineYear" name="wineYear" type="text" placeholder="Vintage">
+                </div>
+            </form>
+            <div><button type="button" class="button rounded bordered shadow primary addWine"
+                    >Add
+                    Wine</button>
+            </div>
+        </div>
+    </div>
+</form>
+<br>
+<br>
+<br>
+<div class="grid-container fluid">
+    <div class="grid-x grid-padding-x align-center">
+        <div class="cell small-8">
+            <table id="wineCatalog" class="hover radius bordered shadow">
+                <!--added table id-->
+                <thead>
+                    <tr>
+                        <th width="300">Wine Name & Vintage</th>
+                        <th class="textcenter" width="450">Name</th>
+                        <th class="textcenter" width="250">Vintage</th>
+                        <th width="200"></th>
+                        {{!-- <th width="500">Locations</th> --}}
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each wine}}
+                    <tr>
+                        <td>{{wineName}} {{year}}</td>
+                        <!--to pull information from tables-->
+                        <td>
+                            <div class="input-group updatepadding">
+                                {{!-- <span class="input-group-label">#</span> --}}
+                                <input class="input-group-field" type="text" value="{{wineName}}">
+                                <div class="input-group-button">
+                                    <input type="submit" class="button success updateName" data-id={{id}}
+                                        value="Update">
+                                </div>
+                        </td>
+                        <td>
+                            <div class="input-group updatepadding">
+                                <input class="input-group-field" type="text" value={{year}}>
+                                <div class="input-group-button">
+                                    <input type="submit" class="button success updateYear" data-id={{id}}
+                                        value="Update">
+                                </div>
+                            </div>
+        </div>
+        </td>
+        <td class="removepadding center"><button type="button" class="button rounded bordered shadow alert deleteWine"
+                data-id={{id}}>Remove</button>
+        </td>
+        </tr>
+        {{/each}}
+        </tbody>
+        </table>
+    </div>
+</div>
+</div>
+{{!-- <form>
+    <div class="grid-container fluid">
+        <div class="grid-x grid-padding-x align-center">
+            <h4>Add a New Wine to Company Catalog</h4>
+        </div>
+        <div class="grid-x grid-padding-x align-center">
+            <form>
+                <div class="medium-2 cell">
+                    <label for="Bottle Name" style="display:block; color:white;">Bottle Name</label>
+                    <input id="createWineName" name="wineName" type="text" placeholder="Bottle Name">
+                </div>
+                <div class="medium-2 cell">
+                    <label for="Vintage" style="display:block; color:white;">Vintage</label>
+                    <input id="createWineYear" name="wineYear" type="text" placeholder="Vintage">
+                </div>
+            </form>
+            <div id="addwinepadding"><button type="button" class="button rounded bordered shadow primary addWine"
+                    style="margin-top:23px">Add
+                    Wine</button>
+            </div>
+        </div>
+    </div>
+</form> --}}
+{{!-- <div class="grid-x grid-padding-x align-center">
+    <form id="bulkForm">
+        <div>
+            <h5 style="color:white;">Need to Add in Bulk?</h5>
+        </div>
+        <div id="expandedForm">
+            <div id="addwinepadding"><button type="button"
+                    class="button rounded bordered shadow primary" id="expandWineFormBtn"
+                    style="margin-top:23px">Expand Form</button>
+            </div>
+        </div>
+    </form>
+</div> --}}
+<br>
+<br>
+<footer>
+    <div class="grid-x grid-padding-x align-center">
+        <div class="cell small-6"><img class="center"
+                src="https://media-exp1.licdn.com/dms/image/C560BAQHbXv4XE0Fd4A/company-logo_200_200/0?e=2159024400&v=beta&t=UEzazauMofT-xZyntpg4RE-4LvlOspaPUzU85jucokA"
+                alt="fvlogo" />
+        </div>
+    </div>
+</footer>

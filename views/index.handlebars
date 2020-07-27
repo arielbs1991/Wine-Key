@@ -1,0 +1,120 @@
+<div class="title-bar" data-responsive-toggle="example-menu" data-hide-for="medium">
+    <button class="menu-icon" type="button" data-toggle="example-menu"></button>
+    <div class="title-bar-title">Menu</div>
+</div>
+
+{{>navbar}}
+
+<div class="grid-x grid-padding-x align-center">
+    <div class="cell small-6"><img class="center"
+            src="https://media-exp1.licdn.com/dms/image/C560BAQHbXv4XE0Fd4A/company-logo_200_200/0?e=2159024400&v=beta&t=UEzazauMofT-xZyntpg4RE-4LvlOspaPUzU85jucokA"
+            alt="fvlogo" />
+    </div>
+</div>
+
+<h1 class="animation">Wine Key</h1>
+
+<div class="grid-x grid-padding-x align-center">
+    <div id="homekey" class="cell small-6"><img width="300" height="200" class="center"
+            src="https://chairish-prod.freetls.fastly.net/image/product/master/1a63fc03-f551-4b0c-8406-f7e68850026a/vintage-italian-brass-skeleton-key-with-hidden-corkscrew-wine-and-bottle-opener-1870"
+            alt="winekey" />
+    </div>
+</div>
+
+<div class="grid-container fluid">
+    <div class="grid-x grid-padding-x align-center">
+        <div class="cell small-6">
+            <h2 class="center underline">Search for Wine</h2>
+            <h4 class="center">Please enter the name of the bottle as it appears on the menu:</h4>
+            <div class="input-group center">
+                <input list="wines" class="input-group-field homeSearchField" type="text" placeholder="eg. Freemark Abbey">
+                <datalist id="wines">
+                    {{#each wine}}
+                    <option value="{{wineName}}">
+                        {{wineName}}
+                    </option>
+                    {{/each}}
+                </datalist>
+                <!--a href="searchedwine.handlebars">-->
+                <div class="input-group-button">
+                    <input type="submit" class="button bordered shadow primary submitSearch" value="Search"
+                        id="homeSearch">
+                    <!--/a>-->
+                </div>
+            </div>
+        </div>
+
+        <!--Make sure the form has the autocomplete function switched off:-->
+        {{!-- <form autocomplete="off" action="/action_page.php">
+                <div class="autocomplete" style="width:300px;">
+                    <input id="myInput" type="text" name="myCountry" placeholder="Country">
+                </div>
+                <input type="submit">
+            </form> --}}
+
+
+
+    </div>
+</div>
+
+<br>
+<br>
+<br>
+
+<div class="grid-container fluid">
+    <div class="grid-x grid-padding-x align-center">
+        <div class="cell small-6">
+            <h2 class="center underline">Update Inventory</h2>
+            <h4 class="center">Please select a store:</h4>
+
+            <label class="center">
+                <select id="selectRestaurant" name="restaurantNames" class="locations">
+                    <!--need to get id from database to route to specific restaurant-->
+                    <option default>Select Restaurant</option>
+                    {{#each restaurant}}
+                    <option class="location" value={{id}}>
+                        {{restaurantName}}
+                    </option>
+                    {{/each}}
+                </select>
+            </label>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $(document).foundation();
+
+        const text = document.querySelector(".animation");
+        console.log(text);
+        const strText = text.textContent;
+        console.log(strText)
+        const splitText = strText.split("");
+        text.textContent = "";
+
+        for (let i = 0; i < splitText.length; i++) {
+            text.innerHTML += "<span>" + splitText[i] + "</span>";
+        }
+
+        let char = 0;
+        let timer = setInterval(onTick, 300);
+
+        function onTick() {
+            const span = text.querySelectorAll('span')[char];
+            span.classList.add('fade');
+            char++
+            if (char === splitText.length) {
+                complete();
+                return;
+            }
+        }
+
+        function complete() {
+            clearInterval(timer);
+            timer = null;
+        }
+
+    });
+
+</script>

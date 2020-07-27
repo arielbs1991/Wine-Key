@@ -1,0 +1,44 @@
+<div class="title-bar" data-responsive-toggle="example-menu" data-hide-for="medium"> 
+        <button class="menu-icon" type="button" data-toggle="example-menu"></button>
+        <div class="title-bar-title">Menu</div>
+      </div>
+      
+{{>navbar}}
+    
+   <br>
+   <br>
+    <br>
+    <h1>Wine Catalog</h1>
+    <br>
+    <br> <!--change to padding later on-->
+    <br>
+    <div class="grid-container fluid">
+        <div class="grid-x grid-padding-x align-center">
+            <div class="cell small-8">
+                <table id="wineCatalog"  class="hover radius bordered shadow"> <!--added table id-->
+                    <thead>
+                      <tr>
+                        <th class="textcenter" width="500">Wine Name & Vintage</th>
+                        {{!-- <th width="500">Locations</th> --}}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {{#each wine}}
+                      <tr>
+                        <td class="textcenter">{{wineName}} {{year}}</td> <!--to pull information from tables-->
+                      </tr>
+                      {{/each}}
+                    </tbody>
+                  </table>
+                  <br>
+                  <h4 class="underline"><a href="/api/wines/updatewinecatalog">Update Wine Catalog</a></h4>
+                </div>
+            </div>
+        </div>
+    
+        <footer>
+            <div class="grid-x grid-padding-x align-center">
+                <div class="cell small-6"><img class="center" src="https://media-exp1.licdn.com/dms/image/C560BAQHbXv4XE0Fd4A/company-logo_200_200/0?e=2159024400&v=beta&t=UEzazauMofT-xZyntpg4RE-4LvlOspaPUzU85jucokA" alt="fvlogo" />
+                </div>
+            </div>
+        </footer>
