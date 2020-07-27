@@ -27,7 +27,7 @@ $(document).ready(function () {
             console.log("id", id);
 
             var newRestaurantName = {
-                restaurantName: $(this).parent().parent().previousSibling().children(".toGrab").val().trim()
+                restaurantName: $(this).parent().parent().previousSibling().children("input").val().trim()
             };
             console.log("new name", newRestaurantName);
 
@@ -49,7 +49,7 @@ $(document).ready(function () {
             console.log("id", id);
 
             var newPhoneNumber = {
-                phoneNumber: $(this).parent().parent().previousSibling().children(".toGrab").val().trim()
+                phoneNumber: $(this).parent().parent().previousSibling().children("input").val().trim()
             };
             console.log("new name", newPhoneNumber);
 
@@ -71,7 +71,7 @@ $(document).ready(function () {
             console.log("id", id);
 
             var newAddress = {
-                address: $(this).parent().parent().previousSibling().children(".toGrab").val().trim()
+                address: $(this).parent().parent().parent().firstchild().children("input").value().trim()
             };
             console.log("new address", newAddress);
 
