@@ -12,7 +12,6 @@ $(document).ready(function () {
             data: newWine
         }).then(
             function () {
-                console.log("Added new wine");
                 location.reload();
             }
         )
@@ -32,7 +31,6 @@ $(document).ready(function () {
             data: newWine
         }).then(
             function () {
-                console.log("Added new wine");
                 location.reload();
             }
         )
@@ -65,7 +63,6 @@ $(document).ready(function () {
             type: "DELETE"
         }).then(
             function () {
-                console.log("Deleted wine", id);
                 location.reload();
             }
         );
@@ -87,7 +84,6 @@ $(document).ready(function () {
                 data: newName
             }).then(
                 function () {
-                    console.log("changed wine name to", newName);
                     location.reload();
                 }
             );
@@ -108,7 +104,6 @@ $(document).ready(function () {
                 data: newYear
             }).then(
                 function () {
-                    console.log("changed wine year to", newYear);
                     location.reload();
                 }
             );
@@ -123,7 +118,6 @@ $(document).ready(function () {
             type: "DELETE"
         }).then(
             function () {
-                console.log("Deleted wine", id);
                 location.reload();
             }
         );

@@ -63,7 +63,7 @@ router.post('/', (req, res) => {
 
 //update restaurant details
 
-router.put("/storename/:id", (req, res) => {
+router.put('/storename/:id', (req, res) => {
   db.Restaurant.update({
     restaurantName: req.body.restaurantName
   },
@@ -73,13 +73,13 @@ router.put("/storename/:id", (req, res) => {
       }
     }).then(dbRestaurant => {
       console.log(dbRestaurant);
-      location.reload();
+     res.json(dbRestaurant)
     }).catch(function (err) {
       console.log(err);
       res.status(500).end()
     })
 });
-router.put("/phone/:id", (req, res) => {
+router.put('/phone/:id', (req, res) => {
   db.Restaurant.update({
     phoneNumber: req.body.phoneNumber
   },
@@ -89,13 +89,13 @@ router.put("/phone/:id", (req, res) => {
       }
     }).then(dbRestaurant => {
       console.log(dbRestaurant);
-      location.reload();
+     res.json(dbRestaurant)
     }).catch(err => {
       console.log(err);
       res.status(500).end()
     })
 });
-router.put("/address/:id", function (req, res) {
+router.put('/address/:id', function (req, res) {
   db.Restaurant.update({
     address: req.body.address
   },
@@ -105,7 +105,7 @@ router.put("/address/:id", function (req, res) {
       }
     }).then(function (dbRestaurant) {
       console.log(dbRestaurant);
-      location.reload();
+     res.json(dbRestaurant)
     }).catch(function (err) {
       console.log(err);
       res.status(500).end()
@@ -114,14 +114,14 @@ router.put("/address/:id", function (req, res) {
 
 //deleting an existing restaurant
 //want to add an "are you sure you want to perform this action? Please enter id to delete this store from the database. This will delete the inventory and the data cannot be recovered." warning.
-router.delete("/:id", function (req, res) {
+router.delete('/:id', function (req, res) {
   db.Restaurant.destroy({
     where: {
       id: req.params.id
     }
   }).then(function (dbRestaurant) {
     console.log(dbRestaurant);
-    location.reload();
+res.json(dbRestaurant)
   }).catch(function (err) {
     console.log(err);
     res.status(500).end()

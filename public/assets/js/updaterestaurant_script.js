@@ -1,4 +1,4 @@
-$(document).ready(() => {
+$(document).ready(function () {
 
     //this one works
     $(".addRestaurant").off().on("click", (event) => {
@@ -21,7 +21,7 @@ $(document).ready(() => {
     });
 
     //these three say that id is not defined and $(this).parent... is not a function
-    $(".updateRestaurantName").each(index => {
+    $(".updateRestaurantName").each(function (index) {
         $(this).off().on("click", (event) => {
             var id = $(this).data("id");
             console.log("id", id);
@@ -43,7 +43,7 @@ $(document).ready(() => {
         })
     });
 
-    $(".updatePhoneNumber").each(index => {
+    $(".updatePhoneNumber").each(function (index) {
         $(this).off().on("click", (event) => {
             var id = $(this).data("id");
             console.log("id", id);
@@ -65,7 +65,7 @@ $(document).ready(() => {
         })
     });
 
-    $(".updateAddress").each(index => {
+    $(".updateAddress").each(function (index) {
         $(this).off().on("click", (event) => {
             var id = $(this).data("id");
             console.log("id", id);
@@ -96,8 +96,7 @@ $(document).ready(() => {
             type: "DELETE"
         }).then(
             function () {
-                console.log("Deleted ", restaurantName);
-                // location.reload();
+                location.reload();
             }
         );
     });
