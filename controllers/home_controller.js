@@ -35,15 +35,24 @@ router.get("/home", (req, res) => {
             ['restaurantName']
           ]
         })
+
           .then(dbRestaurant => {
             const dbWineJson = dbWine.map(wine => wine.toJSON());
             const dbRestaurantJson = dbRestaurant.map(restaurant => restaurant.toJSON());
-            var hbsObject = { wine: dbWineJson, restaurant: dbRestaurantJson };
+            const wineNames = dbWineJson.map(wineObj => {
+              return wineObj.wineName;
+            })
+            const dbNoDupe = wineNames.filter((value, index) => wineNames.indexOf(value) !== index)
+            console.log(dbWineJson, dbNoDupe)
+            //create a variable to save first wineName, second var to save second wineName, foreach if wineone !== wineTwo push into array. And then map that array as a unique handlebars object
+
+
+            var hbsObject = { wine: dbWineJson, restaurant: dbRestaurantJson, wineNames: dbNoDupe };
             return res.render("index", hbsObject);
-          }).catch(err => {
-            console.log(err);
-            res.status(500).end()
           })
+      }).catch(err => {
+        console.log(err);
+        res.status(500).end()
       })
   }
 });
@@ -225,6 +234,32 @@ router.get("/api/wines/:wineName", (req, res) => {
       res.status(500).end()
     })
   }
+
+
 });
 
+router.get("/api/myWine/all", (req, res) => {
+  if (!req.session.user) {
+    res.redirect("/auth/login");
+  } else {
+    db.Wine.findAll({
+      order: [
+        ['wineName'],
+        ['year']
+      ]
+    })
+      .then(dbWine => {
+        const dbWineJson = dbWine.map(wine => wine.toJSON())
+        const wineNames = dbWineJson.map(wineObj => {
+          return wineObj.wineName;
+        })
+        const dbNoDupe = wineNames.filter((value, index) => wineNames.indexOf(value) !== index)
+        res.json(dbNoDupe)
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).end()
+      })
+  }
+});
 module.exports = router;

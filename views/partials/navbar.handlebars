@@ -26,11 +26,7 @@
         <ul class="menu">
             <input list="wines" class="input-group-field searchField" type="text" placeholder="Find Wine">
             <datalist id="wines">
-                {{#each wine}}
-                <option value="{{wineName}}">
-                    {{wineName}}
-                </option>
-                {{/each}}
+           
             </datalist>
             <div class="input-group-button">
                 <input type="submit" class="button bordered shadow primary submitSearch" value="Search" id="search">
