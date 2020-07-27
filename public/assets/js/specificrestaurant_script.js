@@ -12,7 +12,6 @@ $(document).ready(function () {
             data: newWine
         }).then(
             function () {
-                console.log("Added new wine");
                 location.reload();
             }
         )
@@ -32,7 +31,6 @@ $(document).ready(function () {
             data: newWine
         }).then(
             function () {
-                console.log("Added new wine");
                 location.reload();
             }
         )
@@ -41,7 +39,6 @@ $(document).ready(function () {
     $(".changeQuantity").each(function (index) {
         $(this).off().on("click", function (event) {
             var id = $(this).data("id");
-            console.log("id", id);
 
             var newQuantity = {
                 quantity: $(this).parent().parent().children("input").val().trim()
@@ -53,7 +50,6 @@ $(document).ready(function () {
                 data: newQuantity
             }).then(
                 function () {
-                    console.log("changed wine quantity to", newQuantity);
                     location.reload();
                 }
             );
@@ -62,13 +58,11 @@ $(document).ready(function () {
 
     $(".deleteInventory").off().on("click", function (event) {
         var id = $(this).data("id");
-        console.log()
 
         $.ajax("/api/inventories/" + id, {
             type: "DELETE"
         }).then(
             function () {
-                console.log("Deleted wine", id);
                 location.reload();
             }
         );
@@ -90,7 +84,6 @@ $(document).ready(function () {
                 data: newName
             }).then(
                 function () {
-                    console.log("changed wine name to", newName);
                     location.reload();
                 }
             );
@@ -111,7 +104,6 @@ $(document).ready(function () {
                 data: newYear
             }).then(
                 function () {
-                    console.log("changed wine year to", newYear);
                     location.reload();
                 }
             );
@@ -126,7 +118,6 @@ $(document).ready(function () {
             type: "DELETE"
         }).then(
             function () {
-                console.log("Deleted wine", id);
                 location.reload();
             }
         );
