@@ -3,30 +3,7 @@
   <div class="title-bar-title">Menu</div>
 </div>
 
-<div class="top-bar" id="example-menu">
-  <div class="top-bar-left">
-    <ul class="dropdown menu" data-dropdown-menu>
-      <li class="menu-text menuName">Wine Key</li>
-      <li class="menuLabels"><a href="/home">Home</a></li>
-      <li>
-        <a href="#">Stores</a>
-        <ul class="menu vertical">
-          <li class="location menuLabels" value="1"><a href="/api/restaurants/1">AERLUME</a></li>
-          <li class="location menuLabels" value="2"><a href="/api/restaurants/2">AQUA</a></li>
-          <li class="location menuLabels" value="3"><a href="/api/restaurants/3">El Gaucho Bellevue</a></li>
-          <li class="location menuLabels" value="4"><a href="/api/restaurants/4">El Gaucho Seattle</a></li>
-          <li class="location menuLabels" value="5"><a href="/api/restaurants/5">El Gaucho Tacoma</a></li>
-        </ul>
-      </li>
-      <li class="menuLabels"><a href="/api/wines/winecatalog">Wine Catalog</a></li>
-    </ul>
-  </div>
-  <div class="top-bar-right">
-    <ul class="menu">
-      <li><input type="search" class="searchField" placeholder="Find Wines"></li>
-      <li><button type="button" class="button submitSearch" id="search">Search</button></li>
-  </div>
-</div>
+{{>navbar}}
 
 <div class="grid-x grid-padding-x align-center">
   <div class="cell small-6"><img width="300" height="200" class="center"
@@ -56,6 +33,7 @@
         <!--created form class for ajax-->
         <div class="medium-2 cell">
           <select id="newWineName" name="wineName">
+            <option default>Select from Catalog</option>
             {{#each wine}}
             <option value={{id}}>
               {{wineName}} {{year}}
@@ -138,7 +116,7 @@
                 </div>
               </div>
             </td>
-            <td class="removepadding"><button type="button" class="button rounded bordered shadow alert deleteWine"
+            <td class="removepadding"><button type="button" class="button rounded bordered shadow alert deleteInventory"
                 data-id={{id}}>Remove</button></td>
             {{/each}}
           </tr>
@@ -156,5 +134,3 @@
     </div>
   </div>
 </footer>
-
-<script src="/assets/js/specificrestaurant_script.js"></script>

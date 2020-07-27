@@ -14,39 +14,71 @@ router.post('/', (req, res) => {
             console.log(err);
             res.status(500).end()
         })
-})
+});
+
+//for bulk adding wine to catalog
+// router.post('/', (req, res) => {
+//     db.Wine.bulkCreate([
+//         {
+//         wineName: req.body.wineName,
+//         year: req.body.wineYear
+//     }])
+//         .then(inventoryData => {
+//             res.json(inventoryData)
+//         })
+
+//         .catch(err => {
+//             console.log(err);
+//             res.status(500).end()
+//         })
+// });
+
+router.put('/winename/:id', (req, res) => {
+    db.Wine.update({
+        wineName: req.body.wineName
+    }, {
+        where: {
+            id: req.params.id
+        }
+    }).then(wineData => {
+        res.json(wineData)
+    }).catch(err => {
+        console.log(err);
+        res.status(500).end()
+    })
+});
+router.put('/year/:id', (req, res) => {
+    db.Wine.update({
+        year: req.body.year
+    }, {
+        where: {
+            id: req.params.id
+        }
+    }).then(wineData => {
+        res.json(wineData)
+    }).catch(err => {
+        console.log(err);
+        res.status(500).end()
+    })
+});
+
+router.delete('/:id', (req, res) => {
+    db.Wine.destroy({
+        where: {
+            id: req.params.id
+        }
+    }).then(deleted => {
+        res.json(deleted)
+    }).catch(err => {
+        console.log(err);
+        res.status(500).end()
+    })
+});
 
 //WE MIGHT NEED THESE DOWN THE LINE DEPENDING ON MDP
 
-// router.delete('/:id', (req, res) => {
-//     db.Wine.destroy({
-//         where: {
-//             id: req.params.id
-//         }
-//     }).then(deleted => {
-//         res.json(deleted)
-//     }).catch(err => {
-//         console.log(err);
-//         res.status(500).end()
-//     })
-// })
 
-// router.put('/:id', (req, res) => {
-//     db.Wine.update({
-//         wineName: req.body.wineName,
-//         year: req.body.year,
-//         variety: req.body.variety
-//     }, {
-//         where: {
-//             id: req.params.id
-//         }
-//     }).then(wineData => {
-//         res.json(wineData)
-//     }).catch(err => {
-//         console.log(err);
-//         res.status(500).end()
-//     })
-// })
+
 // router.put("/:id/claimWine",(req,res)=>{
 //     db.Wine.update({
 //         RestaurantId: req.body.RestaurantId

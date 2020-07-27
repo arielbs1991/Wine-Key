@@ -12,7 +12,6 @@ $(document).ready(function () {
             data: newWine
         }).then(
             function () {
-                console.log("Added new wine");
                 location.reload();
             }
         )
@@ -32,7 +31,6 @@ $(document).ready(function () {
             data: newWine
         }).then(
             function () {
-                console.log("Added new wine");
                 location.reload();
             }
         )
@@ -41,7 +39,6 @@ $(document).ready(function () {
     $(".changeQuantity").each(function (index) {
         $(this).off().on("click", function (event) {
             var id = $(this).data("id");
-            console.log("id", id);
 
             var newQuantity = {
                 quantity: $(this).parent().parent().children("input").val().trim()
@@ -53,7 +50,60 @@ $(document).ready(function () {
                 data: newQuantity
             }).then(
                 function () {
-                    console.log("changed wine quantity to", newQuantity);
+                    location.reload();
+                }
+            );
+        })
+    });
+
+    $(".deleteInventory").off().on("click", function (event) {
+        var id = $(this).data("id");
+
+        $.ajax("/api/inventories/" + id, {
+            type: "DELETE"
+        }).then(
+            function () {
+                location.reload();
+            }
+        );
+    });
+
+    //Below code definitely belongs to the updatewinecatalog page
+    $(".updateName").each(function (index) {
+        $(this).off().on("click", function (event) {
+            var id = $(this).data("id");
+            console.log("id", id);
+
+            var newName = {
+                wineName: $(this).parent().parent().children("input").val().trim()
+            };
+            console.log("new name", newName);
+
+            $.ajax("/api/wines/winename/" + id, {
+                type: "PUT",
+                data: newName
+            }).then(
+                function () {
+                    location.reload();
+                }
+            );
+        })
+    });
+    $(".updateYear").each(function (index) {
+        $(this).off().on("click", function (event) {
+            var id = $(this).data("id");
+            console.log("id", id);
+
+            var newYear = {
+                year: $(this).parent().parent().children("input").val().trim()
+            };
+            console.log("new year", newYear);
+
+            $.ajax("/api/wines/year/" + id, {
+                type: "PUT",
+                data: newYear
+            }).then(
+                function () {
                     location.reload();
                 }
             );
@@ -64,14 +114,35 @@ $(document).ready(function () {
         var id = $(this).data("id");
         console.log()
 
-        $.ajax("/api/inventories/" + id, { 
+        $.ajax("/api/wines/" + id, {
             type: "DELETE"
         }).then(
             function () {
-                console.log("Deleted wine", id);
                 location.reload();
             }
         );
     });
+
+    // $("#expandWineFormBtn").off().on("click", function (event) {
+    //     event.preventDefault();
+    //     // $("#expandedForm").empty();
+    //     $("#expandedForm").append(
+    //         `<div class="grid-container fluid">
+    //             <form>
+    //                 <div class= "medium-2 cell">
+    //                     <label for="Bottle Name" style="display:block; color:white;">Bottle Name</label>
+    //                     <input id="createWineName" name="wineName" type="text" placeholder="Bottle Name">
+    //                     </div>
+    //                     <div class="medium-2 cell">
+    //                     <label for="Vintage" style="display:block; color:white;">Vintage</label>
+    //                     <input id="createWineYear" name="wineYear" type="text" placeholder="Vintage">
+    //                 </div>
+    //             </form>
+    //             <div id="addwinepadding"><button type="button" class="button rounded bordered shadow primary bulkAddWine"
+    //                 style="margin-top:23px">Add Wine</button>
+    //             </div>
+    //         </div>`);
+
+    // })
 });
 

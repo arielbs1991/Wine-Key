@@ -1,17 +1,6 @@
 const router = require("express").Router();
 const db = require("../models");
 
-//GET route for all inventory data
-// router.get('/', (req, res) => {
-//     db.Inventory.findAll({})
-//     .then(inventoryData => {
-//         res.json(inventoryData)
-//     }).catch(err => {
-//         console.log(err);
-//         res.status(500).end()
-//     })
-// })
-
 router.post('/', (req, res) => {
     db.Inventory.create({
         restaurantId: req.body.restaurantId,
@@ -55,6 +44,17 @@ router.put('/:id', (req, res) => {
 });
 
 //WE MIGHT NEED THESE LATER WHO KNOWS
+
+//GET route for all inventory data
+// router.get('/', (req, res) => {
+//     db.Inventory.findAll({})
+//     .then(inventoryData => {
+//         res.json(inventoryData)
+//     }).catch(err => {
+//         console.log(err);
+//         res.status(500).end()
+//     })
+// })
 
 // router.get('/:id', (req, res) => {
 //     db.Inventory.findOne({
