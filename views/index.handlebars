@@ -1,3 +1,6 @@
+
+{{>navbar}}
+
 <div class="grid-x grid-padding-x align-center">
     <div class="cell small-6"><img class="center"
             src="https://media-exp1.licdn.com/dms/image/C560BAQHbXv4XE0Fd4A/company-logo_200_200/0?e=2159024400&v=beta&t=UEzazauMofT-xZyntpg4RE-4LvlOspaPUzU85jucokA"
@@ -23,7 +26,7 @@
                 <input list="wines" class="input-group-field searchField" type="text" placeholder="eg. Freemark Abbey">
                 <datalist id="wines">
                     {{#each wine}}
-                    <option value="{{wineName}}"">
+                    <option value="{{wineName}}">
                         {{wineName}}
                     </option>
                     {{/each}}
@@ -61,14 +64,14 @@
             <h4 class="center">Please select a store:</h4>
 
             <label class="center">
-                <select class="locations">
+                <select id="selectRestaurant" name="restaurantNames" class="locations">
                     <!--need to get id from database to route to specific restaurant-->
                     <option default>Select Restaurant</option>
-                    <option class="location" value="1">AERLUME</option>
-                    <option class="location" value="3">AQUA</option>
-                    <option class="location" value="4">El Gaucho Bellevue</option>
-                    <option class="location" value="2">El Gaucho Seattle</option>
-                    <option class="location" value="5">El Gaucho Tacoma</option>
+                    {{#each restaurant}}
+                    <option class="location" value={{id}}>
+                        {{restaurantName}}
+                    </option>
+                    {{/each}}
                 </select>
             </label>
         </div>
