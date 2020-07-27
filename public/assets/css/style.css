@@ -11,7 +11,7 @@ body{
 h1{
     text-align: center;
     color: lightgrey;
-    font-size:120pt;
+    font-size:90pt;
     font-family: 'Parisienne',
     cursive;
 }
@@ -26,14 +26,26 @@ h2{
     text-align:center;
 }
 h4{
-    color:lightgrey;
+    color:lightgrey !important;
     text-align:center;
     font-family: 'Roboto Slab', serif;
     text-align:center
 }
 
+.menuName{
+    font-family: 'Parisienne', cursive;
+}
+
+.menuLabels{
+    font-family: 'Roboto Slab', serif;
+}
+
 .label{
     color:lightgrey;
+}
+
+.textcenter{
+    text-align: center;
 }
 
 .center{
@@ -42,8 +54,17 @@ h4{
     justify-content: center;
 }
 
+.justify{
+    display:flex;
+    justify-content:center;
+}
+
 #homekey{
     padding-bottom:2rem;
+}
+
+.addRestaurantpadding {
+    padding-bottom:1.5rem;
 }
 
 #search{
@@ -55,7 +76,7 @@ h4{
 }
 
 .removepadding{
-    padding-top:1.8rem;
+    padding-top:1.7rem;
 }
 
 #addwinepadding{
@@ -87,6 +108,11 @@ span.fade {
     margin: 25% 10px; 
     padding: 1.5rem;
     border-radius: 30px;
+}
+
+.removeStore{
+    padding-top:4.5rem;
+    padding-right:1.3rem;
 }
 
 

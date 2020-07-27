@@ -1,20 +1,20 @@
 <div class="top-bar" id="example-menu">
     <div class="top-bar-left">
         <ul class="dropdown menu" data-dropdown-menu>
-            <li class="menu-text">Wine Key</li>
-            <li><a href="/home">Home</a></li>
-            <li>
+            <li class="menu-text menuName">Wine Key</li>
+            <li class="menuLabels"><a href="/home">Home</a></li>
+            <li class="menuLabels">
                 <a href="#">Stores</a>
-                <ul class="menu vertical">
+                <ul class="menu vertical menuLabels">
                     {{#each restaurant}}
                     <li class="location" value={{id}}><a href="/api/restaurants/{{id}}">{{restaurantName}}</a></li>
                     {{/each}}
                 </ul>
             </li>
-            <li><a href="/api/wines/winecatalog">Wine Catalog</a></li>
-            <li><a href="/api/wines/updatewinecatalog">Manage Wine Catalog</a></li>
-            <li><a href="/api/restaurants/updaterestaurants">Manage Stores</a></li>
-            <li><a href='/auth/logout'>Logout</a></li>
+            <li class="menuLabels"><a href="/api/wines/winecatalog">Wine Catalog</a></li>
+            <li class="menuLabels"><a href="/api/wines/updatewinecatalog">Manage Wine Catalog</a></li>
+            <li class="menuLabels"><a href="/api/restaurants/updaterestaurants">Manage Stores</a></li>
+            <li class="menuLabels"><a href='/auth/logout'>Logout</a></li>
         </ul>
     </div>
     <div class="top-bar-right">
@@ -28,7 +28,7 @@
                 {{/each}}
             </datalist>
             <div class="input-group-button">
-                <input type="submit" class="button rounded bordered shadow primary submitSearch" value="Search"
+                <input type="submit" class="button bordered shadow primary submitSearch" value="Search"
                     id="search">
             </div>
         </ul>

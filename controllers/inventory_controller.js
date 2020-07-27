@@ -36,7 +36,6 @@ router.delete('/:id', (req, res) => {
     })
 }
 })
-
 router.put('/:id', (req, res) => {
     if(!req.session.user){
         res.redirect("/auth/login");

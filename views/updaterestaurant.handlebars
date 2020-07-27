@@ -5,14 +5,11 @@
 
 {{>navbar}}
 
-<div class="grid-x grid-padding-x align-center">
-    <div class="cell small-6"><img width="300" height="200" class="center"
-            src="https://chairish-prod.freetls.fastly.net/image/product/master/1a63fc03-f551-4b0c-8406-f7e68850026a/vintage-italian-brass-skeleton-key-with-hidden-corkscrew-Restaurant-and-bottle-opener-1870"
-            alt="Restaurantkey" />
-    </div>
-</div>
 <br>
-<h1>Update Store Details</h1>
+<br>
+<br>
+
+<h1>Manage Store Details</h1>
 <br>
 <br>
 <!--change to padding later on-->
@@ -20,13 +17,13 @@
 <div class="grid-container fluid">
     <div class="grid-x grid-padding-x align-center">
         <div class="cell small-8">
-            <table id="RestaurantCatalog">
+            <table id="RestaurantCatalog" class="hover radius bordered shadow">
                 <!--added table id-->
                 <thead>
                     <tr>
                         <th width="500">Store</th>
-                        <th width="500">Details</th>
-                        <th width="200">Remove Store</th>
+                        <th class="textcenter" width="500">Details</th>
+                        <th class="textcenter" width="200">Remove Store</th>
                         {{!-- <th width="500">Locations</th> --}}
                     </tr>
                 </thead>
@@ -52,7 +49,7 @@
                                         </td>
                                         <td>
                                             <div class="input-group-button">
-                                                <input type="submit" class="button success updateRestaurantName"
+                                                <input type="submit" class="button large bordered shadow success updateRestaurantName"
                                                     data-id={{id}} value="Update">
                                             </div>
                                         </td>
@@ -64,7 +61,7 @@
                                     </td>
                                     <td>
                                         <div class="input-group-button">
-                                            <input type="submit" class="button success updatePhoneNumber" data-id={{id}}
+                                            <input type="submit" class="button large bordered shadow success updatePhoneNumber" data-id={{id}}
                                                 value="Update">
                                         </div>
                                     </td>
@@ -75,7 +72,7 @@
                                     </td>
                                     <td>
                                         <div class="input-group-button">
-                                            <input type="submit" class="button success updateAddress" data-id={{id}}
+                                            <input type="submit" class="button large bordered shadow success updateAddress" data-id={{id}}
                                                 value="Update">
                                         </div>
                                     </td>
@@ -83,8 +80,8 @@
         </div>
         </table>
         </td>
-
-        <td class="removepadding"><button type="button" class="button rounded bordered shadow alert deleteRestaurant"
+        
+        <td class="center removepadding removeStore"><button type="button" class="button rounded bordered shadow alert deleteRestaurant"
                 data-id={{id}}>Remove</button>
         </td>
         </tr>
@@ -94,27 +91,29 @@
     </div>
 </div>
 </div>
+<br>
+<br>
 <form>
     <div class="grid-container fluid">
         <div class="grid-x grid-padding-x align-center">
             <h4>Add a New Restaurant to Company Catalog</h4>
         </div>
-        <div class="grid-x grid-padding-x align-center">
+        <div class="grid-x grid-padding-x align-center center">
             <form>
                 <div class="medium-2 cell">
-                    <label for="Store Name" style="display:block; color:white;">Store Name</label>
+                    <label for="Store Name" style="display:block; color:white;"></label>
                     <input id="createRestaurantName" name="wineName" type="text" placeholder="Store Name">
                 </div>
                 <div class="medium-2 cell">
-                    <label for="Phone Number" style="display:block; color:white;">Phone Number</label>
+                    <label for="Phone Number" style="display:block; color:white;"></label>
                     <input id="createPhoneNumber" name="phoneNumber" type="text" placeholder="Phone Number">
                 </div>
                 <div class="medium-2 cell">
-                    <label for="Address" style="display:block; color:white;">Address</label>
-                    <input id="createAddress" name="Adress" type="text" placeholder="Address">
+                    <label for="Address" style="display:block; color:white;"></label>
+                    <input class="center" id="createAddress" name="Adress" type="text" placeholder="Address">
                 </div>
             </form>
-            <div id="addRestaurantpadding"><button type="button"
+            <div class="addRestaurantpadding"><button type="button"
                     class="button rounded bordered shadow primary addRestaurant" style="margin-top:23px">Add
                     Restaurant</button>
             </div>
@@ -137,7 +136,7 @@
 <br>
 <br>
 <footer>
-    <div class="grid-x grid-padding-x align-center position-fixed-bottom footer">
+    <div class="grid-x grid-padding-x align-center">
         <div class="cell small-6"><img class="center"
                 src="https://media-exp1.licdn.com/dms/image/C560BAQHbXv4XE0Fd4A/company-logo_200_200/0?e=2159024400&v=beta&t=UEzazauMofT-xZyntpg4RE-4LvlOspaPUzU85jucokA"
                 alt="fvlogo" />
