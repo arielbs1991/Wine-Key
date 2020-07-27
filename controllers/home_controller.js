@@ -38,34 +38,46 @@ router.get("/home", (req, res) => {
 
 //Currently can't get navbar on specific restaurant page to dropdown list of restaurants WHILE having a specific restaurant grabbed by id shown with handlebars. Probably a question for instructors.
 
-// router.get("/api/restaurants/:id", (req, res => {
-//   db.Restaurant.findAll({
-//     order: [
-//       ['restaurantName']
-//     ],
-//     include: [
-//       {
-//         model: db.Inventory,
-//         include: [db.Wine]
-//       }]
-//   })
-//     .then(dbRestaurant => {
-//       db.Wine.findAll({
-//         order: [
-//           ['wineName'],
-//           ['year']
-//         ]
-//       })
-//         .then(dbWine => {
-//           const dbWineJson = dbWine.map(wine => wine.toJSON());
-//           const dbRestaurantJson = dbRestaurant.map(restaurant => restaurant.toJSON());
-//           var hbsObject = { wine: dbWineJson, restaurant: dbRestaurantJson };
-//           // return res.render("partials.navbar", hbsObject);
-//         }).catch(err => {
-//           console.log(err);
-//           res.status(500).end()
-//         })
-//     })
+router.get("/api/restaurants/:id", (req, res) => {
+  db.Restaurant.findAll({
+    order: [
+      ['restaurantName']
+    ],
+    include: [
+      {
+        model: db.Inventory,
+        include: [db.Wine]
+      }]
+  }).then(dbRestaurant => {
+    db.Wine.findAll({
+      order: [
+        ['wineName'],
+        ['year']
+      ]
+    })
+      .then(dbWine => {
+        const dbWineJson = dbWine.map(wine => wine.toJSON());
+        const dbRestaurantJson = dbRestaurant.map(restaurant => restaurant.toJSON());
+        db.Restaurant.findOne({
+          where: {
+            id: req.params.id
+          },
+          include: [
+            {
+              model: db.Inventory,
+              include: { model: db.Wine }
+            }]
+        }).then(oneRes => {
+          const dbOneRes = oneRes.toJSON();
+          var hbsObject = { restaurant: dbRestaurantJson, wine: dbWineJson, oneRestaurant: dbOneRes };
+          return res.render("specificrestaurant", hbsObject);
+        })
+      }).catch(err => {
+        console.log(err);
+        res.status(500).end()
+      })
+  })
+})
 
 //   db.Restaurant.findOne({
 //     where: {
@@ -74,7 +86,7 @@ router.get("/home", (req, res) => {
 //     include: [
 //       {
 //         model: db.Inventory,
-//         include: [db.Wine]
+//         include: { model: db.Wine }
 //       }]
 //   }).then(dbRestaurant => {
 //     db.Wine.findAll({
@@ -83,18 +95,19 @@ router.get("/home", (req, res) => {
 //         ['year']
 //       ]
 //     })
-//       .then(dbWine => {
-//         const dbRestaurantJson = dbRestaurant.toJSON();
-//         const dbWineJson = dbWine.map(wine => wine.toJSON());
-//         var hbsObject = { restaurant: dbRestaurantJson, wine: dbWineJson };
-//         return res.render("specificrestaurant", hbsObject);
-//       })
 //   })
-//     .catch(err => {
-//       console.log(err);
-//       res.status(500).end()
+//     .then(dbWine => {
+//       const dbRestaurantJson = dbRestaurant.toJSON();
+//       const dbWineJson = dbWine.map(wine => wine.toJSON());
+//       var hbsObject = { restaurant: dbRestaurantJson, wine: dbWineJson };
+//       return res.render("specificrestaurant", hbsObject);
 //     })
 // })
+//   .catch(err => {
+//     console.log(err);
+//     res.status(500).end()
+//   })
+//})
 
 //GET route for displaying specific restaurant's inventory and info
 

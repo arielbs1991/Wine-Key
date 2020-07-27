@@ -15,9 +15,9 @@
 
 
 <br>
-<h1>{{restaurant.restaurantName}}</h1>
-<h2>{{restaurant.address}}</h2>
-<h2>{{restaurant.phoneNumber}}</h2>
+<h1>{{oneRestaurant.restaurantName}}</h1>
+<h2>{{oneRestaurant.address}}</h2>
+<h2>{{oneRestaurant.phoneNumber}}</h2>
 
 <br>
 <br>
@@ -97,7 +97,7 @@
           </tr>
         </thead>
         <tbody class="align-items-center">
-          {{#each restaurant.Inventories}}
+          {{#each oneRestaurant.Inventories}}
           <tr>
             <!-- table for specific restaurant's wine inventory-->
             <td>{{Wine.wineName}}</td>
