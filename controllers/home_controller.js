@@ -95,37 +95,6 @@ router.get("/api/restaurants/:id", (req, res) => {
   }
 })
 
-
-//   db.Restaurant.findOne({
-//     where: {
-//       id: req.params.id
-//     },
-//     include: [
-//       {
-//         model: db.Inventory,
-//         include: { model: db.Wine }
-//       }]
-//   }).then(dbRestaurant => {
-//     db.Wine.findAll({
-//       order: [
-//         ['wineName'],
-//         ['year']
-//       ]
-//     })
-//   })
-//     .then(dbWine => {
-//       const dbRestaurantJson = dbRestaurant.toJSON();
-//       const dbWineJson = dbWine.map(wine => wine.toJSON());
-//       var hbsObject = { restaurant: dbRestaurantJson, wine: dbWineJson };
-//       return res.render("specificrestaurant", hbsObject);
-//     })
-// })
-//   .catch(err => {
-//     console.log(err);
-//     res.status(500).end()
-//   })
-//})
-
 //GET route for displaying specific restaurant's inventory and info
 
 //While trying to get above code to work, I somehow screwed up the alphebetized display in the inventory.
