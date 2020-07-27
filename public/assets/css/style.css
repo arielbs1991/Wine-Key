@@ -63,11 +63,20 @@ h4{
     padding-bottom:2rem;
 }
 
+#loginkey{
+    padding:2rem;
+}
+
+.loginPadding{
+    padding-left:4rem;
+    padding-right:4rem;
+}
+
 .addRestaurantpadding {
     padding-bottom:1.5rem;
 }
 
-#search{
+#homeSearch{
     padding: 0.67rem;
 }
 
@@ -105,7 +114,6 @@ span.fade {
 }
 
 .card {
-    margin: 25% 10px; 
     padding: 1.5rem;
     border-radius: 30px;
 }

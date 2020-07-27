@@ -6,12 +6,8 @@
 
 {{>navbar}}
 
-<div class="grid-x grid-padding-x align-center">
-  <div class="cell small-6"><img width="300" height="200" class="center"
-      src="https://chairish-prod.freetls.fastly.net/image/product/master/1a63fc03-f551-4b0c-8406-f7e68850026a/vintage-italian-brass-skeleton-key-with-hidden-corkscrew-wine-and-bottle-opener-1870"
-      alt="winekey" />
-  </div>
-</div>
+<br>
+<br>
 <br>
 <h1>{{name}}</h1>
 <br>
@@ -21,13 +17,13 @@
 <div class="grid-container fluid">
   <div class="grid-x grid-padding-x align-center">
     <div class="cell small-8">
-      <table id="searchedWineTable">
+      <table id="searchedWineTable" class="hover radius bordered shadow">
         <thead>
           <tr>
             <th width="300">Location</th>
-            <th width="300">Name and Vintage</th>
-            <th width="300">Quantity</th>
-            <th width="300">Phone Number</th>
+            <th class="textcenter" width="300">Name and Vintage</th>
+            <th class="textcenter" width="300">Quantity</th>
+            <th class="textcenter" width="300">Phone Number</th>
           </tr>
         </thead>
         <tbody>
@@ -35,9 +31,9 @@
           {{#each Inventories}}
           <tr>
             <td>{{Restaurant.restaurantName}}</td>
-            <td>{{Wine.wineName}}, {{Wine.year}}</td>
-            <td>{{quantity}}</td>
-            <td>{{Restaurant.phoneNumber}}</td>
+            <td class="textcenter">{{Wine.wineName}}, {{Wine.year}}</td>
+            <td class="textcenter">{{quantity}}</td>
+            <td class="textcenter">{{Restaurant.phoneNumber}}</td>
           </tr>
           {{/each}}
           {{/each}}
