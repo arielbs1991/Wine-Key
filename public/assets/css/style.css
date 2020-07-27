@@ -67,12 +67,17 @@ h4{
     padding:2rem;
 }
 
+.loginPadding{
+    padding-left:4rem;
+    padding-right:4rem;
+}
+
 .addRestaurantpadding {
     padding-bottom:1.5rem;
 }
 
 #homeSearch{
-    padding:0.67rem;
+    padding: 0.67rem;
 }
 
 .updatepadding{
@@ -118,22 +123,8 @@ span.fade {
     padding-right:1.3rem;
 }
 
-.manageStoreUpdate{
-    padding:1.0rem;
-}
 
-.loginPadding {
-    padding-left:5.0rem;
-    padding-right:5.0rem;
-}
 
-.loginMargin {
-    padding-top:5.0rem;
-}
-
-.card {
-    padding-
-}
 /* Autocomplete CSS */
 
 /* * {
