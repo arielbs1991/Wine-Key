@@ -6,12 +6,14 @@ module.exports = function (sequelize, DataTypes) {
         wineName: {
             type: DataTypes.STRING,
             allowNull: false,
+            unique: 'uniqueWine',
             validate: {
                 len: [1]
             }
         },
         year: {
             type: DataTypes.INTEGER,
+            unique: 'uniqueWine',
             validate: {
                 len: [1, 4]
             }
