@@ -2,6 +2,9 @@ const router = require("express").Router();
 const db = require("../models");
 
 router.post('/', (req, res) => {
+    if(!req.session.user){
+        res.redirect("/auth/login");
+      } else{
     db.Inventory.create({
         restaurantId: req.body.restaurantId,
         wineId: req.body.wineId,
@@ -14,9 +17,13 @@ router.post('/', (req, res) => {
             console.log(err);
             res.status(500).end()
         })
+    }
 })
 
 router.delete('/:id', (req, res) => {
+    if(!req.session.user){
+        res.redirect("/auth/login");
+      } else{
     db.Inventory.destroy({
         where: {
             id: req.params.id
@@ -27,8 +34,12 @@ router.delete('/:id', (req, res) => {
         console.log(err);
         res.status(500).end()
     })
+}
 })
 router.put('/:id', (req, res) => {
+    if(!req.session.user){
+        res.redirect("/auth/login");
+      } else{
     db.Inventory.update({
         quantity: req.body.quantity
     }, {
@@ -41,6 +52,7 @@ router.put('/:id', (req, res) => {
         console.log(err);
         res.status(500).end()
     })
+}
 });
 
 //WE MIGHT NEED THESE LATER WHO KNOWS
