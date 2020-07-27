@@ -21,7 +21,7 @@ module.exports = function (sequelize, DataTypes) {
     });
 
     Wine.associate = function (models) {
-        Wine.hasMany(models.Inventory, { foreignKey: 'wineId' });
+        Wine.hasMany(models.Inventory, { foreignKey: 'wineId', onDelete: 'cascade' });
     };
     return Wine;
 };
