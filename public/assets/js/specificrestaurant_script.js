@@ -123,6 +123,24 @@ $(document).ready(function () {
         );
     });
 
+
+    $.ajax("/api/myWine/all", {
+        type: "GET",
+
+    }).then(
+        function (data) {
+            console.log(data)
+            for(let i=0;i<data.length;i++){
+
+                let opt = $("<option>")
+                opt.attr("value", data[i])
+                opt.text(data[i])
+                $("#wines").append(opt)
+
+            }
+
+        }
+    );
     // $("#expandWineFormBtn").off().on("click", function (event) {
     //     event.preventDefault();
     //     // $("#expandedForm").empty();
