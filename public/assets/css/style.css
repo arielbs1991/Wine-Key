@@ -28,14 +28,31 @@ h4{
     text-align:center
 }
 
+.menuName{
+    font-family: 'Parisienne', cursive;
+}
+
+.menuLabels{
+    font-family: 'Roboto Slab', serif;
+}
+
 .label{
     color:lightgrey;
+}
+
+.textcenter{
+    text-align: center;
 }
 
 .center{
     display:flex;
     align-items: center;
     justify-content: center;
+}
+
+.justify{
+    display:flex;
+    justify-content:center;
 }
 
 #homekey{

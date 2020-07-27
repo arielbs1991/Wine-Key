@@ -44,14 +44,14 @@
                 <table id="wineCatalog"> <!--added table id-->
                     <thead>
                       <tr>
-                        <th width="500">Wine Name & Vintage</th>
+                        <th class="textcenter" width="500">Wine Name & Vintage</th>
                         {{!-- <th width="500">Locations</th> --}}
                       </tr>
                     </thead>
                     <tbody>
                       {{#each wine}}
                       <tr>
-                        <td>{{wineName}} {{year}}</td> <!--to pull information from tables-->
+                        <td class="textcenter">{{wineName}} {{year}}</td> <!--to pull information from tables-->
                       </tr>
                       {{/each}}
                     </tbody>
@@ -61,7 +61,7 @@
         </div>
     
         <footer>
-            <div class="grid-x grid-padding-x align-center position-fixed-bottom footer">
+            <div class="grid-x grid-padding-x align-center">
                 <div class="cell small-6"><img class="center" src="https://media-exp1.licdn.com/dms/image/C560BAQHbXv4XE0Fd4A/company-logo_200_200/0?e=2159024400&v=beta&t=UEzazauMofT-xZyntpg4RE-4LvlOspaPUzU85jucokA" alt="fvlogo" />
                 </div>
             </div>
