@@ -28,7 +28,6 @@ router.delete('/:id', (req, res) => {
         res.status(500).end()
     })
 })
-
 router.put('/:id', (req, res) => {
     db.Inventory.update({
         quantity: req.body.quantity

@@ -5,29 +5,52 @@
 
 {{>navbar}}
 
-<div class="grid-x grid-padding-x align-center">
-    <div class="cell small-6"><img width="300" height="200" class="center"
-            src="https://chairish-prod.freetls.fastly.net/image/product/master/1a63fc03-f551-4b0c-8406-f7e68850026a/vintage-italian-brass-skeleton-key-with-hidden-corkscrew-wine-and-bottle-opener-1870"
-            alt="winekey" />
+<br>
+<br>
+<br>
+
+<h1>Update Wine Catalog</h1>
+<br>
+
+<br>
+
+<form>
+    <div class="grid-container fluid">
+        <div class="grid-x grid-padding-x align-center">
+            <h4>Add a New Wine to Company Catalog</h4>
+        </div>
+        <div class="grid-x grid-padding-x align-center center">
+            <form>
+                <div class="medium-2 cell">
+                    <label></label>
+                    <input id="createWineName" name="wineName" type="text" placeholder="Bottle Name">
+                </div>
+                <div class="medium-2 cell">
+                    <label></label>
+                    <input id="createWineYear" name="wineYear" type="text" placeholder="Vintage">
+                </div>
+            </form>
+            <div><button type="button" class="button rounded bordered shadow primary addWine"
+                    >Add
+                    Wine</button>
+            </div>
+        </div>
     </div>
-</div>
-<br>
-<h1>Update the Wine Catalog</h1>
+</form>
 <br>
 <br>
-<!--change to padding later on-->
 <br>
 <div class="grid-container fluid">
     <div class="grid-x grid-padding-x align-center">
         <div class="cell small-8">
-            <table id="wineCatalog">
+            <table id="wineCatalog" class="hover radius bordered shadow">
                 <!--added table id-->
                 <thead>
                     <tr>
                         <th width="300">Wine Name & Vintage</th>
-                        <th width="450">Name</th>
-                        <th width="250">Vintage</th>
-                        <th width="200">Remove Wine</th>
+                        <th class="textcenter" width="450">Name</th>
+                        <th class="textcenter" width="250">Vintage</th>
+                        <th width="200"></th>
                         {{!-- <th width="500">Locations</th> --}}
                     </tr>
                 </thead>
@@ -55,7 +78,7 @@
                             </div>
         </div>
         </td>
-        <td class="removepadding"><button type="button" class="button rounded bordered shadow alert deleteWine"
+        <td class="removepadding center"><button type="button" class="button rounded bordered shadow alert deleteWine"
                 data-id={{id}}>Remove</button>
         </td>
         </tr>
@@ -65,7 +88,7 @@
     </div>
 </div>
 </div>
-<form>
+{{!-- <form>
     <div class="grid-container fluid">
         <div class="grid-x grid-padding-x align-center">
             <h4>Add a New Wine to Company Catalog</h4>
@@ -87,7 +110,7 @@
             </div>
         </div>
     </div>
-</form>
+</form> --}}
 {{!-- <div class="grid-x grid-padding-x align-center">
     <form id="bulkForm">
         <div>
@@ -104,7 +127,7 @@
 <br>
 <br>
 <footer>
-    <div class="grid-x grid-padding-x align-center position-fixed-bottom footer">
+    <div class="grid-x grid-padding-x align-center">
         <div class="cell small-6"><img class="center"
                 src="https://media-exp1.licdn.com/dms/image/C560BAQHbXv4XE0Fd4A/company-logo_200_200/0?e=2159024400&v=beta&t=UEzazauMofT-xZyntpg4RE-4LvlOspaPUzU85jucokA"
                 alt="fvlogo" />

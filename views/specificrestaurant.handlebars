@@ -5,15 +5,7 @@
 
 {{>navbar}}
 
-<div class="grid-x grid-padding-x align-center">
-  <div class="cell small-6"><img width="300" height="200" class="center"
-      src="https://chairish-prod.freetls.fastly.net/image/product/master/1a63fc03-f551-4b0c-8406-f7e68850026a/vintage-italian-brass-skeleton-key-with-hidden-corkscrew-wine-and-bottle-opener-1870"
-      alt="winekey" />
-  </div>
-</div>
 <br>
-
-
 <br>
 <h1>{{oneRestaurant.restaurantName}}</h1>
 <h2>{{oneRestaurant.address}}</h2>
@@ -53,6 +45,10 @@
     <div></div>
   </div>
 </form>
+<br>
+<br>
+<br>
+
 <form>
   <div class="grid-container fluid">
     <div class="grid-x grid-padding-x align-center">
@@ -81,19 +77,17 @@
 
 
 <div class="grid-container fluid">
-  <h4 class="center">Inventory</h4>
   <div class="grid-x grid-padding-x align-center">
     <div class="cell small-10 align-items-center">
-      <table id="restaurantInventory" class="rounded align-items-center">
+      <table id="restaurantInventory" class="hover align-items-center radius bordered shadow">
         <!--added table id-->
         <thead>
           <tr>
             <th width="400">Wine Name</th>
-            <th width="100">Vintage</th>
-            <th width="100"></th>
-            <th width="100">Quantity</th>
+            <th class="textcenter" width="100">Vintage</th>
+            <th class="textcenter" width="100">Quantity</th>
+            <th width="200"></th>
             <th width="1"></th>
-            <th width="200">Actions</th>
           </tr>
         </thead>
         <tbody class="align-items-center">
@@ -101,16 +95,15 @@
           <tr>
             <!-- table for specific restaurant's wine inventory-->
             <td>{{Wine.wineName}}</td>
-            <td>{{Wine.year}}</td>
-            <td>{{Wine.variety}}</td>
-            <td>{{quantity}}</td>
+            <td class="textcenter">{{Wine.year}}</td>
+            <td class="textcenter">{{quantity}}</td>
             <input type="hidden" class="id" width="1" value={{id}}></input>
             <td>
               <div class="input-group updatepadding">
                 <span class="input-group-label">#</span>
-                <input class="input-group-field newQuantity" type="number">
+                <input class="input-group-field newQuantity" data-quantity="text" type="text">
                 <div class="input-group-button">
-                  <input type="submit" class="button success changeQuantity" data-id={{id}}
+                  <input type="submit" data-quantity="" class="button bordered shadow success changeQuantity" data-id={{id}}
                     value="Update">
                 </div>
               </div>
@@ -126,7 +119,7 @@
 </div>
 
 <footer>
-  <div class="grid-x grid-padding-x align-center position-fixed-bottom footer">
+  <div class="grid-x grid-padding-x align-center">
     <div class="cell small-6"><img class="center"
         src="https://media-exp1.licdn.com/dms/image/C560BAQHbXv4XE0Fd4A/company-logo_200_200/0?e=2159024400&v=beta&t=UEzazauMofT-xZyntpg4RE-4LvlOspaPUzU85jucokA"
         alt="fvlogo" />
