@@ -17,7 +17,7 @@ h1{
 }
 
 h3,p{
-    color: lightgray
+    color: black
 }
 
 h2{
@@ -81,6 +81,12 @@ span {
 
 span.fade {
     opacity: 1;
+}
+
+.card {
+    margin: 25% 10px; 
+    padding: 1.5rem;
+    border-radius: 30px;
 }
 
 
