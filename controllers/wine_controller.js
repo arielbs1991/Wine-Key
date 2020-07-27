@@ -2,6 +2,9 @@ const router = require("express").Router();
 const db = require("../models");
 
 router.post('/', (req, res) => {
+    if(!req.session.user){
+        res.redirect("/auth/login");
+      } else{
     db.Wine.create({
         wineName: req.body.wineName,
         year: req.body.wineYear
@@ -14,6 +17,7 @@ router.post('/', (req, res) => {
             console.log(err);
             res.status(500).end()
         })
+    }
 });
 
 //for bulk adding wine to catalog
@@ -34,6 +38,9 @@ router.post('/', (req, res) => {
 // });
 
 router.put('/winename/:id', (req, res) => {
+    if(!req.session.user){
+        res.redirect("/auth/login");
+      } else{
     db.Wine.update({
         wineName: req.body.wineName
     }, {
@@ -46,8 +53,12 @@ router.put('/winename/:id', (req, res) => {
         console.log(err);
         res.status(500).end()
     })
+}
 });
 router.put('/year/:id', (req, res) => {
+    if(!req.session.user){
+        res.redirect("/auth/login");
+      } else{
     db.Wine.update({
         year: req.body.year
     }, {
@@ -60,9 +71,13 @@ router.put('/year/:id', (req, res) => {
         console.log(err);
         res.status(500).end()
     })
+}
 });
 
 router.delete('/:id', (req, res) => {
+    if(!req.session.user){
+        res.redirect("/auth/login");
+      } else{
     db.Wine.destroy({
         where: {
             id: req.params.id
@@ -73,6 +88,7 @@ router.delete('/:id', (req, res) => {
         console.log(err);
         res.status(500).end()
     })
+}
 });
 
 //WE MIGHT NEED THESE DOWN THE LINE DEPENDING ON MDP
