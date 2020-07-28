@@ -123,14 +123,28 @@ $(document).ready(function () {
         );
     });
 
-
-    $.ajax("/api/myWine/all", {
-        type: "GET",
+    $.ajax("/api/myRestaurants/all", {
+        type: "GET"
 
     }).then(
         function (data) {
             console.log(data)
-            for(let i=0;i<data.length;i++){
+            for (let i = 0; i < data.length; i++) {
+
+                let list = `<li><a href="/api/restaurants/${data[i].id}">${data[i].restaurantName}</a></li>`
+                $("#restaurants").prepend(list)
+
+            }
+        }
+    );
+
+    $.ajax("/api/myWines/all", {
+        type: "GET"
+
+    }).then(
+        function (data) {
+            console.log(data)
+            for (let i = 0; i < data.length; i++) {
 
                 let opt = $("<option>")
                 opt.attr("value", data[i])
@@ -138,9 +152,9 @@ $(document).ready(function () {
                 $("#wines").append(opt)
 
             }
-
         }
     );
+
     // $("#expandWineFormBtn").off().on("click", function (event) {
     //     event.preventDefault();
     //     // $("#expandedForm").empty();

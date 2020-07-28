@@ -9,7 +9,7 @@ router.get("/", (req, res) => {
   if (!req.session.user) {
     res.redirect("/auth/login");
   } else {
-    res.render("/home", req.session.user)
+    res.redirect("/home")
   }
 });
 
@@ -35,18 +35,18 @@ router.get("/home", (req, res) => {
             ['restaurantName']
           ]
         })
-
           .then(dbRestaurant => {
             const dbWineJson = dbWine.map(wine => wine.toJSON());
             const dbRestaurantJson = dbRestaurant.map(restaurant => restaurant.toJSON());
             const wineNames = dbWineJson.map(wineObj => {
               return wineObj.wineName;
             })
-            const dbNoDupe = wineNames.filter((value, index) => wineNames.indexOf(value) !== index)
-            console.log(dbWineJson, dbNoDupe)
-            //create a variable to save first wineName, second var to save second wineName, foreach if wineone !== wineTwo push into array. And then map that array as a unique handlebars object
-
-
+            const dbNoDupe = []
+            wineNames.forEach((name) => {
+              if (!dbNoDupe.includes(name)) {
+                dbNoDupe.push(name);
+              }
+            })
             var hbsObject = { wine: dbWineJson, restaurant: dbRestaurantJson, wineNames: dbNoDupe };
             return res.render("index", hbsObject);
           })
@@ -56,53 +56,6 @@ router.get("/home", (req, res) => {
       })
   }
 });
-
-//Currently can't get navbar on specific restaurant page to dropdown list of restaurants WHILE having a specific restaurant grabbed by id shown with handlebars. Probably a question for instructors.
-
-router.get("/api/restaurants/:id", (req, res) => {
-  if (!req.session.user) {
-    res.redirect("/auth/login");
-  } else {
-    db.Restaurant.findAll({
-      order: [
-        ['restaurantName']
-      ],
-      include: [
-        {
-          model: db.Inventory,
-          include: [db.Wine]
-        }]
-    }).then(dbRestaurant => {
-      db.Wine.findAll({
-        order: [
-          ['wineName'],
-          ['year']
-        ]
-      })
-        .then(dbWine => {
-          const dbWineJson = dbWine.map(wine => wine.toJSON());
-          const dbRestaurantJson = dbRestaurant.map(restaurant => restaurant.toJSON());
-          db.Restaurant.findOne({
-            where: {
-              id: req.params.id
-            },
-            include: [
-              {
-                model: db.Inventory,
-                include: { model: db.Wine }
-              }]
-          }).then(oneRes => {
-            const dbOneRes = oneRes.toJSON();
-            var hbsObject = { restaurant: dbRestaurantJson, wine: dbWineJson, oneRestaurant: dbOneRes };
-            return res.render("specificrestaurant", hbsObject);
-          })
-        }).catch(err => {
-          console.log(err);
-          res.status(500).end()
-        })
-    })
-  }
-})
 
 //GET route for displaying specific restaurant's inventory and info
 
@@ -119,7 +72,7 @@ router.get("/api/restaurants/:id", (req, res) => {
       include: [
         {
           model: db.Inventory,
-          include: [db.Wine]
+          include: { model: db.Wine }
         }]
     }).then(dbRestaurant => {
       db.Wine.findAll({
@@ -131,7 +84,7 @@ router.get("/api/restaurants/:id", (req, res) => {
         .then(dbWine => {
           const dbRestaurantJson = dbRestaurant.toJSON();
           const dbWineJson = dbWine.map(wine => wine.toJSON());
-          var hbsObject = { restaurant: dbRestaurantJson, wine: dbWineJson };
+          var hbsObject = { oneRestaurant: dbRestaurantJson, wine: dbWineJson };
           return res.render("specificrestaurant", hbsObject);
         })
     }).catch(err => {
@@ -238,7 +191,7 @@ router.get("/api/wines/:wineName", (req, res) => {
 
 });
 
-router.get("/api/myWine/all", (req, res) => {
+router.get("/api/myWines/all", (req, res) => {
   if (!req.session.user) {
     res.redirect("/auth/login");
   } else {
@@ -253,7 +206,13 @@ router.get("/api/myWine/all", (req, res) => {
         const wineNames = dbWineJson.map(wineObj => {
           return wineObj.wineName;
         })
-        const dbNoDupe = wineNames.filter((value, index) => wineNames.indexOf(value) !== index)
+        const dbNoDupe = []
+        wineNames.forEach((name) => {
+          if (!dbNoDupe.includes(name)) {
+            dbNoDupe.push(name);
+          }
+        })
+        console.log(dbNoDupe);
         res.json(dbNoDupe)
       })
       .catch(err => {
@@ -262,4 +221,28 @@ router.get("/api/myWine/all", (req, res) => {
       })
   }
 });
+
+router.get("/api/myRestaurants/all", (req, res) => {
+  if (!req.session.user) {
+    res.redirect("/auth/login");
+  } else {
+    db.Restaurant.findAll({
+      order: [
+        ['restaurantName']
+      ]
+    })
+      .then(dbRestaurant => {
+        const dbRestaurantJson = dbRestaurant.map(restaurant => restaurant.toJSON());
+        antiDbRestaurantJson = dbRestaurantJson.reverse()
+        res.json(antiDbRestaurantJson);
+      })
+
+      .catch(err => {
+        console.log(err);
+        res.status(500).end()
+      })
+  }
+});
+
+
 module.exports = router;

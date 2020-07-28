@@ -29,9 +29,9 @@
             <div class="input-group center">
                 <input list="wines" class="input-group-field homeSearchField" type="text" placeholder="eg. Freemark Abbey">
                 <datalist id="wines">
-                    {{#each wine}}
-                    <option value="{{wineName}}">
-                        {{wineName}}
+                    {{#each dbNoDupe}}
+                    <option value="{{dbNoDupe}}">
+                        {{dbNoDupe}}
                     </option>
                     {{/each}}
                 </datalist>
