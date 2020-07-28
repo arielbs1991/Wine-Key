@@ -13,8 +13,13 @@ module.exports = function (sequelize, DataTypes) {
     });
 
     Inventory.associate = function (models) {
-        Inventory.belongsTo(models.Wine, { foreignKey: 'wineId', onDelete: 'cascade' });
+        Inventory.belongsTo(models.Wine, { 
+            unique: 'uniqueInventory',
+            foreignKey: 'wineId', 
+            onDelete: 'cascade' 
+        });
         Inventory.belongsTo(models.Restaurant, {
+            unique: 'uniqueInventory',
             foreignKey: 'restaurantId',
             onDelete: 'cascade'
         });
