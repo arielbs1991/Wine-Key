@@ -1,10 +1,7 @@
 const router = require("express").Router();
 const db = require("../models");
 
-// router.get("/", function (req, res) {
-//   res.redirect("/home");
-// });
-
+//GET route for Home page if logged in, else, redirects to login page
 router.get("/", (req, res) => {
   if (!req.session.user) {
     res.redirect("/auth/login");
