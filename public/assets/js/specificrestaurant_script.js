@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    // document.getElementById("case").style.visibility='block';
 
     $(".addWine").off().on("click", function (event) {
 
@@ -13,19 +14,15 @@ $(document).ready(function () {
             url: "/api/wines/",
             type: "POST",
             data: newWine,
-            success: function (data, status) {
-                weHaveSuccess = true;
-            },
-            complete: () => {
-                if(!weHaveSuccess){
-                    alert("That bottle of wine already exists.")
-                }
-            }
-        }).then(
+            
+        }).done(
             function () {
                 location.reload();
             }
-        )
+        ).fail(function() {
+            document.getElementById("wineUpdateError").style.display="block"
+            // alert("That bottle of wine already exists.")
+        })
 
     });
 
@@ -42,19 +39,15 @@ $(document).ready(function () {
             url: "/api/inventories/",
             type: "POST",
             data: newWine,
-            success: function (data, status) {
-                weHaveSuccess = true;
-            },
-            complete: () => {
-                if(!weHaveSuccess){
-                    alert("That bottle of wine already exists in this inventory. Please adjust quantity below.")
-                }
-            }
-        }).then(
+          
+        }).done(
             function () {
                 location.reload();
             }
-        )
+        ).fail(function() {
+            document.getElementById("inventoryUpdateError").style.display="block"
+            alert("That bottle of wine already exists in this inventory. Please adjust quantity below.")
+        })
     });
 
     $(".changeQuantity").each(function (index) {

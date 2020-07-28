@@ -13,7 +13,8 @@ $("#loginForm").submit(function(event){
         location.href = "/home"
     }).fail(function(err){
         console.log(err);
-        alert("Something went wrong!  Please Try Again.")
+        document.getElementById("loginError").style.display="block"
+        // alert("Something went wrong!  Please Try Again.")
         location.reload();
     })
 })

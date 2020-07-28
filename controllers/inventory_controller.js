@@ -12,7 +12,8 @@ router.post('/', (req, res) => {
             }
         }).then((foundInventory) => {
             if (foundInventory) {
-                res.send("inventory exists")
+            
+                res.status(418).send("inventory exists");
             }
             else {
 
