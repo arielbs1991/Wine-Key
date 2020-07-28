@@ -6,6 +6,7 @@ module.exports = function (sequelize, DataTypes) {
         restaurantName: {
             type: DataTypes.STRING,
             allowNull: false,
+            unique: true,
             validate: {
                 len: [1]
             }
@@ -30,6 +31,7 @@ module.exports = function (sequelize, DataTypes) {
     Restaurant.associate = function (models) {
         Restaurant.hasMany(models.Inventory, {
             foreignKey: 'restaurantId',
+            unique: 'uniqueInventory',
             onDelete: 'cascade'
         });
     };

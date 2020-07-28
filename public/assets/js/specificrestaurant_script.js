@@ -1,20 +1,29 @@
 $(document).ready(function () {
+    // document.getElementById("case").style.visibility='block';
 
     $(".addWine").off().on("click", function (event) {
+
         event.preventDefault();
         var newWine = {
             wineName: $("#createWineName").val().trim(),
             wineYear: $("#createWineYear").val().trim(),
         };
+        var weHaveSuccess = false;
+
         $.ajax({
             url: "/api/wines/",
             type: "POST",
-            data: newWine
-        }).then(
+            data: newWine,
+            
+        }).done(
             function () {
                 location.reload();
             }
-        )
+        ).fail(function() {
+            document.getElementById("wineUpdateError").style.display="block"
+            // alert("That bottle of wine already exists.")
+        })
+
     });
 
     $("#addInventory").off().on("click", function (event) {
@@ -24,16 +33,21 @@ $(document).ready(function () {
             restaurantId: $("#restaurantId").val().trim(),
             wineId: $("#newWineName").val().trim()
         };
-        console.log(newWine);
+        var weHaveSuccess = false;
+
         $.ajax({
             url: "/api/inventories/",
             type: "POST",
-            data: newWine
-        }).then(
+            data: newWine,
+          
+        }).done(
             function () {
                 location.reload();
             }
-        )
+        ).fail(function() {
+            document.getElementById("inventoryUpdateError").style.display="block"
+            alert("That bottle of wine already exists in this inventory. Please adjust quantity below.")
+        })
     });
 
     $(".changeQuantity").each(function (index) {
@@ -123,14 +137,28 @@ $(document).ready(function () {
         );
     });
 
-
-    $.ajax("/api/myWine/all", {
-        type: "GET",
+    $.ajax("/api/myRestaurants/all", {
+        type: "GET"
 
     }).then(
         function (data) {
             console.log(data)
-            for(let i=0;i<data.length;i++){
+            for (let i = 0; i < data.length; i++) {
+
+                let list = `<li><a href="/api/restaurants/${data[i].id}">${data[i].restaurantName}</a></li>`
+                $("#restaurants").prepend(list)
+
+            }
+        }
+    );
+
+    $.ajax("/api/myWines/all", {
+        type: "GET"
+
+    }).then(
+        function (data) {
+            console.log(data)
+            for (let i = 0; i < data.length; i++) {
 
                 let opt = $("<option>")
                 opt.attr("value", data[i])
@@ -138,9 +166,9 @@ $(document).ready(function () {
                 $("#wines").append(opt)
 
             }
-
         }
     );
+
     // $("#expandWineFormBtn").off().on("click", function (event) {
     //     event.preventDefault();
     //     // $("#expandedForm").empty();
