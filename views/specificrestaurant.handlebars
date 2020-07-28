@@ -11,10 +11,30 @@
 <h2>{{oneRestaurant.address}}</h2>
 <h2>{{oneRestaurant.phoneNumber}}</h2>
 
+<div class="grid-x grid-padding-x align-center" >
+  <div class="callout alert large" data-closable style="display: none" id="wineUpdateError">
+    <h5 class="textcenter">Oops...</h5>
+    <p>Wine already exists in catalog!</p>
+    <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+      <span class="calloutX" aria-hidden="true">&times;</span>
+    </button>
+  </div>
+</div>
+<div class="grid-x grid-padding-x align-center" >
+  <div class="callout alert large" data-closable style="display: none" id="inventoryUpdateError">
+    <h5 class="textcenter">Oops...</h5>
+    <p>Wine already exists in inventory! Please update quantity using the form.</p>
+    <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+      <span class="calloutX" aria-hidden="true">&times;</span>
+    </button>
+  </div>
+</div>
 <br>
 <br>
 <!--change to padding later on-->
 <br>
+
+
 <form>
   <div class="grid-container fluid">
     <div class="grid-x grid-padding-x align-center">
@@ -38,13 +58,15 @@
         </div>
         <input type="hidden" id="restaurantId" value={{oneRestaurant.id}}>
       </form>
-      <div id="addwinepadding"><button type="button" class="button rounded bordered shadow primary" id="addInventory">Add
+      <div id="addwinepadding"><button type="button" class="button rounded bordered shadow primary"
+          id="addInventory">Add
           Wine</button>
       </div>
     </div>
     <div></div>
   </div>
 </form>
+
 <br>
 <br>
 <br>
@@ -103,8 +125,8 @@
                 <span class="input-group-label">#</span>
                 <input class="input-group-field newQuantity" data-quantity="text" type="text">
                 <div class="input-group-button">
-                  <input type="submit" data-quantity="" class="button bordered shadow success changeQuantity" data-id={{id}}
-                    value="Update">
+                  <input type="submit" data-quantity="" class="button bordered shadow success changeQuantity"
+                    data-id={{id}} value="Update">
                 </div>
               </div>
             </td>

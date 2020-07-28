@@ -49,7 +49,8 @@
                                         </td>
                                         <td>
                                             <div class="input-group-button">
-                                                <input type="submit" class="button large bordered shadow success updateRestaurantName"
+                                                <input type="submit"
+                                                    class="button large bordered shadow success updateRestaurantName"
                                                     data-id={{id}} value="Update">
                                             </div>
                                         </td>
@@ -61,8 +62,9 @@
                                     </td>
                                     <td>
                                         <div class="input-group-button">
-                                            <input type="submit" class="button large bordered shadow success updatePhoneNumber" data-id={{id}}
-                                                value="Update">
+                                            <input type="submit"
+                                                class="button large bordered shadow success updatePhoneNumber"
+                                                data-id={{id}} value="Update">
                                         </div>
                                     </td>
                                 </tr>
@@ -72,17 +74,18 @@
                                     </td>
                                     <td>
                                         <div class="input-group-button">
-                                            <input type="submit" class="button large bordered shadow success updateAddress" data-id={{id}}
-                                                value="Update">
+                                            <input type="submit"
+                                                class="button large bordered shadow success updateAddress"
+                                                data-id={{id}} value="Update">
                                         </div>
                                     </td>
                                 </tr>
         </div>
         </table>
         </td>
-        
-        <td class="center removepadding removeStore"><button type="button" class="button rounded bordered shadow alert deleteRestaurant"
-                data-id={{id}}>Remove</button>
+
+        <td class="center removepadding removeStore"><button type="button"
+                class="button rounded bordered shadow alert deleteRestaurant" data-id={{id}}>Remove</button>
         </td>
         </tr>
         {{/each}}
@@ -90,6 +93,15 @@
         </table>
     </div>
 </div>
+</div>
+<div class="grid-x grid-padding-x align-center">
+    <div class="callout alert large" data-closable style="display: none" id="restaurantUpdateError">
+        <h5 class="textcenter">Oops...</h5>
+        <p>Restaurant by this name already exists!</p>
+        <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+            <span class="calloutX" aria-hidden="true">&times;</span>
+        </button>
+    </div>
 </div>
 <br>
 <br>
