@@ -46,7 +46,7 @@ $(document).ready(function () {
             }
         ).fail(function() {
             document.getElementById("inventoryUpdateError").style.display="block"
-            alert("That bottle of wine already exists in this inventory. Please adjust quantity below.")
+            // alert("That bottle of wine already exists in this inventory. Please adjust quantity below.")
         })
     });
 

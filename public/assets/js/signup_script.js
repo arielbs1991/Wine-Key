@@ -14,7 +14,8 @@ $("#signupForm").submit(function(event){
         location.href = "/auth/login"
     }).fail(function(err){
         console.log(err);
-        alert("Something went wrong!  Please try again.")
-        location.reload();
+        document.getElementById("signupError").style.display="block"
+        // alert("Something went wrong!  Please try again.")
+        // location.reload();
     })
 })

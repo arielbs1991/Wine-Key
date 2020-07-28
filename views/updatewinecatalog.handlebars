@@ -37,6 +37,20 @@
         </div>
     </div>
 </form>
+
+{{!-- ERROR BOX --}}
+
+<div class="grid-x grid-padding-x align-center" >
+  <div class="callout alert large" data-closable style="display: none" id="wineUpdateError">
+    <h5 class="textcenter">Oops...</h5>
+    <p>Wine already exists in catalog!</p>
+    <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+      <span class="calloutX" aria-hidden="true">&times;</span>
+    </button>
+  </div>
+</div>
+
+
 <br>
 <br>
 <br>
@@ -89,13 +103,23 @@
 </div>
 </div>
 
-<div class="callout alert" style="display: none;" id="wineUpdateError" data-closable>
+{{!-- <div class="callout alert" style="display: none;" id="wineUpdateError" data-closable>
   <h5>Wine Already Exists!</h5>
   <p>This wine already exists in the Wine Catalog.</p>
   <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
     <span aria-hidden="true">&times;</span>
   </button>
-</div>
+</div> --}}
+
+{{!-- <div class="grid-x grid-padding-x align-center" style="display: none'" id="wineUpdateError">
+  <div class="callout alert" data-closable>
+    <h5 class="textcenter">Oops...</h5>
+    <p>Wine already exists in catalog!</p>
+    <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+      <span class="calloutX" aria-hidden="true">&times;</span>
+    </button>
+  </div>
+</div> --}}
 
 {{!-- <form>
     <div class="grid-container fluid">
