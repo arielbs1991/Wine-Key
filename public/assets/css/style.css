@@ -123,6 +123,14 @@ span.fade {
     padding-right:1.3rem;
 }
 
+.calloutX {
+    opacity: 10;
+}
+
+.callout {
+    position: fixed;
+    justify-content: center;
+}
 
 
 /* Autocomplete CSS */
