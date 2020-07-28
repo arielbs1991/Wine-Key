@@ -1,20 +1,29 @@
 $(document).ready(function () {
+    // document.getElementById("case").style.visibility='block';
 
     $(".addWine").off().on("click", function (event) {
+
         event.preventDefault();
         var newWine = {
             wineName: $("#createWineName").val().trim(),
             wineYear: $("#createWineYear").val().trim(),
         };
+        var weHaveSuccess = false;
+
         $.ajax({
             url: "/api/wines/",
             type: "POST",
-            data: newWine
-        }).then(
+            data: newWine,
+            
+        }).done(
             function () {
                 location.reload();
             }
-        )
+        ).fail(function() {
+            document.getElementById("wineUpdateError").style.display="block"
+            // alert("That bottle of wine already exists.")
+        })
+
     });
 
     $("#addInventory").off().on("click", function (event) {
@@ -24,16 +33,21 @@ $(document).ready(function () {
             restaurantId: $("#restaurantId").val().trim(),
             wineId: $("#newWineName").val().trim()
         };
-        console.log(newWine);
+        var weHaveSuccess = false;
+
         $.ajax({
             url: "/api/inventories/",
             type: "POST",
-            data: newWine
-        }).then(
+            data: newWine,
+          
+        }).done(
             function () {
                 location.reload();
             }
-        )
+        ).fail(function() {
+            document.getElementById("inventoryUpdateError").style.display="block"
+            alert("That bottle of wine already exists in this inventory. Please adjust quantity below.")
+        })
     });
 
     $(".changeQuantity").each(function (index) {

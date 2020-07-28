@@ -12,12 +12,15 @@ $(document).ready(function () {
             url: "/api/restaurants/",
             type: "POST",
             data: newRestaurant
-        }).then(
+        }).done(
             function () {
                 console.log("Added new store");
                 location.reload();
             }
-        )
+        ).fail(function() {
+            document.getElementById("restaurantUpdateError").style.display="block"
+            // alert("There is already a restaurant with this name")
+        })
     });
 
     //these three say that id is not defined and $(this).parent... is not a function

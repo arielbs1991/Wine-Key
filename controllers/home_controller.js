@@ -69,8 +69,13 @@ router.get("/api/restaurants/:id", (req, res) => {
       include: [
         {
           model: db.Inventory,
-          include: { model: db.Wine }
-        }]
+          include: { model: db.Wine },
+         
+        }],
+        order: [
+          [db.Inventory, db.Wine, 'wineName', 'asc'],
+          [db.Inventory, db.Wine, 'year', 'asc']
+        ]
     }).then(dbRestaurant => {
       db.Wine.findAll({
         order: [
@@ -81,7 +86,9 @@ router.get("/api/restaurants/:id", (req, res) => {
         .then(dbWine => {
           const dbRestaurantJson = dbRestaurant.toJSON();
           const dbWineJson = dbWine.map(wine => wine.toJSON());
+          console.log("dbwinejson from restaurant:id", dbWineJson);
           var hbsObject = { oneRestaurant: dbRestaurantJson, wine: dbWineJson };
+          console.log("hbsobj", hbsObject.oneRestaurant);
           return res.render("specificrestaurant", hbsObject);
         })
     }).catch(err => {

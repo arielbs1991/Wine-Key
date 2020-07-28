@@ -2,57 +2,71 @@ const router = require("express").Router();
 const db = require("../models");
 
 router.post('/', (req, res) => {
-    if(!req.session.user){
+    if (!req.session.user) {
         res.redirect("/auth/login");
-      } else{
-    db.Inventory.create({
-        restaurantId: req.body.restaurantId,
-        wineId: req.body.wineId,
-        quantity: req.body.wineQuantity
-    })
-        .then(inventoryData => {
-            res.json(inventoryData)
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).end()
+    } else {
+        db.Inventory.findOne({
+            where: {
+                restaurantId: req.body.restaurantId,
+                wineId: req.body.wineId
+            }
+        }).then((foundInventory) => {
+            if (foundInventory) {
+            
+                res.status(418).send("inventory exists");
+            }
+            else {
+
+                db.Inventory.create({
+                    restaurantId: req.body.restaurantId,
+                    wineId: req.body.wineId,
+                    quantity: req.body.wineQuantity
+                })
+                    .then(inventoryData => {
+                        res.json(inventoryData)
+                    })
+                    .catch(err => {
+                        console.log(err);
+                        res.status(500).end()
+                    })
+            }
         })
     }
 })
 
 router.delete('/:id', (req, res) => {
-    if(!req.session.user){
+    if (!req.session.user) {
         res.redirect("/auth/login");
-      } else{
-    db.Inventory.destroy({
-        where: {
-            id: req.params.id
-        }
-    }).then(inventoryData => {
-        res.json(inventoryData)
-    }).catch(err => {
-        console.log(err);
-        res.status(500).end()
-    })
-}
+    } else {
+        db.Inventory.destroy({
+            where: {
+                id: req.params.id
+            }
+        }).then(inventoryData => {
+            res.json(inventoryData)
+        }).catch(err => {
+            console.log(err);
+            res.status(500).end()
+        })
+    }
 })
 router.put('/:id', (req, res) => {
-    if(!req.session.user){
+    if (!req.session.user) {
         res.redirect("/auth/login");
-      } else{
-    db.Inventory.update({
-        quantity: req.body.quantity
-    }, {
-        where: {
-            id: req.params.id
-        }
-    }).then(inventoryData => {
-        res.json(inventoryData)
-    }).catch(err => {
-        console.log(err);
-        res.status(500).end()
-    })
-}
+    } else {
+        db.Inventory.update({
+            quantity: req.body.quantity
+        }, {
+            where: {
+                id: req.params.id
+            }
+        }).then(inventoryData => {
+            res.json(inventoryData)
+        }).catch(err => {
+            console.log(err);
+            res.status(500).end()
+        })
+    }
 });
 
 //WE MIGHT NEED THESE LATER WHO KNOWS
