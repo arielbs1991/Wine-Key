@@ -72,7 +72,10 @@ router.get("/api/restaurants/:id", (req, res) => {
       include: [
         {
           model: db.Inventory,
-          include: { model: db.Wine }
+          include: { model: db.Wine },
+          order: [
+            ['Wine.wineName']
+          ]
         }]
     }).then(dbRestaurant => {
       db.Wine.findAll({
@@ -84,6 +87,7 @@ router.get("/api/restaurants/:id", (req, res) => {
         .then(dbWine => {
           const dbRestaurantJson = dbRestaurant.toJSON();
           const dbWineJson = dbWine.map(wine => wine.toJSON());
+          console.log("dbwinejson from restaurant:id", dbWineJson);
           var hbsObject = { oneRestaurant: dbRestaurantJson, wine: dbWineJson };
           return res.render("specificrestaurant", hbsObject);
         })
