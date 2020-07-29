@@ -14,7 +14,5 @@ $("#loginForm").submit(function(event){
     }).fail(function(err){
         console.log(err);
         document.getElementById("loginError").style.display="block"
-        // alert("Something went wrong!  Please Try Again.")
-        // location.reload();
     })
 })
