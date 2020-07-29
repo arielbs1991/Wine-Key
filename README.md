@@ -20,6 +20,9 @@ sequelize, sequelize-cli
 Deployed Heroku Site:<br>
 https://fv-winekey.herokuapp.com/
 
+Link to GitHub Repository:<br>
+https://github.com/arielbs1991/Wine-Key
+
 
 Contributors:<br>
 Ariel Strayer - https://github.com/arielbs1991 <br>
