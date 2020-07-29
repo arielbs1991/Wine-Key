@@ -15,7 +15,5 @@ $("#signupForm").submit(function(event){
     }).fail(function(err){
         console.log(err);
         document.getElementById("signupError").style.display="block"
-        // alert("Something went wrong!  Please try again.")
-        // location.reload();
     })
 })

@@ -7,18 +7,14 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: false,
             unique: 'uniqueWine',
-            // unique: 'uniqueInventory',
             validate: {
                 len: [1]
             }
         },
         year: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             unique: 'uniqueWine',
-            // unique: 'uniqueInventory',
-            validate: {
-                len: [1, 4]
-            }
+            notEmpty:false
         }
     });
 
